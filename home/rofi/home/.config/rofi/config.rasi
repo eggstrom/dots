@@ -1,0 +1,86 @@
+@theme "themes/power.rasi"
+@theme "themes/run.rasi"
+
+configuration {
+    hover-select: true;
+    window {
+        hide-active-window: true;
+    }
+    
+    kb-accept-alt: "";
+    kb-accept-custom-alt: "";
+    kb-accept-custom: "";
+    kb-accept-entry: "KP_Enter,Return";
+    kb-cancel: "Escape,Super+1,Super+2,Super+3,Super+4,Super+5,Super+6,Super+7,Super+8,Super+9,Super+0,Super+Ctrl+F5,Super+Ctrl+f,Super+Escape,Super+F5,Super+Shift+f,Super+e,Super+f,Super+q,Super+s,Super+v,Super+w";
+    kb-clear-line: "";
+    kb-custom-10: "";
+    kb-custom-11: "";
+    kb-custom-12: "";
+    kb-custom-13: "";
+    kb-custom-14: "";
+    kb-custom-15: "";
+    kb-custom-16: "";
+    kb-custom-17: "";
+    kb-custom-18: "";
+    kb-custom-19: "";
+    kb-custom-1: "";
+    kb-custom-2: "";
+    kb-custom-3: "";
+    kb-custom-4: "";
+    kb-custom-5: "";
+    kb-custom-6: "";
+    kb-custom-7: "";
+    kb-custom-8: "";
+    kb-custom-9: "";
+    kb-delete-entry: "Control+q";
+    kb-element-next: "Control+n,Tab";
+    kb-element-prev: "Control+p,ISO_Left_Tab";
+    kb-ellipsize: "";
+    kb-mode-complete: "";
+    kb-mode-next: "Control+Tab";
+    kb-mode-previous: "Control+ISO_Left_Tab";
+    kb-move-char-back: "Left";
+    kb-move-char-forward: "Right";
+    kb-move-end: "";
+    kb-move-front: "";
+    kb-move-word-back: "Control+Left";
+    kb-move-word-forward: "Control+Right";
+    kb-page-next: "Control+Down,Page_Down";
+    kb-page-prev: "Control+Up,Page_Up";
+    kb-primary-paste: "Shift+Insert";
+    kb-remove-char-back: "BackSpace";
+    kb-remove-char-forward: "Delete";
+    kb-remove-to-eol: "";
+    kb-remove-to-sol: "";
+    kb-remove-word-back: "Control+BackSpace";
+    kb-remove-word-forward: "Control+Delete";
+    kb-row-down: "Down";
+    kb-row-first: "Home,KP_Home";
+    kb-row-last: "End,KP_End";
+    kb-row-left: "";
+    kb-row-right: "";
+    kb-row-select: "";
+    kb-row-tab: "";
+    kb-row-up: "Up";
+    kb-screenshot: "";
+    kb-secondary-paste: "Control+V,Control+v";
+    kb-select-10: "Ctrl+0";
+    kb-select-1: "Ctrl+1";
+    kb-select-2: "Ctrl+2";
+    kb-select-3: "Ctrl+3";
+    kb-select-4: "Ctrl+4";
+    kb-select-5: "Ctrl+5";
+    kb-select-6: "Ctrl+6";
+    kb-select-7: "Ctrl+7";
+    kb-select-8: "Ctrl+8";
+    kb-select-9: "Ctrl+9";
+    kb-toggle-case-sensitivity: "";
+    kb-toggle-sort: "";
+    me-accept-custom: "";
+    me-accept-entry: "MousePrimary,MouseSecondary";
+    me-select-entry: "";
+    ml-row-down: "ScrollDown";
+    ml-row-left: "ScrollLeft";
+    ml-row-right: "ScrollRight";
+    ml-row-up: "ScrollUp";
+}

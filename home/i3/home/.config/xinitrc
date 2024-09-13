@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+output="$(xrandr --query | grep ' connected' | cut -d' ' -f1)"
+line="$(xrandr --query | grep -A1 "^$output" | tail -1 | tr -d '+*' | tr -s ' ' | cut -c 2-)"
+mode="$(echo "$line" | cut -d' ' -f1)"
+rate="$(echo "$line" | cut -d' ' -f2- | tr ' ' '\n' | sort -nr | head -n1)"
+
+xrandr --output "$output" --mode "$mode" --rate "$rate"
+xset s off -dpms
+
+screen_height="$(echo "$mode" | cut -dx -f2)"
+
+font_text='JetBrains Mono NF'
+font_icons='Font Awesome 6 Free Solid'
+font_size="$((screen_height / 70))"
+border="$((screen_height / 300))"
+
+export POLYBAR_FONT_TEXT="$font_text:size=$font_size;$((screen_height / 275))"
+export POLYBAR_FONT_ICONS="$font_icons:size=$font_size;$((screen_height / 275))"
+export POLYBAR_BORDER="$border"
+
+export ROFI_FONT_RUN="\"$font_text $font_size\""
+export ROFI_FONT_POWER="\"$font_icons $((screen_height / 25))\""
+export ROFI_BORDER="$border"
+export ROFI_PADDING_SMALL="$((screen_height / 150))"
+export ROFI_PADDING_BIG="$((ROFI_PADDING_SMALL * 2))"
+export ROFI_WIDTH_POWER="calc($((2 * (ROFI_BORDER + ROFI_PADDING_BIG) + 12 * ROFI_PADDING_BIG)) + 6em + 0.6%)"
+
+export WEZTERM_FONT_SIZE="$font_size"
+
+cat << EOF | xrdb -merge
+I3_BORDER: $border
+I3_GAPS:   $((screen_height / 50))
+EOF
+
+"$XDG_STATE_HOME/fehbg"
+i3

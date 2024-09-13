@@ -1,0 +1,33 @@
+* {
+    background: #1E1E2E;
+    background-transparent: #1E1E2EF2;
+    foreground: #CDD6F4;
+
+    background-color: transparent;
+    text-color: @foreground;
+    cursor: inherit;
+}
+
+window {
+    background-color: @background-transparent;
+    border-color: @foreground;
+    padding: env(ROFI_PADDING_BIG, 0);
+    border: env(ROFI_BORDER, 0);
+}
+
+inputbar {
+    cursor: text;
+}
+
+element {
+    cursor: pointer;
+}
+
+element selected {
+    background-color: @foreground;
+    text-color: @background;
+}
+
+element-text {
+    text-color: inherit;
+}

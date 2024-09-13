@@ -1,0 +1,109 @@
+# General settings
+set_from_resource $border I3_BORDER 0
+set_from_resource $gaps I3_GAPS 0
+
+focus_follows_mouse     no
+gaps                    inner $gaps
+default_border          pixel $border
+default_floating_border pixel $border
+
+# Colors
+set $bg #1E1E2E
+set $fg #CDD6F4
+client.focused          $fg $fg $fg $fg $fg
+client.focused_inactive $bg $bg $bg $bg $bg
+client.unfocused        $bg $bg $bg $bg $bg
+client.urgent           $bg $bg $bg $bg $bg
+client.placeholder      $bg $bg $bg $bg $bg
+client.background       $bg
+
+# Mod key (Mod1 = Alt, Mod4 = Super)
+set $mod Mod4
+
+# General binds
+bindsym $mod+Escape  exec --no-startup-id ~/.config/rofi/scripts/power.sh
+bindsym $mod+F5      reload
+bindsym $mod+Ctrl+F5 restart
+bindsym $mod+q       kill
+bindsym $mod+s       split vertical
+bindsym $mod+v       split horizontal
+bindsym $mod+w       exec --no-startup-id ~/.config/rofi/scripts/run.sh
+bindsym $mod+e       exec --no-startup-id $TERMINAL
+
+# Floating/fullscreen toggle binds
+bindsym $mod+f       fullscreen disable; floating toggle
+bindsym $mod+Ctrl+f  floating disable;   fullscreen toggle
+bindsym $mod+Shift+f focus mode_toggle
+
+# Screenshot binds
+bindsym --release Print  exec --no-startup-id "maim -Blsu --color=0,0,0,0.75         | xclip -selection clipboard -t image/png"
+bindsym Ctrl+Print       exec --no-startup-id "maim -B -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png"
+bindsym Shift+Print      exec --no-startup-id "maim -B -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png"
+bindsym Ctrl+Shift+Print exec --no-startup-id "maim                                  | xclip -selection clipboard -t image/png"
+
+# Mouse binds
+floating_modifier $mod
+bindsym --whole-window $mod+button2      kill
+bindsym --whole-window $mod+button4      workspace next
+bindsym --whole-window $mod+button5      workspace prev
+bindsym --whole-window $mod+Ctrl+button4 move container to workspace next
+bindsym --whole-window $mod+Ctrl+button5 move container to workspace prev
+
+# Binds for moving within a workspace
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+bindsym $mod+h     focus left
+bindsym $mod+j     focus down
+bindsym $mod+k     focus up
+bindsym $mod+l     focus right
+
+bindsym $mod+Ctrl+Left  move left
+bindsym $mod+Ctrl+Down  move down
+bindsym $mod+Ctrl+Up    move up
+bindsym $mod+Ctrl+Right move right
+bindsym $mod+Ctrl+h     move left
+bindsym $mod+Ctrl+j     move down
+bindsym $mod+Ctrl+k     move up
+bindsym $mod+Ctrl+l     move right
+
+bindsym $mod+Shift+Left  resize shrink width  25 px or 10 ppt
+bindsym $mod+Shift+Down  resize grow   height 25 px or 10 ppt
+bindsym $mod+Shift+Up    resize shrink height 25 px or 10 ppt
+bindsym $mod+Shift+Right resize grow   width  25 px or 10 ppt
+bindsym $mod+Shift+h     resize shrink width  25 px or 10 ppt
+bindsym $mod+Shift+j     resize grow   height 25 px or 10 ppt
+bindsym $mod+Shift+k     resize shrink height 25 px or 10 ppt
+bindsym $mod+Shift+l     resize grow   width  25 px or 10 ppt
+
+# Binds for moving between workspaces
+bindsym $mod+1         workspace number 1
+bindsym $mod+2         workspace number 2
+bindsym $mod+3         workspace number 3
+bindsym $mod+4         workspace number 4
+bindsym $mod+5         workspace number 5
+bindsym $mod+6         workspace number 6
+bindsym $mod+7         workspace number 7
+bindsym $mod+8         workspace number 8
+bindsym $mod+9         workspace number 9
+bindsym $mod+0         workspace number 10
+bindsym $mod+Tab       workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+Ctrl+1         move container to workspace number 1
+bindsym $mod+Ctrl+2         move container to workspace number 2
+bindsym $mod+Ctrl+3         move container to workspace number 3
+bindsym $mod+Ctrl+4         move container to workspace number 4
+bindsym $mod+Ctrl+5         move container to workspace number 5
+bindsym $mod+Ctrl+6         move container to workspace number 6
+bindsym $mod+Ctrl+7         move container to workspace number 7
+bindsym $mod+Ctrl+8         move container to workspace number 8
+bindsym $mod+Ctrl+9         move container to workspace number 9
+bindsym $mod+Ctrl+0         move container to workspace number 10
+bindsym $mod+Ctrl+Tab       move container to workspace next
+bindsym $mod+Ctrl+Shift+Tab move container to workspace prev
+
+# Programs to start with i3
+exec_always --no-startup-id picom
+exec_always --no-startup-id ~/.config/polybar/launch.sh
