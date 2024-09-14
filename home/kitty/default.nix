@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [ kitty ];
-  xdg.configFile."kitty/kitty.conf".source = ./home/.config/kitty/kitty.conf;
+
+  xdg.configFile.kitty = {
+    source = ./home/.config/kitty;
+    recursive = true;
+  };
 }

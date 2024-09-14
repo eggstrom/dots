@@ -9,13 +9,14 @@
   ];
 
   xdg.configFile = {
-    "i3/config".source = ./home/.config/i3/config;
-    "i3/lock.sh" = {
-      source = ./home/.config/i3/config;
-      executable = true;
+    i3 = {
+      source = ./home/.config;
+      recursive = true;
     };
-
-    "picom/picom.conf".source = ./home/.config/picom/picom.conf;
-    "xinitrc".source = ./home/.config/xinitrc;
+    picom = {
+      source = ./home/.config/picom;
+      recursive = true;
+    };
+    xinitrc.source = ./home/.config/xinitrc;
   };
 }

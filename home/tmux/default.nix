@@ -5,11 +5,8 @@
     tmuxPlugins.catppuccin
   ];
 
-  xdg.configFile = {
-    "tmux/binds.sh" = {
-      source = ./home/.config/tmux/binds.sh;
-      executable = true;
-    };
-    "tmux/tmux.conf".source = ./home/.config/tmux/tmux.conf;
+  xdg.configFile.tmux = {
+    source = ./home/.config/tmux;
+    recursive = true;
   };
 }

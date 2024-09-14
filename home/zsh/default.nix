@@ -12,9 +12,13 @@
   };
 
   xdg.configFile = {
-    "shell/aliases.sh".source = ./home/.config/shell/aliases.sh;
-    "shell/env.sh".source = ./home/.config/shell/env.sh;
-    "zsh/.zlogin".source = ./home/.config/zsh/.zlogin;
-    "zsh/.zshrc".source = ./home/.config/zsh/.zshrc;
+    shell = {
+      source = ./home/.config/shell;
+      recursive = true;
+    };
+    zsh = {
+      source = ./home/.config/zsh;
+      recursive = true;
+    };
   };
 }
