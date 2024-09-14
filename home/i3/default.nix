@@ -10,7 +10,7 @@
 
   xdg.configFile = {
     i3 = {
-      source = ./home/.config;
+      source = ./home/.config/i3;
       recursive = true;
     };
     picom = {
