@@ -21,7 +21,6 @@
       prismlauncher
       pulsemixer
       ripgrep
-      rustup
       steam
       tealdeer
       trash-cli

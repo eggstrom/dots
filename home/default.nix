@@ -1,21 +1,24 @@
-let
-  inherit (builtins)
-    attrNames
-    filter
-    map
-    readDir
-    ;
-in
-{ config, ... }:
+{ inputs, settings, ... }:
 {
   programs.home-manager.enable = true;
   home = {
     stateVersion = "24.05";
-    username = "eggstrom";
-    homeDirectory = "/home/${config.home.username}";
+    username = settings.username;
+    homeDirectory = "/home/${settings.username}";
   };
 
-  imports = map (path: ./. + "/${path}") (
-    filter (file: file != "default.nix") (attrNames (readDir ./.))
-  );
+  # Make registry use this flake's version of nixpkgs
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+
+  imports = [
+    ./i3
+    ./kitty
+    ./neovim
+    ./polybar
+    ./rofi
+    ./starship
+    ./tmux
+    ./zsh
+    ./misc.nix
+  ];
 }

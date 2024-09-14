@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,28 +28,36 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ inputs.nur.overlay ];
+        overlays = with inputs; [
+          nur.overlay
+          rust-overlay.overlays.default
+        ];
+      };
+      settings = import ./settings.nix;
+      specialArgs = {
+        inherit inputs system settings;
       };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs system;
-        };
+      nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
         modules = [
-          ./configuration.nix
+          ./hardware-configuration.nix
+          ./nixos
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
-              users.eggstrom = import ./home;
+              extraSpecialArgs = specialArgs;
+              users.${settings.username} = import ./home;
             };
           }
         ];
       };
 
-      homeConfigurations.eggstrom = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${settings.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = specialArgs;
         modules = [ ./home ];
       };
 

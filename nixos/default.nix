@@ -1,25 +1,20 @@
-let
-  inherit (builtins)
-    attrNames
-    filter
-    map
-    readDir
-    ;
-in
-{ pkgs, ... }:
 {
-  # Remove pointless defaults
+  system.stateVersion = "24.05";
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  # Disable stinky defaults
   programs.nano.enable = false;
   environment.shellAliases = {
     l = null;
     ll = null;
     ls = null;
   };
-
-  # Import everything in current directory
-  # imports = map (path: ./. + "/${path}") (
-  #   filter (file: file != "default.nix") (attrNames (readDir ./.))
-  # );
 
   imports = [
     ./audio.nix
@@ -28,6 +23,7 @@ in
     ./locale.nix
     ./networking.nix
     ./services.nix
+    ./users.nix
     ./xorg.nix
     ./zsh.nix
   ];

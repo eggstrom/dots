@@ -1,22 +1,22 @@
-{
-  console.keyMap = "slovene";
-  services.xserver.xkb = {
-    layout = "si";
-    variant = "";
-  };
-
-  i18n.defaultLocale = "en_US.UTF-8";
+{ settings, ... }: {
+  i18n.defaultLocale = "${settings.locale}";
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = "${settings.locale}";
+    LC_IDENTIFICATION = "${settings.locale}";
+    LC_MEASUREMENT = "${settings.locale}";
+    LC_MONETARY = "${settings.locale}";
+    LC_NAME = "${settings.locale}";
+    LC_NUMERIC = "${settings.locale}";
+    LC_PAPER = "${settings.locale}";
+    LC_TELEPHONE = "${settings.locale}";
+    LC_TIME = "${settings.locale}";
   };
 
-  time.timeZone = "Europe/Ljubljana";
+  time.timeZone = "${settings.timeZone}";
+
+  console.keyMap = "${settings.consoleKeyboard}";
+  services.xserver.xkb = {
+    layout = "${settings.x11Keyboard.layout}";
+    variant = "${settings.x11Keyboard.variant}";
+  };
 }
