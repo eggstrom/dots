@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home = {
     packages = with pkgs; [
@@ -39,6 +39,10 @@
 
       nvim-treesitter.withAllGrammars
 
+      nvim-lspconfig
+      neodev-nvim
+      none-ls-nvim
+
       nvim-cmp
       cmp-nvim-lsp
       cmp-cmdline
@@ -47,29 +51,22 @@
       luasnip
       cmp_luasnip
 
-      nvim-lspconfig
-      neodev-nvim
-
       telescope-nvim
       telescope-fzf-native-nvim
+      telescope-file-browser-nvim
 
       copilot-vim
       CopilotChat-nvim
 
-      nvim-tree-lua
       lualine-nvim
       bufferline-nvim
       nvim-web-devicons
 
       nvim-colorizer-lua
 
-      comment-nvim
-      todo-comments-nvim
-
       nvim-ufo
       gitsigns-nvim
       indent-blankline-nvim
-      none-ls-nvim
       nvim-autopairs
     ];
   };

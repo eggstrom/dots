@@ -13,6 +13,7 @@
       firefox
       fzf
       gcc
+      gimp
       git
       go
       jq

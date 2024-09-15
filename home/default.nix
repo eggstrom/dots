@@ -1,4 +1,4 @@
-{ inputs, settings, ... }:
+{ inputs, pkgs, settings, ... }:
 {
   programs.home-manager.enable = true;
   home = {
