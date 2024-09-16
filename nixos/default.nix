@@ -6,8 +6,11 @@
       "nix-command"
       "flakes"
     ];
+
     gc = {
+      # Run garbage collector weekly
       automatic = true;
+      # Delete generations older than 7 days
       options = "--delete-older-than 7d";
     };
   };
@@ -21,6 +24,9 @@
     ll = null;
     ls = null;
   };
+
+  # Generate caches for searching man pages
+  documentation.man.generateCaches = true;
 
   imports = [
     ./audio.nix

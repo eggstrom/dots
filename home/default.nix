@@ -12,7 +12,9 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
 
     gc = {
+      # Run garbage collector weekly
       automatic = true;
+      # Delete generations older than 7 days
       options = "--delete-older-than 7d";
     };
   };

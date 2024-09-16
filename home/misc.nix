@@ -20,6 +20,7 @@
       nix-search-cli
       obs-studio
       prismlauncher
+      pulseaudio
       pulsemixer
       ripgrep
       steam
