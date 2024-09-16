@@ -1,4 +1,4 @@
-{ inputs, pkgs, settings, ... }:
+{ inputs, settings, ... }:
 {
   programs.home-manager.enable = true;
   home = {
@@ -7,8 +7,15 @@
     homeDirectory = "/home/${settings.username}";
   };
 
-  # Make registry use this flake's version of nixpkgs
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix = {
+    # Make registry use this flake's version of nixpkgs
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+    };
+  };
 
   imports = [
     ./i3

@@ -14,6 +14,7 @@
       libclang # clangd
       lua-language-server # lua_ls
       nil # nil_ls
+      # rust-analyzer # rust_analyzer
       vscode-langservers-extracted # cssls, html, jsonls
       pyright
       taplo

@@ -15,9 +15,7 @@ alias ls='ls --color=auto'
 
 # Miscellaneous
 alias aria2c='aria2c -d $HOME/Downloads'
-alias fcd='cd "$(fd -Ht d | fzf)"'
 alias d='eval cd "$(dirs -p | fzf)"'
 alias e='$EDITOR'
-alias f='lf'
+alias f='yazi'
 alias l='eza -al --icons --git'
-alias lf='cd "$(\lf -print-last-dir)"'

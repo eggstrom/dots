@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   i18n.defaultLocale = "${settings.locale}";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "${settings.locale}";
