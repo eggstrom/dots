@@ -4,7 +4,7 @@
     udisks2.enable = true;
   };
 
-  # Make programs that require FHS work
+  # Make programs that require FHS compliance work
   services.envfs.enable = true;
   programs.nix-ld.enable = true;
 

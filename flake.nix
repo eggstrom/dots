@@ -41,7 +41,10 @@
             home-manager = {
               useGlobalPkgs = true;
               extraSpecialArgs = specialArgs;
-              users.${settings.username} = import ./home;
+              users = {
+                root = import ./users/root.nix;
+                ${settings.username} = import ./users/default.nix;
+              };
             };
           }
         ];
@@ -50,7 +53,7 @@
       homeConfigurations.${settings.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = specialArgs;
-        modules = [ ./home ];
+        modules = [ ./users/default.nix ];
       };
 
       formatter.${system} = pkgs.nixfmt-rfc-style;

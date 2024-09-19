@@ -9,7 +9,11 @@
   };
 
   services.libinput.mouse = {
-    accelProfile = "flat"; # Disable mouse acceleration
-    tappingDragLock = false; # Disable delay when clicking (I think)
+    # Disable acceleration
+    accelProfile = "flat";
+    # Don't interpret both buttons being pressed as middle click
+    middleEmulation = false;
+    # Disable delay when clicking (I think)
+    tappingDragLock = false;
   };
 }
