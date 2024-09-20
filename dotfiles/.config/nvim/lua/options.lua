@@ -25,3 +25,4 @@ vim.o.smartcase = true  -- Enable case sensitivity when using caps
 vim.o.foldlevel = 99                          -- Keep folds open by default
 vim.o.foldmethod = "expr"                     -- Use foldexpr for folds
 vim.o.foldexpr = "nvim_treesitter#foldexpr()" -- Use treesitter for folds
+vim.o.foldtext = ""                           -- Make fold text prettier
