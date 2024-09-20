@@ -40,6 +40,10 @@ local settings = {
                 library = { vim.env.VIMRUNTIME },
             },
         },
+        ["rust-analyzer"] = {
+            -- Disable snippet spam in completion menu
+            completion = { postfix = { enable = false } },
+        },
         zls = { enable_autofix = false },
     },
 }

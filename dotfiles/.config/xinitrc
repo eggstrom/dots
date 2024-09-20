@@ -7,6 +7,7 @@ rate="$(echo "$line" | cut -d' ' -f2- | tr ' ' '\n' | sort -nr | head -n1)"
 
 xrandr --output "$output" --mode "$mode" --rate "$rate"
 xset s off -dpms
+xset r rate 300 50
 
 screen_height="$(echo "$mode" | cut -dx -f2)"
 

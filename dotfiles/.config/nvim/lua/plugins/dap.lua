@@ -1,3 +1,5 @@
+-- TODO: Configure this properly
+
 return {
     "mfussenegger/nvim-dap",
     dependencies = {

@@ -65,9 +65,7 @@
 
       nvim-colorizer-lua
 
-      nvim-ufo
       gitsigns-nvim
-      indent-blankline-nvim
       nvim-autopairs
     ];
   };
