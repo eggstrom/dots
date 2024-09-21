@@ -1,0 +1,37 @@
+* {
+    background:             #1E1E2E;
+    background-transparent: #1E1E2E7F;
+    foreground:             #CDD6F4;
+
+    background-color: transparent;
+    font:             "JetBrains Mono NF 20";
+}
+
+window {
+    background-color: @background-transparent;
+    fullscreen:       true;
+    padding:          25%;
+}
+
+prompt {
+    enabled: false;
+}
+
+entry, element-text {
+    text-color:       @foreground;
+    horizontal-align: 0.5;
+    padding:          0.25em;
+}
+
+entry {
+    cursor: text;
+}
+
+element-text {
+    cursor: pointer;
+}
+
+element-text selected {
+    background-color: @foreground;
+    text-color:       @background;
+}

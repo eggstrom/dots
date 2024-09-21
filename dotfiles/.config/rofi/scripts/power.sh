@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-option=$(printf '\n\n\n\n\n' | rofi -dmenu -theme 'power')
+option=$(printf 'Lock\nExit\nShut Down\nReboot\nSuspend\nHibernate' | rofi -dmenu -i)
 
 case "$option" in
-    '') ~/.config/i3/lock.sh ;;
-    '') i3-msg exit ;;
-    '') systemctl poweroff ;;
-    '') systemctl reboot ;;
-    '') ~/.config/i3/lock.sh; systemctl suspend ;;
-    '') ~/.config/i3/lock.sh; systemctl hibernate ;;
+    'Lock') ~/.config/i3/lock.sh ;;
+    'Exit') i3-msg exit ;;
+    'Shut Down') systemctl poweroff ;;
+    'Reboot') systemctl reboot ;;
+    'Suspend') ~/.config/i3/lock.sh; systemctl suspend ;;
+    'Hibernate') ~/.config/i3/lock.sh; systemctl hibernate ;;
 esac
