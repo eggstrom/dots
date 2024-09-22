@@ -50,14 +50,9 @@
     valgrind
     zig
 
-    # Theming and fonts
+    # Fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
-    catppuccin-cursors.mochaDark
-    (catppuccin-gtk.override {
-      variant = "mocha";
-      accents = [ "red" ];
-    })
   ];
 
   xdg.configFile.npmrc.source = ../dotfiles/.config/npmrc;

@@ -1,6 +1,9 @@
-{ settings, ... }:
+{ inputs, settings, ... }:
 {
   home.username = "${settings.username}";
 
-  imports = [ ../home ];
+  imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+    ../home
+  ];
 }

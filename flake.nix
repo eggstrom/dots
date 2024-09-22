@@ -9,13 +9,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
     {
       self,
       nixpkgs,
+      nur,
       home-manager,
+      catppuccin,
       ...
     }@inputs:
     let
@@ -23,12 +27,13 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = with inputs; [ nur.overlay ];
+        overlays = [ nur.overlay ];
       };
       settings = import ./settings.nix;
       specialArgs = {
         inherit inputs system settings;
       };
+      extraSpecialArgs = specialArgs;
     in
     {
       nixosConfigurations.${settings.hostname} = nixpkgs.lib.nixosSystem {
@@ -40,20 +45,27 @@
           {
             home-manager = {
               useGlobalPkgs = true;
-              extraSpecialArgs = specialArgs;
+              inherit extraSpecialArgs;
               users = {
                 root = import ./users/root.nix;
                 ${settings.username} = import ./users/default.nix;
               };
             };
           }
+          catppuccin.nixosModules.catppuccin
         ];
       };
 
-      homeConfigurations.${settings.username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = specialArgs;
-        modules = [ ./users/default.nix ];
+      homeConfigurations = {
+        root = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/root.nix ];
+        };
+
+        ${settings.username} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/default.nix ];
+        };
       };
 
       formatter.${system} = pkgs.nixfmt-rfc-style;

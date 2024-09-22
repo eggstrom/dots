@@ -31,7 +31,6 @@ export HISTCONTROL='ignoreboth:erasedups'
 # Theming
 export XCURSOR_THEME='catppuccin-mocha-dark-cursors'
 export XCURSOR_SIZE=48
-export GTK_THEME='catppuccin-mocha-red-standard+default'
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export BAT_THEME='base16-256'
 eval "$(dircolors)"
