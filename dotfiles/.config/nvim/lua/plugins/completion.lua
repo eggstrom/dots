@@ -18,7 +18,7 @@ cmp.setup({
         format = function(_, vim_item)
             vim_item.menu = ""
             return vim_item
-        end
+        end,
     },
 })
 

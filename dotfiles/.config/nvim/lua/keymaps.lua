@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Yank/paste to clipboard
-vim.keymap.set("", "<leader>y", "\"+y")
-vim.keymap.set("", "<leader>p", "\"+p")
+vim.keymap.set("", "<leader>y", '"+y')
+vim.keymap.set("", "<leader>p", '"+p')
 
 -- Hide search highlight
 vim.keymap.set("", "<leader>/", "<cmd>nohlsearch<CR>")
@@ -14,9 +14,7 @@ vim.keymap.set({ "n", "v" }, "<Tab>", "<cmd>bnext<CR>")
 vim.keymap.set({ "n", "v" }, "<S-Tab>", "<cmd>bprevious<CR>")
 
 -- Diagnostics
-vim.keymap.set("", "<leader>e", vim.diagnostic.open_float)
-vim.keymap.set("", "[e", vim.diagnostic.goto_prev)
-vim.keymap.set("", "]e", vim.diagnostic.goto_next)
+vim.keymap.set("", "<leader>d", vim.diagnostic.open_float)
 
 -- Function for creating option toggle keymaps
 function set_option_toggle(name, key, option, namespace)

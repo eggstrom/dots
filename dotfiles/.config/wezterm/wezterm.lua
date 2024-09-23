@@ -31,8 +31,8 @@ config.harfbuzz_features = {
 config.disable_default_key_bindings = true
 config.keys = {
     { mods = "CTRL|SHIFT", key = "v", action = wezterm.action.PasteFrom("Clipboard") },
-    { mods = "CTRL",       key = "+", action = wezterm.action.IncreaseFontSize },
-    { mods = "CTRL",       key = "-", action = wezterm.action.DecreaseFontSize },
+    { mods = "CTRL", key = "+", action = wezterm.action.IncreaseFontSize },
+    { mods = "CTRL", key = "-", action = wezterm.action.DecreaseFontSize },
     { mods = "CTRL|SHIFT", key = "=", action = wezterm.action.ResetFontSize },
 }
 

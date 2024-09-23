@@ -18,7 +18,7 @@
       vscode-langservers-extracted # cssls, html, jsonls
       pyright
       taplo
-      typescript # tsserver
+      typescript-language-server # ts_ls
       vim-language-server # vimls
       yaml-language-server # yamlls
       zls
