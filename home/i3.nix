@@ -4,7 +4,7 @@
     i3
     i3lock-color
     maim
-    picom
+    picom-pijulius
     xclip
     xdotool
   ];
