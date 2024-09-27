@@ -26,7 +26,6 @@
     tealdeer
     translate-shell
     trash-cli
-    udiskie
     unzip
     wget
     wineWowPackages.stable
@@ -54,6 +53,11 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
   ];
+
+  services.udiskie = {
+    enable = true;
+    tray = "never";
+  };
 
   xdg.configFile.npmrc.source = ../dotfiles/.config/npmrc;
 }
