@@ -1,7 +1,9 @@
--- General options
+vim.opt.undofile = true -- Save undo history
+
+-- Controls
 vim.opt.mouse = "a" -- Enable mouse in all modes
 vim.opt.timeout = false -- Disable leader key timeout
-vim.opt.undofile = true -- Save undo history
+vim.opt.virtualedit = "block" -- Enable virtual editing in visual block mode
 
 -- Appearance
 vim.opt.cursorline = true -- Highlight current line
@@ -26,3 +28,7 @@ vim.opt.foldlevel = 99 -- Keep folds open by default
 vim.opt.foldmethod = "expr" -- Use foldexpr for folds
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Use treesitter for folds
 vim.opt.foldtext = "" -- Make fold text prettier
+
+-- Splits
+vim.opt.splitbelow = true -- Create new windows below instead of above
+vim.opt.splitright = true -- Create new windows right instead of left

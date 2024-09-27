@@ -1,8 +1,12 @@
+-- Disable completions by default
 vim.g.copilot_enabled = false
-set_option_toggle("Copilot", "h", "copilot_enabled", "g")
+-- Toggle completions
+vim.keymap.set("", "<leader>th", function()
+    vim.g.copilot_enabled = not vim.g.copilot_enabled
+end)
 
+-- Set up Copilot chat
 require("CopilotChat").setup()
-
 vim.keymap.set("", "<leader>hc", "<cmd>CopilotChatToggle<CR>")
 vim.keymap.set("", "<leader>he", "<cmd>CopilotChatExplain<CR>")
 vim.keymap.set("", "<leader>hf", "<cmd>CopilotChatFix<CR>")

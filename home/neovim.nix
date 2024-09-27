@@ -23,6 +23,13 @@
       yaml-language-server # yamlls
       zls
 
+      # Formatters
+      black
+      isort
+      prettierd
+      shfmt
+      stylua
+
       # Miscellaneous
       shellcheck # Used by bash-language-server
     ];
@@ -41,8 +48,8 @@
       nvim-treesitter.withAllGrammars
 
       nvim-lspconfig
-      neodev-nvim
       none-ls-nvim
+      neodev-nvim
 
       nvim-cmp
       cmp-nvim-lsp
@@ -54,19 +61,16 @@
 
       telescope-nvim
       telescope-fzf-native-nvim
-      telescope-file-browser-nvim
 
       copilot-vim
       CopilotChat-nvim
 
+      nvim-autopairs
+      nvim-colorizer-lua
+      gitsigns-nvim
       lualine-nvim
       bufferline-nvim
       nvim-web-devicons
-
-      nvim-colorizer-lua
-
-      gitsigns-nvim
-      nvim-autopairs
     ];
   };
 }

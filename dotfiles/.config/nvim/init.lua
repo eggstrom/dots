@@ -1,9 +1,10 @@
 require("options")
 require("keymaps")
+require("autocmds")
 
+-- Plugins
 require("plugins.colorscheme")
-
-require("plugins.colors")
+require("plugins.colorizer")
 require("plugins.completion")
 require("plugins.copilot")
 require("plugins.git")

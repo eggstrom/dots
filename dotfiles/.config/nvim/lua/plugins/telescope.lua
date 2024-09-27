@@ -2,27 +2,21 @@ local telescope = require("telescope")
 telescope.setup({
     defaults = {
         borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        history = false,
     },
     pickers = {
         find_files = {
+            follow = true,
             hidden = true,
             no_ignore = true,
             no_ignore_parent = true,
         },
         live_grep = {
-            additional_args = { "--hidden", "--no-ignore" },
-        },
-    },
-    extensions = {
-        file_browser = {
-            hidden = true,
-            no_ignore = true,
-            no_ignore_parent = true,
+            additional_args = { "--follow", "--hidden", "--no-ignore" },
         },
     },
 })
 telescope.load_extension("fzf")
-telescope.load_extension("file_browser")
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("", "<leader>fa", builtin.builtin) -- All
@@ -36,4 +30,3 @@ vim.keymap.set("", "<leader>fd", builtin.diagnostics) -- Diagnostics
 vim.keymap.set("", "<leader>fr", builtin.lsp_references) -- References
 vim.keymap.set("", "<leader>fs", builtin.lsp_document_symbols) -- Document symbols
 vim.keymap.set("", "<leader>fS", builtin.lsp_workspace_symbols) -- Workspace symbols
-vim.keymap.set("", "<leader>ft", telescope.extensions.file_browser.file_browser) -- File browser

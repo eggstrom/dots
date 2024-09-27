@@ -7,30 +7,32 @@ vim.keymap.set("", "<leader>y", '"+y')
 vim.keymap.set("", "<leader>p", '"+p')
 
 -- Hide search highlight
-vim.keymap.set("", "<leader>/", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Move to next/previous buffer
 vim.keymap.set({ "n", "v" }, "<Tab>", "<cmd>bnext<CR>")
 vim.keymap.set({ "n", "v" }, "<S-Tab>", "<cmd>bprevious<CR>")
 
--- Diagnostics
+-- Open window with diagnostics
 vim.keymap.set("", "<leader>d", vim.diagnostic.open_float)
 
--- Function for creating option toggle keymaps
-function set_option_toggle(name, key, option, namespace)
-    namespace = namespace or "o"
-
-    vim.keymap.set("", "<leader>o" .. key, function()
-        vim[namespace][option] = not vim[namespace][option]
-        if vim[namespace][option] then
-            print(name .. ": On")
-        else
-            print(name .. ": Off")
-        end
-    end)
-end
-
--- Toggle options
-set_option_toggle("Relative line numbers", "r", "relativenumber")
-set_option_toggle("Wrapping", "w", "wrap")
-set_option_toggle("Spell checking", "s", "spell")
+-- Toggle line numbers
+vim.keymap.set("", "<leader>tn", function()
+    vim.o.number = not vim.o.number
+end)
+-- Toggle relative line numbers
+vim.keymap.set("", "<leader>tr", function()
+    vim.o.relativenumber = not vim.o.relativenumber
+end)
+-- Toggle wrapping
+vim.keymap.set("", "<leader>tw", function()
+    vim.o.wrap = not vim.o.wrap
+end)
+-- Toggle spell checking
+vim.keymap.set("", "<leader>ts", function()
+    vim.o.spell = not vim.o.spell
+end)
+-- Toggle diagnostics
+vim.keymap.set("", "<leader>td", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end)
