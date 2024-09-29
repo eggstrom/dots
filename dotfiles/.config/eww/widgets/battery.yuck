@@ -1,0 +1,4 @@
+(defvar on_battery false)
+
+(defwidget battery_widget []
+  "${EWW_BATTERY}")

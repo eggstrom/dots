@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   home.packages = with pkgs; [
     aria2
     bat
-    bottom
+    btop
     curl
     discord
     dust
@@ -20,7 +20,6 @@
     obs-studio
     prismlauncher
     pulseaudio
-    pulsemixer
     ripgrep
     steam
     tealdeer

@@ -1,0 +1,37 @@
+(defvar on_music false)
+(deflisten music_data "scripts/music.lua")
+
+(defwidget music_widget []
+  (eventbox :cursor      "pointer"
+            :onhover     "eww update on_music=true"
+            :onhoverlost "eww update on_music=false"
+    (box :space-evenly false
+      (revealer :transition "slideleft"
+                :duration   250
+                :reveal     on_music
+        (box :space-evenly false
+          (eventbox :class   "hoverable"
+                    :onclick "mpc clear; mpc update; mpc ls | mpc add"
+            (icon_label :text ""))
+          (eventbox :class   "hoverable ${music_data.random ? "highlighted" : ""}"
+                    :onclick "mpc random"
+            (icon_label :text ""))
+          (eventbox :class   "hoverable ${music_data.repeat ? "highlighted" : ""}"
+                    :onclick "mpc repeat"
+            (icon_label :text ""))
+          (eventbox :class   "hoverable"
+                    :onclick "mpc prev"
+            (icon_label :text ""))
+          (eventbox :class   "hoverable"
+                    :onclick "mpc next"
+            (icon_label :text ""))))
+      (eventbox :class    "hoverable"
+                :onclick  {music_data.state != "playing" ? "mpc play" : "mpc pause"}
+                :onscroll "scripts/scroll.sh --music-{}"
+        (box :space-evenly false
+          (revealer :transition "slideleft"
+                    :duration   250
+                    :reveal     on_music
+            (label :unindent false
+                   :text     " ${music_data.volume}% "))
+          (icon_label :text {music_data.state != "playing" ? "" : ""}))))))

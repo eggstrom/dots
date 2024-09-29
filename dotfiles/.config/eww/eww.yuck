@@ -1,0 +1,8 @@
+(include "widgets/bar.yuck")
+(include "widgets/menu.yuck")
+(include "widgets/desktops.yuck")
+(include "widgets/time.yuck")
+(include "widgets/audio.yuck")
+(include "widgets/music.yuck")
+(include "widgets/brightness.yuck")
+(include "widgets/battery.yuck")

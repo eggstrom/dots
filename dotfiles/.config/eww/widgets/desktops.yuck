@@ -1,0 +1,9 @@
+(deflisten desktops "scripts/desktops.lua")
+
+(defwidget desktop_widget []
+  (box :space-evenly false
+    (for name in "${desktops.names}"
+      (eventbox :class  "hoverable ${name == desktops.names[desktops.current] ? "highlighted" : ""}"
+                :cursor "pointer"
+        (label :unindent false
+               :text     " ${name} ")))))

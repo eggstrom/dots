@@ -1,5 +1,6 @@
 {
   imports = [
+    ./eww.nix
     ./i3.nix
     ./kitty.nix
     ./misc.nix

@@ -1,0 +1,30 @@
+(defvar on_sink false)
+(defvar on_source false)
+
+(deflisten audio_data "scripts/audio.lua")
+
+(defwidget audio_widget [is_source data text]
+  (eventbox :class        "hoverable ${data.muted ? "red" : ""}"
+            :cursor       "pointer"
+            :onhover      "eww update on_${is_source ? "source" : "sink"}=true"
+            :onhoverlost  "eww update on_${is_source ? "source" : "sink"}=false"
+            :onclick      "pamixer --toggle-mute ${is_source ? "--default-source" : ""}"
+            :onscroll     "scripts/scroll.sh --${is_source ? "source" : "sink"}-{}"
+            :onrightclick "$TERMINAL -e pulsemixer &"
+    (box :space-evenly false
+      (revealer :transition "slideright"
+                :duration   250
+                :reveal     {is_source ? on_source : on_sink}
+        (label :unindent false
+               :text     " ${data.volume}% "))
+      (icon_label :text text))))
+
+(defwidget sink_widget []
+  (audio_widget :is_source false
+                :data      {audio_data.sink}
+                :text      {audio_data.sink.muted ? "" : ""}))
+
+(defwidget source_widget []
+  (audio_widget :is_source true
+                :data      {audio_data.source}
+                :text      {audio_data.source.muted ? "" : ""}))
