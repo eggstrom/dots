@@ -14,22 +14,24 @@ xset s off -dpms
 xset r rate 300 50
 
 screen_height="$(echo "$mode" | cut -dx -f2)"
+export GAP_SIZE="$((screen_height / 50))"
+export BORDER_SIZE="$((screen_height / 300))"
+export BAR_SIZE="$((screen_height / 25))"
+export FONT_SIZE="$((screen_height / 70))"
 
-font_text='JetBrains Mono NF'
-font_icons='Font Awesome 6 Free Solid'
-font_size="$((screen_height / 70))"
-border="$((screen_height / 300))"
-
-export POLYBAR_FONT_TEXT="$font_text:size=$font_size;$((screen_height / 275))"
-export POLYBAR_FONT_ICONS="$font_icons:size=$font_size;$((screen_height / 275))"
-export POLYBAR_BORDER="$border"
+# font_text='JetBrains Mono NF'
+# font_icons='Font Awesome 6 Free Solid'
+# font_size="$((screen_height / 70))"
+# border="$((screen_height / 300))"
+#
+# export POLYBAR_FONT_TEXT="$font_text:size=$font_size;$((screen_height / 275))"
+# export POLYBAR_FONT_ICONS="$font_icons:size=$font_size;$((screen_height / 275))"
+# export POLYBAR_BORDER="$border"
 
 cat << EOF | xrdb -merge
-I3_BORDER: $border
-I3_GAPS:   $((screen_height / 50))
+GAP_SIZE:    $GAP_SIZE
+BORDER_SIZE: $BORDER_SIZE
 EOF
 
-# Reload background
-"$XDG_STATE_HOME/fehbg"
 # Launch window manager
 i3

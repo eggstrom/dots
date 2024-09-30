@@ -1,30 +1,6 @@
-(defvar on_menu false)
-
 (defwidget menu_widget []
-  (eventbox :onhover      "eww update on_menu=true"
-            :onhoverlost  "eww update on_menu=false"
+  (eventbox :class        "hoverable"
             :cursor       "pointer"
-    (box :space-evenly false
-      (button :class        "hoverable"
-              :onclick      "~/.config/rofi/scripts/run.sh"
-              :onrightclick "~/.config/rofi/scripts/power.sh"
-        (icon_label :text ""))
-      (revealer :transition "slideright"
-                :duration   250
-                :reveal     on_menu
-        (box :space-evenly false
-          (button :class   "hoverable"
-                  :onclick "~/.config/i3/lock.sh"
-            (icon_label :text ""))
-          (button :class   "hoverable"
-                  :onclick "systemctl poweroff"
-            (icon_label :text ""))
-          (button :class   "hoverable"
-                  :onclick "systemctl reboot"
-            (icon_label :text ""))
-          (button :class   "hoverable"
-                  :onclick "systemctl suspend"
-            (icon_label :text ""))
-          (button :class   "hoverable"
-                  :onclick "systemctl hibernate"
-            (icon_label :text "")))))))
+            :onclick      "~/.config/rofi/scripts/run.sh &"
+            :onrightclick "~/.config/rofi/scripts/power.sh &"
+    (icon_label :text "")))

@@ -7,29 +7,23 @@ local data = {}
 function data:update()
 	local status = lib.pipe("mpc", 3)
 
-	-- Get state from 2nd line, if it exists
-	if status[2] == nil then
-		self.state = "stopped"
-	elseif status[2]:find("%[playing%]") then
-		self.state = "playing"
-	else
-		self.state = "paused"
-	end
+	-- Check if mpd is playing using second line
+	self.playing = status[2] ~= nil and status[2]:find("%[playing%]") ~= nil
 
 	-- Get rest of data from last line
-	data.volume = status[#status]:match("volume:%s*(%d+)")
-	data.repeat_ = status[#status]:match("repeat:%s*(%a+)") == "on"
-	data.random = status[#status]:match("random:%s*(%a+)") == "on"
+	self.volume = status[#status]:match("volume:%s*(%d+)")
+	self.repeat_ = status[#status]:match("repeat:%s*(%a+)") == "on"
+	self.random = status[#status]:match("random:%s*(%a+)") == "on"
 end
 
 function data:print()
 	print(
 		string.format(
-			'{"state":"%s","volume":%s,"repeat":%s,"random":%s}',
-			data.state,
-			data.volume,
-			data.repeat_,
-			data.random
+			'{"playing":%s,"volume":%s,"repeat":%s,"random":%s}',
+			self.playing,
+			self.volume,
+			self.repeat_,
+			self.random
 		)
 	)
 end
@@ -39,8 +33,13 @@ while true do
 	data:print()
 
 	-- Wait for the following events:
-	-- player:  play, pause, stop, next, prev
-	-- mixer:   volume
-	-- options: repeat, random
-	os.execute("mpc idle player mixer options >/dev/null")
+	-----------------------
+	-- Event    | Triggers
+	-----------------------
+	-- update   | update
+	-- playlist | add, clear
+	-- player   | play, pause, stop, next, prev
+	-- mixer    | volume
+	-- options  | repeat, random
+	os.execute("mpc idle update playlist player mixer options >/dev/null")
 end

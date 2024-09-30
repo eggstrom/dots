@@ -1,11 +1,11 @@
 # General settings
-set_from_resource $border I3_BORDER 0
-set_from_resource $gaps I3_GAPS 0
+set_from_resource $border_size BORDER_SIZE 0
+set_from_resource $gap_size    GAP_SIZE    0
 
 focus_follows_mouse     no
-gaps                    inner $gaps
-default_border          pixel $border
-default_floating_border pixel $border
+gaps                    inner $gap_size
+default_border          pixel $border_size
+default_floating_border pixel $border_size
 
 # Colors
 set $bg #1E1E2E
@@ -21,22 +21,26 @@ client.background       $bg
 set $mod Mod4
 
 # General binds
-bindsym $mod+Escape  exec --no-startup-id ~/.config/rofi/scripts/power.sh
-bindsym $mod+F5      reload
-bindsym $mod+Ctrl+F5 restart
-bindsym $mod+q       kill
-bindsym $mod+s       split vertical
-bindsym $mod+v       split horizontal
-bindsym $mod+w       exec --no-startup-id ~/.config/rofi/scripts/run.sh
-bindsym $mod+e       exec --no-startup-id $TERMINAL
+bindsym $mod+Ctrl+Escape exit
+bindsym $mod+F5          reload
+bindsym $mod+Ctrl+F5     restart
+bindsym $mod+Escape      exec --no-startup-id ~/.config/rofi/scripts/power.sh
+bindsym $mod+q           kill
+bindsym $mod+s           split vertical
+bindsym $mod+v           split horizontal
+bindsym $mod+w           exec --no-startup-id ~/.config/rofi/scripts/run.sh
+bindsym $mod+e           exec --no-startup-id $TERMINAL
 
 # Floating/fullscreen toggle binds
 bindsym $mod+f       fullscreen disable; floating toggle
 bindsym $mod+Ctrl+f  floating disable;   fullscreen toggle
 bindsym $mod+Shift+f focus mode_toggle
 
+bindsym $mod+m      exec --no-startup-id pamixer --toggle-mute
+bindsym $mod+Ctrl+m exec --no-startup-id pamixer --toggle-mute --default-source
+
 # Screenshot binds
-bindsym --release Print  exec --no-startup-id "maim -Blsu --color=0,0,0,0.75         | xclip -selection clipboard -t image/png"
+bindsym --release Print  exec --no-startup-id "maim -Blsu --color=0.12,0.12,0.18,0.9 | xclip -selection clipboard -t image/png"
 bindsym Ctrl+Print       exec --no-startup-id "maim -B -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png"
 bindsym Shift+Print      exec --no-startup-id "maim -B -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png"
 bindsym Ctrl+Shift+Print exec --no-startup-id "maim                                  | xclip -selection clipboard -t image/png"
@@ -59,23 +63,23 @@ bindsym $mod+j     focus down
 bindsym $mod+k     focus up
 bindsym $mod+l     focus right
 
-bindsym $mod+Ctrl+Left  move left
-bindsym $mod+Ctrl+Down  move down
-bindsym $mod+Ctrl+Up    move up
-bindsym $mod+Ctrl+Right move right
-bindsym $mod+Ctrl+h     move left
-bindsym $mod+Ctrl+j     move down
-bindsym $mod+Ctrl+k     move up
-bindsym $mod+Ctrl+l     move right
+bindsym $mod+Ctrl+Left  move left  $gap_size px
+bindsym $mod+Ctrl+Down  move down  $gap_size px
+bindsym $mod+Ctrl+Up    move up    $gap_size px
+bindsym $mod+Ctrl+Right move right $gap_size px
+bindsym $mod+Ctrl+h     move left  $gap_size px
+bindsym $mod+Ctrl+j     move down  $gap_size px
+bindsym $mod+Ctrl+k     move up    $gap_size px
+bindsym $mod+Ctrl+l     move right $gap_size px
 
-bindsym $mod+Shift+Left  resize shrink width  25 px or 10 ppt
-bindsym $mod+Shift+Down  resize grow   height 25 px or 10 ppt
-bindsym $mod+Shift+Up    resize shrink height 25 px or 10 ppt
-bindsym $mod+Shift+Right resize grow   width  25 px or 10 ppt
-bindsym $mod+Shift+h     resize shrink width  25 px or 10 ppt
-bindsym $mod+Shift+j     resize grow   height 25 px or 10 ppt
-bindsym $mod+Shift+k     resize shrink height 25 px or 10 ppt
-bindsym $mod+Shift+l     resize grow   width  25 px or 10 ppt
+bindsym $mod+Shift+Left  resize shrink width  $gap_size px
+bindsym $mod+Shift+Down  resize grow   height $gap_size px
+bindsym $mod+Shift+Up    resize shrink height $gap_size px
+bindsym $mod+Shift+Right resize grow   width  $gap_size px
+bindsym $mod+Shift+h     resize shrink width  $gap_size px
+bindsym $mod+Shift+j     resize grow   height $gap_size px
+bindsym $mod+Shift+k     resize shrink height $gap_size px
+bindsym $mod+Shift+l     resize grow   width  $gap_size px
 
 # Binds for moving between workspaces
 bindsym $mod+1         workspace number 1
@@ -104,6 +108,9 @@ bindsym $mod+Ctrl+0         move container to workspace number 10
 bindsym $mod+Ctrl+Tab       move container to workspace next
 bindsym $mod+Ctrl+Shift+Tab move container to workspace prev
 
-# Programs to start with i3
+# Start compositor
 exec_always --no-startup-id picom
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+# Start bar
+exec_always --no-startup-id eww open bar_x11
+# Reload wallpaper
+exec_always --no-startup-id [ -e "$XDG_STATE_HOME/fehbg" ] && "$XDG_STATE_HOME/fehbg"

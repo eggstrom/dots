@@ -2,7 +2,6 @@ local telescope = require("telescope")
 telescope.setup({
     defaults = {
         borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        history = false,
     },
     pickers = {
         find_files = {

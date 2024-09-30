@@ -1,5 +1,5 @@
 $background: #1e1e2e;
-$background-transparent: rgba(30, 30, 46, 0.9);
+$background-transparent: rgba($background, 0.9);
 $foreground: #cdd6f4;
 $blue: #89b4fa;
 $green: #a6e3a1;
@@ -12,12 +12,12 @@ $red: #f38ba8;
   transition-duration: 0.25s;
 }
 
-window.bar {
+box.bar {
   font-family: "JetBrains Mono NF";
-  font-size: 20pt;
   background: $background-transparent;
   color: $foreground;
-  border-bottom: 4px solid $foreground;
+  border-bottom-color: $foreground;
+  border-bottom-style: solid;
 }
 
 .icon {

@@ -1,33 +1,44 @@
-; Main bar
-(defwindow bar
-  :class      "bar"
-  ; Puts bar behind fullscreen windows
-  :windowtype "dock" ; i3
-  ; :windowtype "desktop" ; bspwm
-  :reserve    (struts :distance "4%"
-                      :side "top")
-  :geometry   (geometry :width  "100%"
-                        :height "4%"
-                        :anchor "top center")
-  (box
-    ; Left widgets
-    (box :halign "start"
-         :space-evenly false
-      (menu_widget)
-      (desktop_widget))
-    ; Center widgets
-    (box :halign "center"
-      (time_widget))
-    ; Right widgets
-    (box :halign "end"
-         :space-evenly false
-      (sink_widget)
-      (source_widget)
-      (music_widget)
-      (brightness_widget)
-      (battery_widget))))
+(defwindow bar_x11
+  :geometry   (geometry :width "100%" :height "${get_env("BAR_SIZE")}px" :anchor "top center")
+  :reserve    (struts :distance "${get_env("BAR_SIZE")}px" :side "top")
+  :windowtype "dock" ; Puts bar behind fullscreen windows
+  (box :class "bar"
+       :style "font-size: ${get_env("FONT_SIZE")}pt; border-bottom-width: ${get_env("BORDER_SIZE")}px;"
+    (left_widgets (desktop_widget_x11))
+    (middle_widgets)
+    (right_widgets)))
+
+(defwindow bar_bspwm
+  :geometry   (geometry :width "100%" :height "${get_env("BAR_SIZE")}px" :anchor "top center")
+  :reserve    (struts :distance "${get_env("BAR_SIZE")}px" :side "top")
+  :windowtype "desktop" ; Puts bar behind fullscreen windows
+  (box :class "bar"
+       :style "font-size: ${get_env("FONT_SIZE")}pt; border-bottom-width: ${get_env("BORDER_SIZE")}px;"
+    (left_widgets (desktop_widget_bspwm))
+    (middle_widgets)
+    (right_widgets)))
+
+(defwidget left_widgets []
+  (box :halign       "start"
+       :space-evenly false
+    (menu_widget)
+    (children)))
+
+(defwidget middle_widgets []
+  (box :halign       "center"
+       :space-evenly false
+    (time_widget)))
+
+(defwidget right_widgets []
+  (box :halign       "end"
+       :space-evenly false
+    (sink_widget)
+    (source_widget)
+    (music_widget)
+    (brightness_widget)
+    (battery_widget)))
 
 (defwidget icon_label [text]
-  (label :class    "icon"
-         :width    58
-         :text     text))
+  (label :class "icon"
+         :width {get_env("BAR_SIZE")}
+         :text  text))

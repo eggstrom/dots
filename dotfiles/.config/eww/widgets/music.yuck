@@ -11,22 +11,22 @@
                 :reveal     on_music
         (box :space-evenly false
           (eventbox :class   "hoverable"
-                    :onclick "mpc clear; mpc update; mpc ls | mpc add"
+                    :onclick "mpc --quiet clear; mpc --quiet update; mpc ls | mpc add"
             (icon_label :text ""))
-          (eventbox :class   "hoverable ${music_data.random ? "highlighted" : ""}"
-                    :onclick "mpc random"
+          (eventbox :class   "hoverable ${music_data.random ? "highlighted blue" : ""}"
+                    :onclick "mpc --quiet random"
             (icon_label :text ""))
-          (eventbox :class   "hoverable ${music_data.repeat ? "highlighted" : ""}"
-                    :onclick "mpc repeat"
+          (eventbox :class   "hoverable ${music_data.repeat ? "highlighted blue" : ""}"
+                    :onclick "mpc --quiet repeat"
             (icon_label :text ""))
           (eventbox :class   "hoverable"
-                    :onclick "mpc prev"
+                    :onclick "mpc --quiet prev"
             (icon_label :text ""))
           (eventbox :class   "hoverable"
-                    :onclick "mpc next"
+                    :onclick "mpc --quiet next"
             (icon_label :text ""))))
-      (eventbox :class    "hoverable"
-                :onclick  {music_data.state != "playing" ? "mpc play" : "mpc pause"}
+      (eventbox :class    "hoverable ${music_data.playing ? "green" : "red"}"
+                :onclick  {music_data.playing ? "mpc --quiet pause" : "mpc --quiet play"}
                 :onscroll "scripts/scroll.sh --music-{}"
         (box :space-evenly false
           (revealer :transition "slideleft"
@@ -34,4 +34,4 @@
                     :reveal     on_music
             (label :unindent false
                    :text     " ${music_data.volume}% "))
-          (icon_label :text {music_data.state != "playing" ? "" : ""}))))))
+          (icon_label :text {music_data.playing ? "" : ""}))))))

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-rofi -show run -no-custom -no-sort -disable-history
+rofi -show run -no-custom -no-sort -disable-history -theme-str "* { font: \"JetBrains Mono NF $FONT_SIZE\"; }"

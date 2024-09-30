@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-pgrep polybar | xargs kill
+pkill polybar
 polybar -r bar & disown

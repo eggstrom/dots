@@ -4,13 +4,12 @@
     foreground:             #CDD6F4;
 
     background-color: transparent;
-    font:             "JetBrains Mono NF 20";
 }
 
 window {
     background-color: @background-transparent;
     fullscreen:       true;
-    padding:          25%;
+    padding:          25% 33%;
 }
 
 prompt {

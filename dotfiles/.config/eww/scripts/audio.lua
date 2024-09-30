@@ -35,8 +35,8 @@ data:update_source()
 data:print()
 
 -- Get default sink and source
-local sink = lib.pipe("pamixer --list-sinks | grep \"$(pactl get-default-sink)\" | cut -d' ' -f1", 1)
-local source = lib.pipe("pamixer --list-sources | grep \"$(pactl get-default-source)\" | cut -d' ' -f1", 1)
+local sink = lib.pipe('pamixer --list-sinks | grep "$(pactl get-default-sink)"', 1):match("(.-) ")
+local source = lib.pipe('pamixer --list-sources | grep "$(pactl get-default-source)"', 1):match("(.-) ")
 local sink_event = "Event 'change' on sink #" .. sink
 local source_event = "Event 'change' on source #" .. source
 

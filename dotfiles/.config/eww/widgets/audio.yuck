@@ -1,10 +1,9 @@
 (defvar on_sink false)
 (defvar on_source false)
-
 (deflisten audio_data "scripts/audio.lua")
 
 (defwidget audio_widget [is_source data text]
-  (eventbox :class        "hoverable ${data.muted ? "red" : ""}"
+  (eventbox :class        "hoverable ${data.muted ? "red" : "green"}"
             :cursor       "pointer"
             :onhover      "eww update on_${is_source ? "source" : "sink"}=true"
             :onhoverlost  "eww update on_${is_source ? "source" : "sink"}=false"
