@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    font-awesome
+  ];
+
   catppuccin = {
     accent = "red";
 

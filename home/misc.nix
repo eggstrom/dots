@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     aria2
     bat
     btop
     curl
-    discord
+    (discord.override { withVencord = true; })
     dust
     eza
     fd
@@ -14,9 +14,7 @@
     fzf
     gimp
     jq
-    manix
     mpv
-    nix-search-cli
     obs-studio
     prismlauncher
     pulseaudio
@@ -34,7 +32,6 @@
 
     # Development
     act
-    delta
     gcc
     git
     gnumake
@@ -47,10 +44,6 @@
     scrcpy
     valgrind
     zig
-
-    # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    font-awesome
   ];
 
   services.udiskie = {

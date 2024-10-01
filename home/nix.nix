@@ -1,7 +1,9 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   programs.home-manager.enable = true;
   home.stateVersion = "24.05";
+
+  home.packages = with pkgs; [ nix-search-cli ];
 
   nix = {
     # Make registry use this flake's version of nixpkgs

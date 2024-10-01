@@ -1,6 +1,15 @@
 . ~/.config/shell/aliases.sh
 . ~/.config/shell/env.sh
 
+# Change directory using Yazi
+f() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] &&
+        builtin cd -- "$cwd"
+    \rm -f -- "$tmp"
+}
+
 # Quickly evaluate a Python expression
 py() {
     local result="$(python <<< "from math import *; from random import *; print($*)")"

@@ -3,6 +3,8 @@
 # Create desktops
 bspc monitor --reset-desktops 1 2 3 4 5 6 7 8 9 10
 
+# Change focus on click with any mouse button
+bspc config click_to_focus any
 # Disable windows stealing focus
 bspc config ignore_ewmh_focus true
 

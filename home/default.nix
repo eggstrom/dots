@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bspwm.nix
     ./eww.nix
     ./i3.nix
     ./kitty.nix
@@ -11,6 +12,7 @@
     ./starship.nix
     ./theming.nix
     ./tmux.nix
+    ./wezterm.nix
     ./yazi.nix
     ./zsh.nix
   ];

@@ -4,8 +4,10 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
-config.default_prog = { "tmux" }
+-- Changing frontend may fix fonts
+config.front_end = "WebGpu"
 config.window_close_confirmation = "NeverPrompt"
+config.default_prog = { "tmux" }
 
 -- Appearance
 config.color_scheme = "Catppuccin Mocha"
@@ -20,7 +22,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 -- Font
 config.font = wezterm.font("JetBrains Mono NF")
-config.font_size = 20
+config.font_size = tonumber(os.getenv("FONT_SIZE"))
 config.harfbuzz_features = {
     "liga=0", -- Ligatures
     "clig=0", -- Common ligatures
@@ -28,6 +30,9 @@ config.harfbuzz_features = {
 }
 
 -- Key bindings
+-- Ctrl + Shift + V: Paste clipboard
+-- Ctrl + +/-:       Increase/decrease font size
+-- Ctrl + =:         Reset font size
 config.disable_default_key_bindings = true
 config.keys = {
     { mods = "CTRL|SHIFT", key = "v", action = wezterm.action.PasteFrom("Clipboard") },
@@ -37,6 +42,8 @@ config.keys = {
 }
 
 -- Mouse bindings
+-- Ctrl + Scroll up/down: Increase/decrease font size
+config.disable_default_mouse_bindings = true
 config.mouse_bindings = {
     {
         event = { Down = { streak = 1, button = { WheelUp = 1 } } },
