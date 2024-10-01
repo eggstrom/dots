@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-case "$1" in
+update_brightness(){
+    eww update brightness="$(("$(brightnessctl get)" * 100 / "$(brightnessctl max)"))"
+}
 
+case "$1" in
 --desktops-x11-up) xdotool set_desktop --relative 1 ;;
 --desktops-x11-down) xdotool set_desktop --relative -- -1 ;;
 
@@ -17,4 +20,8 @@ case "$1" in
 --music-up) mpc --quiet volume +1 ;;
 --music-down) mpc --quiet volume -1 ;;
 
+--brightness-click) brightnessctl set 100% >/dev/null; update_brightness ;;
+--brightness-rightclick) brightnessctl set 100% >/dev/null; update_brightness ;;
+--brightness-up) brightnessctl set 1%+ >/dev/null; update_brightness ;;
+--brightness-down) brightnessctl set 1%- >/dev/null; update_brightness ;;
 esac

@@ -1,16 +1,18 @@
 (defvar on_brightness false)
+(defvar brightness 100)
 
 (defwidget brightness_widget []
   (eventbox :class        "hoverable yellow"
             :cursor       "pointer"
             :onhover      "eww update on_brightness=true"
             :onhoverlost  "eww update on_brightness=false"
-            :onclick      "brightnessctl set 100%"
+            :onclick      "scripts/scroll.sh --brightness-click"
+            :onrightclick "scripts/scroll.sh --brightness-rightclick"
             :onscroll     "scripts/scroll.sh --brightness-{}"
     (box :space-evenly false
       (revealer :transition "slideright"
                 :duration   250
                 :reveal     on_brightness
         (label :unindent false
-               :text     " 100% "))
+               :text     " ${brightness}% "))
       (icon_label :text ""))))

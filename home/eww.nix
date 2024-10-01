@@ -7,6 +7,7 @@
     pulsemixer
     mpc-cli
     brightnessctl
+    acpi
   ];
 
   services = {
