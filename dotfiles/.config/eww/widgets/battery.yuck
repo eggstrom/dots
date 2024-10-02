@@ -1,24 +1,24 @@
 (defvar on_battery false)
-(defpoll battery_data :interval "10s"
-                      :run-while {battery_data != ""}
-  "scripts/battery.sh")
+(defpoll battery :interval "10s"
+                 :run-while {battery != ""}
+  "scripts/battery.lua")
 
 (defwidget battery_widget []
-  (eventbox :class        "hoverable ${battery_data.status == "Charging" ? "blue" :
-                                       battery_data.capacity > 50 ? "green" :
-                                       battery_data.capacity > 10 ? "yellow" : "red"}"
+  (eventbox :class        "hoverable ${battery.status == "Charging" ? "blue" :
+                                       battery.capacity > 50 ? "green" :
+                                       battery.capacity > 10 ? "yellow" : "red"}"
+            :visible      {battery != ""}
             :cursor       "pointer"
             :onhover      "eww update on_battery=true"
             :onhoverlost  "eww update on_battery=false"
-            :onclick      "$TERMINAL -e btop &"
-            :visible      {battery_data != ""}
+            :onrightclick "$TERMINAL -e btop &"
     (box :space-evenly false
       (revealer :transition "slideright"
                 :duration   250
                 :reveal     on_battery
         (label :unindent false
-               :text     "${battery_data.time != "" ? " ${battery_data.time}" : ""} ${battery_data.capacity}% "))
-      (icon_label :text {battery_data.capacity > 90 ? "" :
-                         battery_data.capacity > 75 ? "" :
-                         battery_data.capacity > 50 ? "" :
-                         battery_data.capacity > 25 ? "" : ""}))))
+               :text     "${battery.time != "" ? " ${battery.time}" : ""} ${battery.capacity}% "))
+      (icon_label :text {battery.capacity > 90 ? "" :
+                         battery.capacity > 66 ? "" :
+                         battery.capacity > 33 ? "" :
+                         battery.capacity > 10 ? "" : ""}))))

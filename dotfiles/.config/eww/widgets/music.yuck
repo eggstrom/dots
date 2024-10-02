@@ -1,5 +1,5 @@
 (defvar on_music false)
-(deflisten music_data "scripts/music.lua")
+(deflisten music "scripts/music.lua")
 
 (defwidget music_widget []
   (eventbox :cursor      "pointer"
@@ -13,10 +13,10 @@
           (eventbox :class   "hoverable"
                     :onclick "mpc --quiet clear; mpc --quiet update; mpc ls | mpc add"
             (icon_label :text ""))
-          (eventbox :class   "hoverable ${music_data.random ? "highlighted blue" : ""}"
+          (eventbox :class   "hoverable ${music.random ? "highlighted blue" : ""}"
                     :onclick "mpc --quiet random"
             (icon_label :text ""))
-          (eventbox :class   "hoverable ${music_data.repeat ? "highlighted blue" : ""}"
+          (eventbox :class   "hoverable ${music.repeat ? "highlighted blue" : ""}"
                     :onclick "mpc --quiet repeat"
             (icon_label :text ""))
           (eventbox :class   "hoverable"
@@ -25,13 +25,13 @@
           (eventbox :class   "hoverable"
                     :onclick "mpc --quiet next"
             (icon_label :text ""))))
-      (eventbox :class    "hoverable ${music_data.playing ? "green" : "red"}"
-                :onclick  {music_data.playing ? "mpc --quiet pause" : "mpc --quiet play"}
-                :onscroll "scripts/scroll.sh --music-{}"
+      (eventbox :class    "hoverable ${music.playing ? "green" : "red"}"
+                :onclick  {music.playing ? "mpc --quiet pause" : "mpc --quiet play"}
+                :onscroll "scripts/controls.sh --music-scroll-{}"
         (box :space-evenly false
           (revealer :transition "slideleft"
                     :duration   250
                     :reveal     on_music
             (label :unindent false
-                   :text     " ${music_data.volume}% "))
-          (icon_label :text {music_data.playing ? "" : ""}))))))
+                   :text     " ${music.volume}% "))
+          (icon_label :text {music.playing ? "" : ""}))))))

@@ -1,14 +1,18 @@
 (defvar on_brightness false)
-(defvar brightness 100)
+(defvar brightness 0)
+(defpoll has_backlight :interval 0
+                       :run-while {has_backlight == ""}
+  "scripts/backlight.sh")
 
 (defwidget brightness_widget []
   (eventbox :class        "hoverable yellow"
             :cursor       "pointer"
+            :visible      {has_backlight == "true"}
             :onhover      "eww update on_brightness=true"
             :onhoverlost  "eww update on_brightness=false"
-            :onclick      "scripts/scroll.sh --brightness-click"
-            :onrightclick "scripts/scroll.sh --brightness-rightclick"
-            :onscroll     "scripts/scroll.sh --brightness-{}"
+            :onclick      "scripts/controls.sh --brightness-click"
+            :onrightclick "scripts/controls.sh --brightness-rightclick"
+            :onscroll     "scripts/controls.sh --brightness-scroll-{}"
     (box :space-evenly false
       (revealer :transition "slideright"
                 :duration   250
