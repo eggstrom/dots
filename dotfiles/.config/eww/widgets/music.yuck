@@ -35,5 +35,5 @@
                     :duration   250
                     :reveal     on_music
             (label :unindent false
-                   :text     " ${music.volume}% "))
+                   :text     " ${music.volume}%"))
           (icon_label :text {music.playing ? "" : ""}))))))

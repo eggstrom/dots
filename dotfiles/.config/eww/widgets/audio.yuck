@@ -17,7 +17,7 @@
                 :duration   250
                 :reveal     {is_source ? on_source : on_sink}
         (label :unindent false
-               :text     " ${data.volume}% "))
+               :text     " ${data.volume}%"))
       (icon_label :text text))))
 
 (defwidget sink_widget []

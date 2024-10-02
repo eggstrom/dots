@@ -17,7 +17,7 @@
                 :duration   250
                 :reveal     on_battery
         (label :unindent false
-               :text     "${battery.time != "" ? " ${battery.time}" : ""} ${battery.capacity}% "))
+               :text     "${battery.time != "" ? " ${battery.time}" : ""} ${battery.capacity}%"))
       (icon_label :text {battery.capacity > 90 ? "" :
                          battery.capacity > 66 ? "" :
                          battery.capacity > 33 ? "" :
