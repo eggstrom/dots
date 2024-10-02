@@ -21,7 +21,9 @@
 (defwidget sink_widget []
   (audio_widget :is_source false
                 :data      {audio.sink}
-                :text      {audio.sink.muted ? "" : ""}))
+                :text      {audio.sink.muted ? "" :
+                            audio.sink.volume > 66 ? "" :
+                            audio.sink.volume > 33 ? "" : ""}))
 
 (defwidget source_widget []
   (audio_widget :is_source true
