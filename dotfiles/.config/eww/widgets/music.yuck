@@ -27,7 +27,9 @@
             (icon_label :text ""))))
       (eventbox :class    "hoverable ${music.playing ? "green" : "red"}"
                 :onclick  {music.playing ? "mpc --quiet pause" : "mpc --quiet play"}
-                :onscroll "scripts/controls.sh --music-scroll-{}"
+                :onscroll "[[ {} = up ]] &&
+                               mpc --quiet volume +1 ||
+                               mpc --quiet volume -1"
         (box :space-evenly false
           (revealer :transition "slideleft"
                     :duration   250

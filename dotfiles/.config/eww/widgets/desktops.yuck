@@ -7,7 +7,9 @@
       (eventbox :class    "hoverable ${desktop.index == desktops_x11.current ? "highlighted blue" : ""}"
                 :cursor   "pointer"
                 :onclick  "xdotool set_desktop ${desktop.index}"
-                :onscroll "scripts/controls.sh --desktops-x11-scroll-{}"
+                :onscroll "[[ {} = up ]] &&
+                               xdotool set_desktop --relative 1 ||
+                               xdotool set_desktop --relative -- -1"
         (label :unindent false
                :text     " ${desktop.name} ")))))
 
@@ -17,6 +19,8 @@
       (eventbox :class    "hoverable ${desktop.focused ? "highlighted blue" : ""}"
                 :cursor   "pointer"
                 :onclick  "bspc desktop --focus ${desktop.name}"
-                :onscroll "scripts/controls.sh --desktops-bspwm-scroll-{}"
+                :onscroll "[[ {} = up ]] &&
+                               bspc desktop --focus next.occupied ||
+                               bspc desktop --focus prev.occupied"
         (label :unindent false
                :text     " ${desktop.name} ")))))

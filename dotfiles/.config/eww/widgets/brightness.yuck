@@ -10,9 +10,12 @@
             :visible      {has_backlight == "true"}
             :onhover      "eww update on_brightness=true"
             :onhoverlost  "eww update on_brightness=false"
-            :onclick      "scripts/controls.sh --brightness-click"
-            :onrightclick "scripts/controls.sh --brightness-rightclick"
-            :onscroll     "scripts/controls.sh --brightness-scroll-{}"
+            :onclick      "brightnessctl set 100%; eww update brightness=100"
+            :onrightclick "brightnessctl set 1%; eww update brightness=1"
+            :onscroll     "[[ {} = up ]] &&
+                               brightnessctl set +1% ||
+                               brightnessctl set ${brightness - 1 > 0 ? brightness - 1 : brightness}%
+                           eww update brightness=$((\"$(brightnessctl get)\" * 100 / \"$(brightnessctl max)\"))"
     (box :space-evenly false
       (revealer :transition "slideright"
                 :duration   250

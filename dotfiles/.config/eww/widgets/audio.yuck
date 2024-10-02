@@ -7,8 +7,10 @@
             :cursor       "pointer"
             :onhover      "eww update on_${is_source ? "source" : "sink"}=true"
             :onhoverlost  "eww update on_${is_source ? "source" : "sink"}=false"
-            :onclick      "pamixer --toggle-mute ${is_source ? "--default-source" : ""}"
-            :onscroll     "scripts/controls.sh --${is_source ? "source" : "sink"}-scroll-{}"
+            :onclick      "pamixer ${is_source ? "--default-source" : ""} --toggle-mute"
+            :onscroll     "[[ {} = up ]] &&
+                               pamixer ${is_source ? "--default-source" : ""} --increase 1 ||
+                               pamixer ${is_source ? "--default-source" : ""} --decrease 1"
             :onrightclick "$TERMINAL -e pulsemixer &"
     (box :space-evenly false
       (revealer :transition "slideright"
