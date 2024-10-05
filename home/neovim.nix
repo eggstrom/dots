@@ -9,7 +9,7 @@
       # LSPs
       bash-language-server # bashls
       gopls
-      java-language-server # jdtls
+      jdt-language-server # jdtls
       lemminx
       libclang # clangd
       lua-language-server # lua_ls
