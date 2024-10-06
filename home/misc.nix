@@ -25,7 +25,6 @@
     unzip
     wget
     wineWowPackages.stable
-    yazi
     yt-dlp
     zip
 

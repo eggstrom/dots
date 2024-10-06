@@ -1,12 +1,7 @@
-{ ... }:
 {
   programs.yazi = {
     enable = true;
+    settings.manager.show_hidden = true;
     catppuccin.enable = true;
-  };
-
-  xdg.configFile.yazi = {
-    source = ../dotfiles/.config/yazi;
-    recursive = true;
   };
 }
