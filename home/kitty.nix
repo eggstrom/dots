@@ -25,7 +25,9 @@
       enable_audio_bell = "no";
       confirm_os_window_close = 0;
 
-      # Hide mouse when typing
+      # Disable default keybindings
+      clear_all_shortcuts = "yes";
+      # Hide cursor when typing
       mouse_hide_wait = -1;
       # Disable ligatures below cursor
       disable_ligatures = "cursor";
