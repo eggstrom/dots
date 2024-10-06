@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     aria2
     bat
-    btop
     curl
     (discord.override { withVencord = true; })
     dust

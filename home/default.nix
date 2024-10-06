@@ -1,6 +1,7 @@
 {
   imports = [
     ./bspwm.nix
+    ./btop.nix
     ./eww.nix
     ./i3.nix
     ./kitty.nix
