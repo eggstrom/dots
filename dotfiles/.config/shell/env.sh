@@ -1,3 +1,6 @@
+# Source Home Manager session variables
+. ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -39,7 +42,6 @@ eval "$(dircolors)"
 export EDITOR='nvim'
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
-export TERMINAL='kitty'
 
 # fzf
 export FZF_DEFAULT_OPTS='--color=16 --prompt="❯ "'

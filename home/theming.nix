@@ -30,7 +30,6 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtkrc-2.0";
   };
 
-  # This doesn't work :D
   qt = {
     enable = true;
     platformTheme.name = "kvantum";
