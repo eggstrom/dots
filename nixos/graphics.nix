@@ -7,8 +7,12 @@
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
     open = true;
+    modesetting.enable = true;
+
+    # Make suspension and hibernation work
+    powerManagement.enable = true;
+    nvidiaPersistenced = true;
 
     # Try uncommenting this if things don't work
     # prime = {
