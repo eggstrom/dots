@@ -1,20 +1,12 @@
+let
+  inherit (builtins)
+    attrNames
+    filter
+    map
+    readDir
+    ;
+in
 {
-  imports = [
-    ./bspwm.nix
-    ./btop.nix
-    ./eww.nix
-    ./i3.nix
-    ./kitty.nix
-    ./misc.nix
-    ./neovim.nix
-    ./nix.nix
-    ./polybar.nix
-    ./rofi.nix
-    ./starship.nix
-    ./theming.nix
-    ./tmux.nix
-    ./wezterm.nix
-    ./yazi.nix
-    ./zsh.nix
-  ];
+  # Import everything in current directory
+  imports = map (file: ./${file}) (filter (file: file != "default.nix") (attrNames (readDir ./.)));
 }

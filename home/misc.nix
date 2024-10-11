@@ -44,10 +44,13 @@
     zig
   ];
 
+  xdg.configFile.npmrc.source = ../dotfiles/.config/npmrc;
+
   services.udiskie = {
     enable = true;
     tray = "never";
   };
 
-  xdg.configFile.npmrc.source = ../dotfiles/.config/npmrc;
+  # Generate caches for searching man pages
+  programs.man.generateCaches = true;
 }

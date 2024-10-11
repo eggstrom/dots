@@ -1,6 +1,9 @@
 { inputs, ... }:
 {
-  home.username = "root";
+  home = {
+    username = "root";
+    homeDirectory = "/root";
+  };
 
   imports = [
     ../home/misc.nix

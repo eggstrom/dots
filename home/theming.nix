@@ -1,16 +1,22 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    font-awesome
-  ];
-
   catppuccin = {
     accent = "red";
-
     pointerCursor = {
       enable = true;
       accent = "dark";
+    };
+  };
+
+  home = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      font-awesome
+    ];
+
+    pointerCursor = {
+      size = 48;
+      gtk.enable = true;
     };
   };
 

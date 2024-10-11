@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    acpi
+    brightnessctl
     eww
     luajit
+    mpc-cli
     pamixer
     pulsemixer
-    mpc-cli
-    brightnessctl
-    acpi
   ];
 
   services = {

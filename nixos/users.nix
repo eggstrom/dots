@@ -4,6 +4,7 @@
     isNormalUser = true;
     extraGroups = [
       "docker"
+      "libvirtd"
       "networkmanager"
       "wheel"
     ];

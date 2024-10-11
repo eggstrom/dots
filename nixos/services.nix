@@ -1,4 +1,12 @@
 {
+  # Disable stinky defaults
+  programs.nano.enable = false;
+  environment.shellAliases = {
+    l = null;
+    ll = null;
+    ls = null;
+  };
+
   services = {
     fstrim.enable = true;
     udisks2.enable = true;
@@ -15,4 +23,9 @@
   programs.dconf.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  # Generate caches for searching man pages
+  documentation.man.generateCaches = true;
 }
