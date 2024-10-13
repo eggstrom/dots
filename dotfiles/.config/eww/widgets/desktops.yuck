@@ -1,26 +1,13 @@
-(deflisten desktops_x11 "scripts/desktops_x11.lua")
-(deflisten desktops_bspwm "scripts/desktops_bspwm.lua")
+(deflisten desktops "scripts/desktops.lua")
 
-(defwidget desktop_widget_x11 []
+(defwidget desktop_widget []
   (box :space-evenly false
-    (for desktop in "${desktops_x11.desktops}"
-      (eventbox :class    "hoverable ${desktop.index == desktops_x11.current ? "highlighted blue" : ""}"
+    (for desktop in "${desktops.desktops}"
+      (eventbox :class    "hoverable ${desktop.index == desktops.current ? "highlighted blue" : ""}"
                 :cursor   "pointer"
                 :onclick  "xdotool set_desktop ${desktop.index}"
                 :onscroll "[[ {} = up ]] &&
                                xdotool set_desktop --relative 1 ||
                                xdotool set_desktop --relative -- -1"
-        (label :unindent false
-               :text     " ${desktop.name} ")))))
-
-(defwidget desktop_widget_bspwm []
-  (box :space-evenly false
-    (for desktop in desktops_bspwm
-      (eventbox :class    "hoverable ${desktop.focused ? "highlighted blue" : ""}"
-                :cursor   "pointer"
-                :onclick  "bspc desktop --focus ${desktop.name}"
-                :onscroll "[[ {} = up ]] &&
-                               bspc desktop --focus next.occupied ||
-                               bspc desktop --focus prev.occupied"
         (label :unindent false
                :text     " ${desktop.name} ")))))

@@ -8,6 +8,7 @@
     mpc-cli
     pamixer
     pulsemixer
+    xdotool
   ];
 
   services = {

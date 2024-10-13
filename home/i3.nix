@@ -6,7 +6,6 @@
     maim
     picom-pijulius
     xclip
-    xdotool
   ];
 
   xdg.configFile = {
