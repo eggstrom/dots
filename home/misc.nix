@@ -16,7 +16,6 @@
     mpv
     obs-studio
     prismlauncher
-    pulseaudio
     ripgrep
     steam
     tealdeer

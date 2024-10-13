@@ -7,6 +7,7 @@
     luajit
     mpc-cli
     pamixer
+    pulseaudio
     pulsemixer
     xdotool
   ];
