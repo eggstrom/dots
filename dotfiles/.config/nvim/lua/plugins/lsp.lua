@@ -68,6 +68,7 @@ lspconfig.lua_ls.setup(vim.tbl_extend("force", settings, {
     end,
 }))
 lspconfig.pyright.setup(settings)
+lspconfig.marksman.setup(settings)
 lspconfig.nil_ls.setup(settings)
 lspconfig.rust_analyzer.setup(settings)
 lspconfig.taplo.setup(settings)

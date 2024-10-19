@@ -11,8 +11,9 @@
       gopls
       jdt-language-server # jdtls
       lemminx
-      libclang # clangd
+      clang-tools # clangd
       lua-language-server # lua_ls
+      marksman
       nil # nil_ls
       # rust-analyzer # rust_analyzer
       vscode-langservers-extracted # cssls, html, jsonls
@@ -70,6 +71,7 @@
       gitsigns-nvim
       lualine-nvim
       bufferline-nvim
+      render-markdown-nvim
       nvim-web-devicons
     ];
   };
