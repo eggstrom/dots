@@ -18,6 +18,7 @@
     prismlauncher
     ripgrep
     steam
+    steam-run
     tealdeer
     translate-shell
     trash-cli

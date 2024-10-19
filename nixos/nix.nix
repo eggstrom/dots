@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   system.stateVersion = "24.05";
 
   nix = {
@@ -24,4 +25,8 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  # Make programs that require FHS compliance work
+  services.envfs.enable = true;
+  programs.nix-ld.enable = true;
 }
