@@ -21,7 +21,6 @@
       initial_window_width = "80c";
       initial_window_height = "24c";
 
-      background_opacity = "0.9";
       enable_audio_bell = "no";
       confirm_os_window_close = 0;
 
