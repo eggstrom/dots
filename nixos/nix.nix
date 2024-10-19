@@ -1,4 +1,4 @@
-{
+{ settings, ... }: {
   system.stateVersion = "24.05";
 
   nix = {
@@ -7,6 +7,9 @@
         "nix-command"
         "flakes"
       ];
+
+      # Give user additional rights
+      trusted-users = [ "${settings.username}" ];
 
       # Optimise store on every build
       auto-optimise-store = true;
