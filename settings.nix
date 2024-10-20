@@ -4,9 +4,8 @@
 
   locale = "en_US.UTF-8";
   timeZone = "Europe/Ljubljana";
-  consoleKeyboard = "slovene";
-  x11Keyboard = {
-    layout = "si";
-    variant = "";
+  keyboard = {
+    console = "slovene";
+    x11 = "si";
   };
 }

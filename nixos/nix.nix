@@ -1,4 +1,3 @@
-{ settings, ... }:
 {
   system.stateVersion = "24.05";
 
@@ -9,8 +8,8 @@
         "flakes"
       ];
 
-      # Give user additional rights
-      trusted-users = [ "${settings.username}" ];
+      # Give wheel group additional rights
+      trusted-users = [ "@wheel" ];
 
       # Optimise store on every build
       auto-optimise-store = true;

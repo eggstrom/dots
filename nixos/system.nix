@@ -1,18 +1,18 @@
 { settings, ... }: {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
-  networking.hostName = "${settings.hostname}";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "${settings.hostname}";
+    networkmanager.enable = true;
+  };
 
   i18n.defaultLocale = "${settings.locale}";
   time.timeZone = "${settings.timeZone}";
-
-  console.keyMap = "${settings.consoleKeyboard}";
-  services.xserver.xkb = {
-    layout = "${settings.x11Keyboard.layout}";
-    variant = "${settings.x11Keyboard.variant}";
-  };
+  console.keyMap = "${settings.keyboard.console}";
+  services.xserver.xkb.layout = "${settings.keyboard.x11}";
 
   users.users.${settings.username} = {
     isNormalUser = true;

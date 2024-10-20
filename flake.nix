@@ -15,7 +15,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nur,
       home-manager,
