@@ -48,7 +48,7 @@ local lspconfig = require("lspconfig")
 
 lspconfig.bashls.setup(settings)
 lspconfig.clangd.setup(vim.tbl_extend("force", settings, {
-    -- Forces offset encoding to prevent warnings
+    -- Force offset encoding to disable warnings
     cmd = { "clangd", "--offset-encoding=utf-16" },
 }))
 lspconfig.cssls.setup(settings)
@@ -65,7 +65,7 @@ lspconfig.lua_ls.setup(vim.tbl_extend("force", settings, {
 }))
 lspconfig.pyright.setup(settings)
 lspconfig.marksman.setup(settings)
-lspconfig.nil_ls.setup(settings)
+lspconfig.nixd.setup(settings)
 lspconfig.rust_analyzer.setup(settings)
 lspconfig.taplo.setup(settings)
 lspconfig.ts_ls.setup(settings)

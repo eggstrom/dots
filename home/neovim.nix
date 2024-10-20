@@ -7,26 +7,27 @@
       wl-clipboard
 
       # LSPs
+      # rust-analyzer # rust_analyzer
       bash-language-server # bashls
+      clang-tools # clangd
       gopls
       jdt-language-server # jdtls
       lemminx
-      clang-tools # clangd
       lua-language-server # lua_ls
       marksman
-      nil # nil_ls
-      # rust-analyzer # rust_analyzer
-      vscode-langservers-extracted # cssls, html, jsonls
+      nixd
       pyright
       taplo
       typescript-language-server # ts_ls
       vim-language-server # vimls
+      vscode-langservers-extracted # cssls, html, jsonls
       yaml-language-server # yamlls
       zls
 
       # Formatters
       black
       isort
+      nixfmt-rfc-style
       prettierd
       shfmt
       stylua
