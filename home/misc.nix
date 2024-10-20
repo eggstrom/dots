@@ -31,7 +31,6 @@
     # Development
     act
     gcc
-    git
     gnumake
     go
     just

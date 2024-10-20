@@ -8,4 +8,9 @@
     console = "slovene";
     x11 = "si";
   };
+
+  git = {
+    username = "eggstrom";
+    email = "tristan65536@gmail.com";
+  };
 }
