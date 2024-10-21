@@ -29,9 +29,11 @@
     enable = true;
     userName = "${settings.git.username}";
     userEmail = "${settings.git.email}";
-    # Configure Git to manage credentials with GnuPG and pass
     extraConfig.credential = {
+      # Use main account for credentials by default
+      username = "${settings.git.username}";
       helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+      # Use pass for storing credentials
       credentialStore = "gpg";
       guiPrompt = false;
     };
