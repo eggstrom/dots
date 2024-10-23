@@ -4,11 +4,11 @@
     aria2
     bat
     curl
-    (discord.override { withVencord = true; })
     dust
     eza
     fd
     feh
+    file
     firefox
     fzf
     gimp
@@ -33,6 +33,7 @@
     gcc
     gnumake
     go
+    jdk
     just
     nasm
     nodejs
