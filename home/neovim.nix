@@ -7,7 +7,6 @@
       wl-clipboard
 
       # LSPs
-      # rust-analyzer # rust_analyzer
       bash-language-server # bashls
       clang-tools # clangd
       gopls

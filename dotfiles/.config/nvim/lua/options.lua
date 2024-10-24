@@ -12,6 +12,7 @@ vim.opt.relativenumber = true -- Enable relative line numbers
 vim.opt.signcolumn = "yes" -- Always show sign column
 vim.opt.wrap = false -- Disable wrapping
 vim.opt.showmode = false -- Don't show mode in command line
+vim.opt.shortmess:append("I") -- Disable intro message on startup
 
 -- Indentation
 vim.opt.expandtab = true -- Replace tab with spaces

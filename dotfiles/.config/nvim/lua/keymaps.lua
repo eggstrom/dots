@@ -2,9 +2,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Yank/paste to clipboard
-vim.keymap.set("", "<leader>y", '"+y')
-vim.keymap.set("", "<leader>p", '"+p')
+-- Set register to system clipboard
+vim.keymap.set("", "<leader><leader>", '"+')
 
 -- Hide search highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
