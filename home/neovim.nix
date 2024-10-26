@@ -71,7 +71,6 @@
       gitsigns-nvim
       lualine-nvim
       bufferline-nvim
-      render-markdown-nvim
       nvim-web-devicons
     ];
   };

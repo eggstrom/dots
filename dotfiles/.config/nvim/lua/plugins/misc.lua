@@ -14,6 +14,3 @@ require("bufferline").setup({
         diagnostics = "nvim_lsp",
     },
 })
-
-require("render-markdown").setup({ enabled = false })
-vim.keymap.set("", "<leader>tm", require("render-markdown").toggle)
