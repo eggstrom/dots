@@ -20,7 +20,7 @@ local settings = {
             vim.lsp.buf.format({
                 async = true,
                 filter = function(client)
-                    local disabled = { "cssls", "html", "jdtls", "jsonls", "lua_ls", "ts_ls" }
+                    local disabled = { "cssls", "clangd", "html", "jdtls", "jsonls", "lua_ls", "ts_ls" }
                     for _, lsp in ipairs(disabled) do
                         if client.name == lsp then
                             return false
