@@ -50,7 +50,7 @@
 
       nvim-lspconfig
       none-ls-nvim
-      neodev-nvim
+      lazydev-nvim
 
       nvim-cmp
       cmp-nvim-lsp

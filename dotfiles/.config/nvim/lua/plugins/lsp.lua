@@ -60,7 +60,7 @@ lspconfig.jsonls.setup(settings)
 lspconfig.lemminx.setup(settings)
 lspconfig.lua_ls.setup(vim.tbl_extend("force", settings, {
     on_init = function()
-        require("neodev").setup()
+        require("lazydev").setup()
     end,
 }))
 lspconfig.pyright.setup(settings)
