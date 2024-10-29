@@ -64,6 +64,7 @@
   # Enable TUI for Git
   programs.lazygit = {
     enable = true;
+    settings.gui.border = "single";
     catppuccin.enable = true;
   };
 }
