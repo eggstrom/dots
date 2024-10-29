@@ -33,3 +33,12 @@ vim.opt.foldtext = "" -- Make fold text prettier
 -- Splits
 vim.opt.splitbelow = true -- Create new windows below instead of above
 vim.opt.splitright = true -- Create new windows right instead of left
+
+-- Diagnostics
+vim.diagnostic.config({
+    signs = {
+        -- Order: error, warn, info, hint
+        text = { "󰅚", "󰀪", "󰋽", "󰌶" },
+        numhl = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" },
+    },
+})

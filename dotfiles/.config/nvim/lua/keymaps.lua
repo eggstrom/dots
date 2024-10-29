@@ -1,4 +1,4 @@
----Sends a notification describing the option's state
+---Displays a notification describing the option's state
 ---@param name string The option's name
 ---@param state boolean The option's state
 local function toggle_notify(name, state)
