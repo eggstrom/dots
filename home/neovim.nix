@@ -70,7 +70,6 @@
       nvim-colorizer-lua
       gitsigns-nvim
       lualine-nvim
-      bufferline-nvim
       nvim-web-devicons
     ];
   };
