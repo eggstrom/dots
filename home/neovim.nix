@@ -1,7 +1,15 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  # Make $SUDO_EDITOR and $VISUAL depend on $EDITOR
+  home.sessionVariables = {
+    SUDO_EDITOR = config.home.sessionVariables.EDITOR;
+    VISUAL = config.home.sessionVariables.EDITOR;
+  };
+
   programs.neovim = {
     enable = true;
+    defaultEditor = true; # Set $EDITOR
+
     extraPackages = with pkgs; [
       # Clipboard
       xclip
@@ -35,6 +43,7 @@
       # Miscellaneous
       shellcheck # Used by bash-language-server
     ];
+
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim
 

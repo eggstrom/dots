@@ -35,11 +35,6 @@ export HISTCONTROL='ignoreboth:erasedups'
 export BAT_THEME='base16-256'
 eval "$(dircolors)"
 
-# Default programs
-export EDITOR='nvim'
-export SUDO_EDITOR="$EDITOR"
-export VISUAL="$EDITOR"
-
 # fzf
 export FZF_DEFAULT_OPTS='--color=16 --prompt="❯ "'
 export FZF_DEFAULT_COMMAND='fd -u'
