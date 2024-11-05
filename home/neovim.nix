@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
-  home = {
-    packages = with pkgs; [
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
       # Clipboard
       xclip
       wl-clipboard
@@ -34,15 +35,6 @@
       # Miscellaneous
       shellcheck # Used by bash-language-server
     ];
-  };
-
-  xdg.configFile.nvim = {
-    source = ../dotfiles/.config/nvim;
-    recursive = true;
-  };
-
-  programs.neovim = {
-    enable = true;
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim
 
@@ -72,5 +64,10 @@
       lualine-nvim
       nvim-web-devicons
     ];
+  };
+
+  xdg.configFile.nvim = {
+    source = ../dotfiles/.config/nvim;
+    recursive = true;
   };
 }
