@@ -34,15 +34,15 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set register to system clipboard
-vim.keymap.set("", "<leader><leader>", '"+')
+-- Buffer and tab navigation
+vim.keymap.set("", "<Tab>", "<cmd>bnext<CR>")
+vim.keymap.set("", "<S-Tab>", "<cmd>bprevious<CR>")
+vim.keymap.set("", "<leader><Tab>", "<cmd>tabnext<CR>")
+vim.keymap.set("", "<leader><S-Tab>", "<cmd>tabprevious<CR>")
+vim.keymap.set("", "<leader><leader>", "<cmd>tabnew<CR>")
 
 -- Hide search highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Move to next/previous buffer
-vim.keymap.set({ "n", "v" }, "<Tab>", "<cmd>bnext<CR>")
-vim.keymap.set({ "n", "v" }, "<S-Tab>", "<cmd>bprevious<CR>")
 
 -- Open window with diagnostics
 vim.keymap.set("", "<leader>d", vim.diagnostic.open_float)
