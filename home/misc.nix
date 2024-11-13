@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   home.packages = with pkgs; [
     aria2
@@ -11,6 +11,7 @@
     file
     firefox
     fzf
+    gdb
     gimp
     jq
     mpv
@@ -30,6 +31,7 @@
 
     # Development
     act
+    cmake
     gcc
     gnumake
     go
@@ -53,4 +55,7 @@
 
   # Generate caches for searching man pages
   programs.man.generateCaches = true;
+
+  # Add ~/.local/bin to $PATH
+  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
 }
