@@ -1,12 +1,8 @@
-let
-  inherit (builtins)
-    attrNames
-    filter
-    map
-    readDir
-    ;
-in
 {
   # Import everything in current directory
-  imports = map (file: ./${file}) (filter (file: file != "default.nix") (attrNames (readDir ./.)));
+  imports =
+    builtins.readDir ./.
+    |> builtins.attrNames
+    |> builtins.filter (file: file != "default.nix")
+    |> builtins.map (file: ./${file});
 }
