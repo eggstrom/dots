@@ -1,13 +1,10 @@
-{ config, pkgs, ... }:
 {
-  catppuccin = {
-    accent = "red";
-    pointerCursor = {
-      enable = true;
-      accent = "dark";
-    };
-  };
-
+  config,
+  pkgs,
+  pkgs-stable,
+  ...
+}:
+{
   home = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -15,6 +12,8 @@
     ];
 
     pointerCursor = {
+      package = pkgs-stable.catppuccin-cursors.mochaDark;
+      name = "catppuccin-mocha-dark-cursors";
       size = 48;
       gtk.enable = true;
     };
@@ -41,8 +40,12 @@
     platformTheme.name = "kvantum";
     style = {
       name = "kvantum";
-      catppuccin.enable = true;
-      catppuccin.apply = true;
+      catppuccin = {
+        enable = true;
+        apply = true;
+      };
     };
   };
+
+  catppuccin.accent = "red";
 }
