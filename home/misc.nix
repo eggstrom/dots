@@ -20,7 +20,6 @@
     ripgrep
     steam
     steam-run
-    tealdeer
     translate-shell
     trash-cli
     unzip
@@ -55,6 +54,16 @@
 
   # Generate caches for searching man pages
   programs.man.generateCaches = true;
+
+  # Enable tldr and make it update on execution if needed
+  programs.tealdeer = {
+    enable = true;
+    settings.updates = {
+      auto_update = true;
+      # Update if cached data is older than a week
+      auto_update_interval_hours = 168;
+    };
+  };
 
   # Add ~/.local/bin to $PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
