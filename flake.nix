@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,21 +16,27 @@
   outputs =
     {
       nixpkgs,
-      nur,
+      nixpkgs-stable,
       home-manager,
       catppuccin,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      pkgsAttrs = {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ nur.overlay ];
       };
+      pkgs = import nixpkgs pkgsAttrs;
+      pkgs-stable = import nixpkgs-stable pkgsAttrs;
       settings = import ./settings.nix;
       specialArgs = {
-        inherit inputs system settings;
+        inherit
+          inputs
+          system
+          settings
+          pkgs-stable
+          ;
       };
       extraSpecialArgs = specialArgs;
     in
