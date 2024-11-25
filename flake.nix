@@ -34,8 +34,8 @@
         inherit
           inputs
           system
-          settings
           pkgs-stable
+          settings
           ;
       };
       extraSpecialArgs = specialArgs;

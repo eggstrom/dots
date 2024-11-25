@@ -11,7 +11,6 @@
     file
     firefox
     fzf
-    gdb
     gimp
     jq
     mpv
@@ -32,6 +31,7 @@
     act
     cmake
     gcc
+    gdb
     gnumake
     go
     jdk

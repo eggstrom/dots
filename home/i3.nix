@@ -4,7 +4,6 @@
     i3
     i3lock-color
     maim
-    picom-pijulius
     xclip
   ];
 
@@ -13,10 +12,19 @@
       source = ../dotfiles/.config/i3;
       recursive = true;
     };
-    picom = {
-      source = ../dotfiles/.config/picom;
-      recursive = true;
-    };
     xinitrc.source = ../dotfiles/.config/xinitrc;
+  };
+
+  # Configure compositor
+  services.picom = {
+    enable = true;
+    vSync = true;
+    backend = "glx";
+    settings = {
+      # Recommended by man page
+      glx-no-stencil = true;
+      # Only redraw parts that change, may cause artifacts
+      use-damage = true;
+    };
   };
 }
