@@ -65,6 +65,9 @@
     };
   };
 
+  # Let Home Manager manage mimetypes
+  xdg.mimeApps.enable = true;
+
   # Add ~/.local/bin to $PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
 }
