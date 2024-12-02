@@ -5,18 +5,17 @@
   ...
 }:
 {
-  home = {
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      font-awesome
-    ];
+  fonts.fontconfig.enable = true;
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    font-awesome
+  ];
 
-    pointerCursor = {
-      package = pkgs-stable.catppuccin-cursors.mochaDark;
-      name = "catppuccin-mocha-dark-cursors";
-      size = 48;
-      gtk.enable = true;
-    };
+  home.pointerCursor = {
+    package = pkgs-stable.catppuccin-cursors.mochaDark;
+    name = "catppuccin-mocha-dark-cursors";
+    size = 48;
+    gtk.enable = true;
   };
 
   gtk = {

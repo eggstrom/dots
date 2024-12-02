@@ -11,7 +11,6 @@ config.default_prog = { "tmux" }
 
 -- Appearance
 config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 0.9
 config.window_padding = {
     left = "0",
     right = "0",
