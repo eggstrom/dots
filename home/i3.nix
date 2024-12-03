@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     i3
-    i3lock-color
+    i3lock
     maim
     xclip
   ];
