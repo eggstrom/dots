@@ -1,29 +1,9 @@
 {
-  config,
   pkgs,
   settings,
   ...
 }:
 {
-  # Enable GnuPG for cryptography
-  programs.gpg = {
-    enable = true;
-    homedir = "${config.xdg.dataHome}/gnupg";
-  };
-  services.gpg-agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-tty;
-  };
-
-  # Enable pass for managing passwords
-  programs.password-store = {
-    enable = true;
-    package = pkgs.pass-nodmenu;
-    settings = {
-      PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
-    };
-  };
-
   # Enable Git
   programs.git = {
     enable = true;
