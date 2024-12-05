@@ -19,10 +19,12 @@ export BORDER_SIZE="$((screen_height / 300))"
 export BAR_SIZE="$((screen_height / 25))"
 export FONT_SIZE="$((screen_height / 70))"
 
-cat << EOF | xrdb -merge
+cat <<EOF | xrdb -merge
 GAP_SIZE:    $GAP_SIZE
 BORDER_SIZE: $BORDER_SIZE
 EOF
 
+# Delete leftover .serverauth files
+ls -at | grep -P '^\.serverauth\.\d+$' | tail -n+2 | xargs rm
 # Start window manager
 i3
