@@ -41,6 +41,9 @@ export FZF_DEFAULT_COMMAND='fd -u'
 export FZF_CTRL_T_COMMAND='fd -u'
 export FZF_ALT_C_COMMAND='fd -utd'
 
+# Cache Rust builds globally
+export RUSTC_WRAPPER='sccache'
+
 # Add paths to $PATH if they're not already present
 add_path() {
     [[ ":$PATH:" != *":$1:"* ]] && PATH="$PATH:$1"

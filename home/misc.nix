@@ -40,6 +40,7 @@
     nodejs
     python3
     rustup
+    sccache
     scrcpy
     valgrind
     zig
