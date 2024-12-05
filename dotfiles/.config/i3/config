@@ -133,5 +133,5 @@ bindsym --whole-window $mod+Ctrl+button5 move container to workspace prev
 exec_always --no-startup-id picom
 # Start bar
 exec_always --no-startup-id eww open bar
-# Reload wallpaper
-exec_always --no-startup-id [ -e "$XDG_STATE_HOME/fehbg" ] && "$XDG_STATE_HOME/fehbg"
+# Reload background
+exec_always --no-startup-id setbg
