@@ -41,6 +41,9 @@
     '')
   ];
 
+  # Enable GitHub CLI
+  programs.gh.enable = true;
+
   # Enable TUI for Git
   programs.lazygit = {
     enable = true;
