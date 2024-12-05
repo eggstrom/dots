@@ -9,10 +9,10 @@
 
   xdg.configFile = {
     i3 = {
-      source = ../dotfiles/.config/i3;
+      source = ./home/.config/i3;
       recursive = true;
     };
-    xinitrc.source = ../dotfiles/.config/xinitrc;
+    xinitrc.source = ./home/.config/xinitrc;
   };
 
   # Configure compositor

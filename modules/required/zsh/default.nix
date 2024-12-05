@@ -8,16 +8,16 @@
       zsh-syntax-highlighting
     ];
 
-    file.".zshenv".source = ../dotfiles/.zshenv;
+    file.".zshenv".source = ./home/.zshenv;
   };
 
   xdg.configFile = {
     shell = {
-      source = ../dotfiles/.config/shell;
+      source = ./home/.config/shell;
       recursive = true;
     };
     zsh = {
-      source = ../dotfiles/.config/zsh;
+      source = ./home/.config/zsh;
       recursive = true;
     };
   };

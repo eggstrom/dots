@@ -45,7 +45,7 @@
         inherit specialArgs;
         modules = [
           ./hardware-configuration.nix
-          ./nixos
+          ./modules/system
           home-manager.nixosModules.home-manager
           {
             home-manager = {

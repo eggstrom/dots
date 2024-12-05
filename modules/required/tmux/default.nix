@@ -6,7 +6,7 @@
   ];
 
   xdg.configFile.tmux = {
-    source = ../dotfiles/.config/tmux;
+    source = ./home/.config/tmux;
     recursive = true;
   };
 }

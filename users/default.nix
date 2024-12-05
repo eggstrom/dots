@@ -11,7 +11,8 @@
   };
 
   imports = [
+    ../modules/required
+    ../modules/optional
     inputs.catppuccin.homeManagerModules.catppuccin
-    ../home
   ];
 }

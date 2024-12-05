@@ -46,7 +46,7 @@
     zig
   ];
 
-  xdg.configFile.npmrc.source = ../dotfiles/.config/npmrc;
+  xdg.configFile.npmrc.source = ./home/.config/npmrc;
 
   services.udiskie = {
     enable = true;
