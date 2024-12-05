@@ -3,19 +3,22 @@ set_from_resource $border_size BORDER_SIZE 0
 set_from_resource $gap_size    GAP_SIZE    0
 
 focus_follows_mouse     no
-gaps                    inner $gap_size
+gaps                    inner $border_size
+gaps                    outer -4
 default_border          pixel $border_size
 default_floating_border pixel $border_size
+hide_edge_borders       smart
 
 # Colors
-set $bg #1E1E2E
-set $fg #CDD6F4
-client.focused          $fg $fg $fg $fg $fg
-client.focused_inactive $bg $bg $bg $bg $bg
-client.unfocused        $bg $bg $bg $bg $bg
-client.urgent           $bg $bg $bg $bg $bg
-client.placeholder      $bg $bg $bg $bg $bg
-client.background       $bg
+set $bg   #1E1E2E
+set $fg   #CDD6F4
+set $blue #89B4FA
+set $red  #F38BA8
+client.focused          $blue $blue $blue $blue $blue
+client.focused_inactive $fg   $fg   $fg   $fg   $fg
+client.unfocused        $fg   $fg   $fg   $fg   $fg
+client.urgent           $red  $red  $red  $red  $red
+client.placeholder      $fg   $fg   $fg   $fg   $fg
 
 # Set mod key to Super
 set $mod Mod4
@@ -33,12 +36,12 @@ bindsym $mod+Ctrl+F5     restart
 # Super + V:      Create vertical split
 # Super + W:      Open run menu
 # Super + E:      Open terminal
-bindsym $mod+Escape      exec --no-startup-id ~/.config/rofi/scripts/power.sh
-bindsym $mod+q           kill
-bindsym $mod+s           split vertical
-bindsym $mod+v           split horizontal
-bindsym $mod+w           exec --no-startup-id ~/.config/rofi/scripts/run.sh
-bindsym $mod+e           exec --no-startup-id $TERMINAL
+bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/scripts/power.sh
+bindsym $mod+q      kill
+bindsym $mod+s      split vertical
+bindsym $mod+v      split horizontal
+bindsym $mod+w      exec --no-startup-id ~/.config/rofi/scripts/run.sh
+bindsym $mod+e      exec --no-startup-id $TERMINAL
 
 # Super + F:         Toggle floating
 # Super + Ctrl + F:  Toggle fullscreen
@@ -119,11 +122,9 @@ bindsym $mod+Ctrl+0         move container to workspace number 10
 bindsym $mod+Ctrl+Tab       move container to workspace next
 bindsym $mod+Ctrl+Shift+Tab move container to workspace prev
 
-# Super + Middle Click:          Close window
 # Super + Scroll up/down:        Move to next/previous workspace
 # Super + Ctrl + Scroll up/down: Move window to next/previous workspace
 floating_modifier $mod
-bindsym --whole-window $mod+button2      kill
 bindsym --whole-window $mod+button4      workspace next
 bindsym --whole-window $mod+button5      workspace prev
 bindsym --whole-window $mod+Ctrl+button4 move container to workspace next
