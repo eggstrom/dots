@@ -61,13 +61,8 @@ lspconfig_setup({
   gopls = {}, -- Go
   html = {}, -- HTML
   jdtls = {}, -- Java
-  ts_ls = { -- JavaScript, TypeScript
-    settings = {
-      javascript = { inlayHints = ts_ls_inlay_hint_settings },
-      typescript = { inlayHints = ts_ls_inlay_hint_settings },
-    },
-  },
   jsonls = {}, -- JSON
+  lemminx = {}, -- XML
   lua_ls = { -- Lua
     settings = {
       Lua = {
@@ -89,8 +84,13 @@ lspconfig_setup({
   pyright = {}, -- Python
   rust_analyzer = {}, -- Rust
   taplo = {}, -- TOML
+  ts_ls = { -- JavaScript, TypeScript
+    settings = {
+      javascript = { inlayHints = ts_ls_inlay_hint_settings },
+      typescript = { inlayHints = ts_ls_inlay_hint_settings },
+    },
+  },
   vimls = {}, -- VimScript
-  lemminx = {}, -- XML
   yamlls = {}, -- YAML
   zls = { -- Zig
     on_init = function()
