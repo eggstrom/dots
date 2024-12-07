@@ -1,21 +1,21 @@
 local telescope = require("telescope")
 telescope.setup({
-    defaults = {
-        prompt_prefix = "❯ ",
-        selection_caret = "❯ ",
-        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  defaults = {
+    prompt_prefix = "❯ ",
+    selection_caret = "❯ ",
+    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  },
+  pickers = {
+    find_files = {
+      follow = true,
+      hidden = true,
+      no_ignore = true,
+      no_ignore_parent = true,
     },
-    pickers = {
-        find_files = {
-            follow = true,
-            hidden = true,
-            no_ignore = true,
-            no_ignore_parent = true,
-        },
-        live_grep = {
-            additional_args = { "--follow", "--hidden", "--no-ignore" },
-        },
+    live_grep = {
+      additional_args = { "--follow", "--hidden", "--no-ignore" },
     },
+  },
 })
 telescope.load_extension("fzf")
 
@@ -27,7 +27,7 @@ vim.keymap.set("", "<leader>fm", builtin.man_pages) -- Man pages
 vim.keymap.set("", "<leader>fb", builtin.buffers) -- Buffers
 vim.keymap.set("", "<leader>ff", builtin.find_files) -- Files
 vim.keymap.set("", "<leader>fc", function() -- Files in ~/.nix
-    builtin.find_files({ cwd = "~/.nix" })
+  builtin.find_files({ cwd = "~/.nix" })
 end)
 vim.keymap.set("", "<leader>fo", builtin.oldfiles) -- Old files
 vim.keymap.set("", "<leader>fg", builtin.live_grep) -- Live grep

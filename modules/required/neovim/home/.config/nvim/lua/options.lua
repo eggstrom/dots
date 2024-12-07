@@ -36,9 +36,9 @@ vim.opt.splitright = true -- Create new windows right instead of left
 
 -- Diagnostics
 vim.diagnostic.config({
-    signs = {
-        -- Order: error, warn, info, hint
-        text = { "󰅚", "󰀪", "󰋽", "󰌶" },
-        numhl = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" },
-    },
+  signs = {
+    -- Order: error, warn, info, hint
+    text = { "󰅚", "󰀪", "󰋽", "󰌶" },
+    numhl = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" },
+  },
 })
