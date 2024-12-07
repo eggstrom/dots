@@ -46,7 +46,8 @@
     zig
   ];
 
-  xdg.configFile.npmrc.source = ./home/.config/npmrc;
+  # ~/.npm/ -> ~/.cache/npm/
+  xdg.configFile.npmrc.text = "cache=${config.xdg.cacheHome}/npm";
 
   services.udiskie = {
     enable = true;

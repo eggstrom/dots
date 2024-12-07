@@ -1,2 +1,0 @@
-# Move .npm/ from $HOME to .cache/
-cache=${XDG_CACHE_HOME}/npm

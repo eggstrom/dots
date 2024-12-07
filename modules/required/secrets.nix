@@ -3,7 +3,7 @@
   # Enable GnuPG for cryptography
   programs.gpg = {
     enable = true;
-    # ~/.gnupg -> ~/.local/share/gnupg
+    # ~/.gnupg/ -> ~/.local/share/gnupg/
     homedir = "${config.xdg.dataHome}/gnupg";
   };
   services.gpg-agent = {
@@ -16,7 +16,7 @@
     enable = true;
     package = pkgs.pass-nodmenu;
     settings = {
-      # ~/.password-store -> ~/.local/share/password-store
+      # ~/.password-store/ -> ~/.local/share/password-store/
       PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
     };
   };
