@@ -14,6 +14,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc" # .npmrc
 export XINITRC="$XDG_CONFIG_HOME/xinitrc"             # .xinitrc
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"                 # .zlogin, .zshrc, ...
 # .cache/
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv    # .nv
 export XAUTHORITY="$XDG_CACHE_HOME/Xauthority" # .Xauthority
 # .local/share/
 export CARGO_HOME="$XDG_DATA_HOME/cargo"        # .cargo/
