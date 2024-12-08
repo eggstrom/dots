@@ -33,13 +33,6 @@ local shared_config = {
   end,
 }
 
-local function lspconfig_setup(server_configs)
-  local lspconfig = require("lspconfig")
-  for server, config in pairs(server_configs) do
-    lspconfig[server].setup(vim.tbl_extend("force", shared_config, config))
-  end
-end
-
 local ts_ls_inlay_hint_settings = {
   includeInlayEnumMemberValueHints = true,
   includeInlayFunctionLikeReturnTypeHints = true,
@@ -50,7 +43,7 @@ local ts_ls_inlay_hint_settings = {
   includeInlayVariableTypeHints = true,
 }
 
-lspconfig_setup({
+local server_configs = {
   bashls = {}, -- Bash
   clangd = { -- C, C++
     -- Force offset encoding to disable warnings
@@ -97,7 +90,13 @@ lspconfig_setup({
       vim.g.zig_fmt_autosave = 0
     end,
   },
-})
+}
+
+-- Configure LSPs
+local lspconfig = require("lspconfig")
+for server, config in pairs(server_configs) do
+  lspconfig[server].setup(vim.tbl_extend("force", shared_config, config))
+end
 
 -- Configure formatters
 local null_ls = require("null-ls")
