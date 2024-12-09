@@ -10,9 +10,6 @@
                 :duration   250
                 :reveal     on_music
         (box :space-evenly false
-          (eventbox :class   "hoverable"
-                    :onclick "mpc --quiet clear; mpc --quiet update; mpc ls | mpc add"
-            (icon_label :text ""))
           (eventbox :class   "hoverable ${music.random ? "highlighted blue" : ""}"
                     :onclick "mpc --quiet random"
             (icon_label :text ""))
@@ -25,11 +22,12 @@
           (eventbox :class   "hoverable"
                     :onclick "mpc --quiet next"
             (icon_label :text ""))))
-      (eventbox :class    "hoverable ${music.playing ? "green" : "red"}"
-                :onclick  {music.playing ? "mpc --quiet pause" : "mpc --quiet play"}
-                :onscroll "[[ {} = up ]] &&
-                               mpc --quiet volume +1 ||
-                               mpc --quiet volume -1"
+      (eventbox :class        "hoverable ${music.playing ? "green" : "red"}"
+                :onclick      {music.playing ? "mpc --quiet pause" : "mpc --quiet play"}
+                :onrightclick "mpc --quiet clear; mpc --quiet update; mpc ls | mpc add"
+                :onscroll     "[[ {} = up ]] &&
+                                   mpc --quiet volume +1 ||
+                                   mpc --quiet volume -1"
         (box :space-evenly false
           (revealer :transition "slideleft"
                     :duration   250
