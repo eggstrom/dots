@@ -3,22 +3,21 @@ set_from_resource $border_size BORDER_SIZE 0
 set_from_resource $gap_size    GAP_SIZE    0
 
 focus_follows_mouse     no
-gaps                    inner $border_size
-gaps                    outer -4
 default_border          pixel $border_size
 default_floating_border pixel $border_size
 hide_edge_borders       smart
 
 # Colors
-set $bg   #1E1E2E
-set $fg   #CDD6F4
-set $blue #89B4FA
-set $red  #F38BA8
-client.focused          $blue $blue $blue $blue $blue
-client.focused_inactive $fg   $fg   $fg   $fg   $fg
-client.unfocused        $fg   $fg   $fg   $fg   $fg
-client.urgent           $red  $red  $red  $red  $red
-client.placeholder      $fg   $fg   $fg   $fg   $fg
+set $black #1E1E2E
+set $gray  #45475A
+set $blue  #89B4FA
+set $red   #F38BA8
+client.focused          $blue  $blue $blue $blue $blue
+client.focused_inactive $gray  $gray $gray $gray $gray
+client.unfocused        $gray  $gray $gray $gray $gray
+client.urgent           $red   $red  $red  $red  $red
+client.placeholder      $gray  $gray $gray $gray $gray
+client.background       $black
 
 # Set mod key to Super
 set $mod Mod4

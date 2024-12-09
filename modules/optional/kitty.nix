@@ -30,7 +30,7 @@
       mouse_hide_wait = -1;
       # Disable ligatures below cursor
       disable_ligatures = "cursor";
-      # Remove top-left padding 
+      # Remove top-left padding
       placement_strategy = "top-left";
 
       startup_session = "startup.conf";
