@@ -12,11 +12,11 @@ set $black #1E1E2E
 set $gray  #45475A
 set $blue  #89B4FA
 set $red   #F38BA8
-client.focused          $blue  $blue $blue $blue $blue
-client.focused_inactive $gray  $gray $gray $gray $gray
-client.unfocused        $gray  $gray $gray $gray $gray
-client.urgent           $red   $red  $red  $red  $red
-client.placeholder      $gray  $gray $gray $gray $gray
+client.focused          $blue $blue $blue $blue $blue
+client.focused_inactive $gray $gray $gray $gray $gray
+client.unfocused        $gray $gray $gray $gray $gray
+client.urgent           $red  $red  $red  $red  $red
+client.placeholder      $gray $gray $gray $gray $gray
 client.background       $black
 
 # Set mod key to Super
