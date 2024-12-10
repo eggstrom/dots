@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.packages = with pkgs; [
     aria2
@@ -46,16 +51,25 @@
     zig
   ];
 
-  # ~/.npm/ -> ~/.cache/npm/
-  xdg.configFile.npmrc.text = "cache=${config.xdg.cacheHome}/npm";
-
-  services.udiskie = {
-    enable = true;
-    tray = "never";
-  };
-
   # Generate caches for searching man pages
   programs.man.generateCaches = true;
+
+  # Let Home Manager manage mimetypes
+  xdg.mimeApps.enable = true;
+
+  # Add ~/.local/bin/ to $PATH
+  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
+
+  # Enable automounting daemon
+  services.udiskie.enable = true;
+  # Make daemon start on login
+  systemd.user.services.udiskie = {
+    Install.WantedBy = lib.mkForce [ "default.target" ];
+    Unit = {
+      After = lib.mkForce [ ];
+      PartOf = lib.mkForce [ ];
+    };
+  };
 
   # Enable tldr and make it update on execution if needed
   programs.tealdeer = {
@@ -67,9 +81,6 @@
     };
   };
 
-  # Let Home Manager manage mimetypes
-  xdg.mimeApps.enable = true;
-
-  # Add ~/.local/bin to $PATH
-  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
+  # ~/.npm/ -> ~/.cache/npm/
+  xdg.configFile.npmrc.text = "cache=${config.xdg.cacheHome}/npm";
 }
