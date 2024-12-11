@@ -16,6 +16,7 @@
       wl-clipboard
 
       # LSPs
+      basedpyright
       bash-language-server # bashls
       clang-tools # clangd
       gopls
@@ -24,7 +25,6 @@
       lua-language-server # lua_ls
       marksman
       nixd
-      pyright
       taplo
       typescript-language-server # ts_ls
       vim-language-server # vimls

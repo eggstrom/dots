@@ -44,6 +44,7 @@ local ts_ls_inlay_hint_settings = {
 }
 
 local server_configs = {
+  basedpyright = {}, -- Python
   bashls = {}, -- Bash
   clangd = { -- C, C++
     -- Force offset encoding to disable warnings
@@ -74,7 +75,6 @@ local server_configs = {
   },
   marksman = {}, -- Markdown
   nixd = {}, -- Nix
-  pyright = {}, -- Python
   rust_analyzer = {}, -- Rust
   taplo = {}, -- TOML
   ts_ls = { -- JavaScript, TypeScript
