@@ -50,6 +50,7 @@ local server_configs = {
     -- Force offset encoding to disable warnings
     cmd = { "clangd", "--offset-encoding=utf-16" },
   },
+  csharp_ls = {}, -- C#
   cssls = {}, -- CSS
   dartls = {}, -- Dart
   gopls = {}, -- Go

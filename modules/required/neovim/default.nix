@@ -19,6 +19,7 @@
       basedpyright
       bash-language-server # bashls
       clang-tools # clangd
+      csharp-ls # chsharp_ls
       gopls
       jdt-language-server # jdtls
       lemminx

@@ -35,6 +35,7 @@
     # Development
     act
     cmake
+    dotnet-sdk
     gcc
     gdb
     gnumake
