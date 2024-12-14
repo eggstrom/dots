@@ -24,10 +24,10 @@
       package = (
         pkgs.catppuccin-gtk.override {
           variant = "mocha";
-          accents = [ "red" ];
+          accents = [ "blue" ];
         }
       );
-      name = "catppuccin-mocha-red-standard";
+      name = "catppuccin-mocha-blue-standard";
     };
 
     # ~/.gtkrc-2.0 -> ~/.config/gtkrc-2.0
@@ -46,5 +46,5 @@
     };
   };
 
-  catppuccin.accent = "red";
+  catppuccin.accent = "blue";
 }
