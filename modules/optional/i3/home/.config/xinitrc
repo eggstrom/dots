@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Make sure XDG desktop portals start properly
+systemctl --user import-environment
+
 # Get highest resolution and refresh rate from xrandr
 output="$(xrandr --query | grep ' connected' | cut -d' ' -f1)"
 line="$(xrandr --query | grep -A1 "^$output" | tail -1 | tr -d '+*' | tr -s ' ' | cut -c 2-)"
