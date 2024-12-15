@@ -3,7 +3,7 @@
   :reserve    (struts :distance "${get_env("BAR_SIZE")}px" :side "top")
   :windowtype "dock" ; Puts bar behind fullscreen windows
   (box :class "bar"
-       :style "font-size: ${get_env("FONT_SIZE")}pt; border-bottom-width: ${get_env("BORDER_SIZE")}px;"
+       :style "font-size: ${get_env("FONT_SIZE")}pt;"
     (left_widgets)
     (middle_widgets)
     (right_widgets)))
@@ -31,4 +31,10 @@
 (defwidget icon_label [text]
   (label :class "icon"
          :width {get_env("BAR_SIZE")}
+         :text  text))
+
+(defwidget small_icon_label [text]
+  (label :class "icon"
+         :style "font-size: ${get_env("FONT_SIZE") * 0.75}pt;"
+         :width {round(get_env("BAR_SIZE") * 0.5, 0)}
          :text  text))

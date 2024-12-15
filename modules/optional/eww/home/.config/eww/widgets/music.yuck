@@ -6,28 +6,41 @@
             :onhover     "eww update on_music=true"
             :onhoverlost "eww update on_music=false"
     (box :space-evenly false
-      (revealer :transition "slideleft"
-                :duration   250
-                :reveal     on_music
-        (box :space-evenly false
-          (eventbox :class   "hoverable ${music.random ? "highlighted blue" : ""}"
-                    :onclick "mpc --quiet random"
-            (icon_label :text ""))
-          (eventbox :class   "hoverable ${music.repeat ? "highlighted blue" : ""}"
-                    :onclick "mpc --quiet repeat"
-            (icon_label :text ""))
-          (eventbox :class   "hoverable"
-                    :onclick "mpc --quiet prev"
-            (icon_label :text ""))
-          (eventbox :class   "hoverable"
-                    :onclick "mpc --quiet next"
-            (icon_label :text ""))))
+      (eventbox :onscroll "[[ {} = up ]] && mpc seekthrough 5 || mpc seekthrough -5"
+        (revealer :transition "slideleft"
+                  :duration   250
+                  :reveal     on_music
+          (box :orientation "vertical"
+            (box :space-evenly false
+              (eventbox :class   "${music.repeat ? "highlighted" : ""} ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q repeat"
+                (small_icon_label :text ""))
+              (eventbox :class   "${music.random ? "highlighted" : ""} ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q random"
+                (small_icon_label :text ""))
+              (eventbox :class   "${music.single ? "highlighted" : ""} ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q single"
+                (small_icon_label :text ""))
+              (eventbox :class   "${music.consume ? "highlighted" : ""} ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q consume"
+                (small_icon_label :text "")))
+            (box :space-evenly false
+              (eventbox :class   "hoverable ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q play 1"
+                (small_icon_label :text ""))
+              (eventbox :class   "hoverable ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q prev"
+                (small_icon_label :text ""))
+              (eventbox :class   "hoverable ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q next"
+                (small_icon_label :text ""))
+              (eventbox :class   "hoverable ${music.playing ? "green" : "red"}"
+                        :onclick "mpc -q play \"$(mpc listall | wc -l)\""
+                (small_icon_label :text ""))))))
       (eventbox :class        "hoverable ${music.playing ? "green" : "red"}"
-                :onclick      {music.playing ? "mpc --quiet pause" : "mpc --quiet play"}
-                :onrightclick "mpc --quiet clear; mpc --quiet update; mpc ls | mpc add"
-                :onscroll     "[[ {} = up ]] &&
-                                   mpc --quiet volume +1 ||
-                                   mpc --quiet volume -1"
+                :onclick      "mpc -q toggle"
+                :onrightclick "mpc -q clear; mpc -q update; mpc ls | mpc add"
+                :onscroll     "[[ {} = up ]] && mpc -q volume +1 || mpc -q volume -1"
         (box :space-evenly false
           (revealer :transition "slideleft"
                     :duration   250
