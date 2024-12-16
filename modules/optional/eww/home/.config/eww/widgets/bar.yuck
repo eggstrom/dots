@@ -1,7 +1,10 @@
 (defwindow bar
+  :monitor    0
+  :windowtype "dock"
+  :stacking   "bottom"
+  :exclusive  true
   :geometry   (geometry :width "100%" :height "${get_env("BAR_SIZE")}px" :anchor "top center")
   :reserve    (struts :distance "${get_env("BAR_SIZE")}px" :side "top")
-  :windowtype "dock" ; Puts bar behind fullscreen windows
   (box :class "bar"
        :style "font-size: ${get_env("FONT_SIZE")}pt;"
     (left_widgets)
