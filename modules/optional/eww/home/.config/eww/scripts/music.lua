@@ -7,10 +7,7 @@ local data = {}
 function data:update()
   local status = lib.pipe("mpc", 3)
 
-  -- Check if mpd is playing using second line
-  self.playing = status[2] ~= nil and status[2]:find("%[playing%]") ~= nil
-
-  -- Get rest of data from last line
+  self.playing = (status[2] or ""):find("%[playing%]") ~= nil
   self.volume = status[#status]:match("volume:%s*(%d+)")
   self.repeat_ = status[#status]:match("repeat:%s*(%a+)") == "on"
   self.random = status[#status]:match("random:%s*(%a+)") == "on"
