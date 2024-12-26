@@ -35,9 +35,8 @@
 
       startup_session = "startup.conf";
     };
-
-    catppuccin.enable = true;
   };
 
   xdg.configFile."kitty/startup.conf".text = "launch tmux";
+  catppuccin.kitty.enable = true;
 }

@@ -6,7 +6,7 @@
       vim_keys = true;
       rounded_corners = false;
     };
-
-    catppuccin.enable = true;
   };
+
+  catppuccin.btop.enable = true;
 }

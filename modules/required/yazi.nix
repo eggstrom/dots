@@ -33,7 +33,7 @@ in
       # Keymap for setting the background
       { on = [ "b" ]; run = "shell --confirm '${setbg}/bin/setbg \"$0\" || true'"; desc = "Set background"; }
     ];
-
-    catppuccin.enable = true;
   };
+
+  catppuccin.yazi.enable = true;
 }

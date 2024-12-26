@@ -48,6 +48,6 @@
   programs.lazygit = {
     enable = true;
     settings.gui.border = "single";
-    catppuccin.enable = true;
   };
+  catppuccin.lazygit.enable = true;
 }

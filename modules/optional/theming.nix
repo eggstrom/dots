@@ -37,13 +37,11 @@
   qt = {
     enable = true;
     platformTheme.name = "kvantum";
-    style = {
-      name = "kvantum";
-      catppuccin = {
-        enable = true;
-        apply = true;
-      };
-    };
+    style.name = "kvantum";
+  };
+  catppuccin.kvantum = {
+    enable = true;
+    apply = true;
   };
 
   catppuccin.accent = "blue";

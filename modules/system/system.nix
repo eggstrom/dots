@@ -25,5 +25,5 @@
     ];
   };
 
-  console.catppuccin.enable = true;
+  catppuccin.tty.enable = true;
 }
