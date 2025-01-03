@@ -27,8 +27,4 @@
       use-damage = true;
     };
   };
-
-  # Make sure Unicode characters work with keyd
-  home.sessionVariables.XCOMPOSEFILE = "${config.xdg.configHome}/XCompose";
-  xdg.configFile."XCompose".source = "${pkgs.keyd}/share/keyd/keyd.compose";
 }

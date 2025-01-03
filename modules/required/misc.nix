@@ -72,6 +72,9 @@
     };
   };
 
+  # Make sure keyd Unicode sequences are recognized
+  home.file.".XCompose".source = "${pkgs.keyd}/share/keyd/keyd.compose";
+
   # Enable tldr and make it update on execution if needed
   programs.tealdeer = {
     enable = true;
