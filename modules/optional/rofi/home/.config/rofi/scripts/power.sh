@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-option=$(printf 'Lock\nShut Down\nReboot\nSuspend\nHibernate' | rofi -dmenu -i -theme-str "* { font: \"JetBrains Mono NF $FONT_SIZE\"; }")
+option=$(printf 'Lock\nShut Down\nReboot\nSuspend\nHibernate' | rofi -dmenu -i -theme-str "* { font: \"JetBrains Mono NF $((FONT_SIZE + 2))\"; }")
 
 case "$option" in
     'Lock') ~/.config/i3/lock.sh ;;
