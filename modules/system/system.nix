@@ -5,15 +5,11 @@
     efi.canTouchEfiVariables = true;
   };
 
+  time.timeZone = "${settings.timeZone}";
   networking = {
     hostName = "${settings.hostname}";
     networkmanager.enable = true;
   };
-
-  i18n.defaultLocale = "${settings.locale}";
-  time.timeZone = "${settings.timeZone}";
-  console.keyMap = "${settings.keyboard.console}";
-  services.xserver.xkb.layout = "${settings.keyboard.x11}";
 
   users.users.${settings.username} = {
     isNormalUser = true;
