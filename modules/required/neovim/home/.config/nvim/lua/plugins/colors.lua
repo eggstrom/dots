@@ -12,7 +12,7 @@ if os.getenv("TERM") ~= "linux" then
 
   -- Add colorizer toggle mapping
   vim.keymap.set_complex_toggle("c", "Colorizer", function()
-    return colorizer.is_buffer_attached() == 1
+    return colorizer.is_buffer_attached()
   end, function(state)
     if state then
       colorizer.attach_to_buffer()
