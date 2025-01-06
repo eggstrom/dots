@@ -4,7 +4,6 @@ require("autocmds")
 
 require("plugins.colors")
 require("plugins.completion")
-require("plugins.copilot")
 require("plugins.git")
 require("plugins.lsp")
 require("plugins.lualine")

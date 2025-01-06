@@ -65,9 +65,6 @@
       telescope-nvim
       telescope-fzf-native-nvim
 
-      copilot-vim
-      CopilotChat-nvim
-
       nvim-autopairs
       nvim-colorizer-lua
       gitsigns-nvim
