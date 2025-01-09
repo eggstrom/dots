@@ -5,6 +5,7 @@
     keyboards.default = {
       ids = [ "*" ];
       settings = {
+        global.overload_tap_timeout = 200;
         main = {
           capslock = "overload(control, esc)";
           rightalt = "layer(rightalt)";
