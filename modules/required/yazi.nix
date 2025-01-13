@@ -16,19 +16,19 @@ in
     enable = true;
     settings.manager.show_hidden = true;
 
-    keymap.manager.append_keymap = [
+    keymap.manager.prepend_keymap = [
       # Keymaps for going to directories
-      { on = [ "g" "D" ]; run = "cd ~/Downloads"; desc = "Go to the downloads directory"; }
-      { on = [ "g" "d" ]; run = "cd ~/Documents"; desc = "Go to the documents directory"; }
-      { on = [ "g" "p" ]; run = "cd ~/Pictures"; desc = "Go to the pictures directory"; }
-      { on = [ "g" "m" ]; run = "cd ~/Music"; desc = "Go to the music directory"; }
-      { on = [ "g" "v" ]; run = "cd ~/Videos"; desc = "Go to the videos directory"; }
-      { on = [ "g" "C" ]; run = "cd ~/.config"; desc = "Go to the config directory"; }
-      { on = [ "g" "c" ]; run = "cd ~/.cache"; desc = "Go to the cache directory"; }
-      { on = [ "g" "l" ]; run = "cd ~/.local"; desc = "Go to the local directory"; }
-      { on = [ "g" "n" ]; run = "cd ~/.nix"; desc = "Go to the nix directory"; }
-      { on = [ "g" "r" ]; run = "cd /"; desc = "Go to the root directory"; }
-      { on = [ "g" "M" ]; run = "cd /run/media"; desc = "Go to the media directory"; }
+      { on = [ "g" "D" ]; run = "cd ~/Downloads"; desc = "Goto ~/Downloads"; }
+      { on = [ "g" "d" ]; run = "cd ~/Documents"; desc = "Goto ~/Documents"; }
+      { on = [ "g" "p" ]; run = "cd ~/Pictures"; desc = "Goto ~/Pictures"; }
+      { on = [ "g" "m" ]; run = "cd ~/Music"; desc = "Goto ~/Music"; }
+      { on = [ "g" "v" ]; run = "cd ~/Videos"; desc = "Goto ~/Videos"; }
+      { on = [ "g" "C" ]; run = "cd ~/.config"; desc = "Goto ~/.config"; }
+      { on = [ "g" "c" ]; run = "cd ~/.cache"; desc = "Goto ~/.cache"; }
+      { on = [ "g" "l" ]; run = "cd ~/.local"; desc = "Goto ~/.local"; }
+      { on = [ "g" "n" ]; run = "cd ~/.nix"; desc = "Goto ~/.nix"; }
+      { on = [ "g" "r" ]; run = "cd /"; desc = "Goto /"; }
+      { on = [ "g" "M" ]; run = "cd /run/media"; desc = "Goto /run/media"; }
 
       # Keymap for setting the background
       { on = [ "b" ]; run = "shell --confirm '${setbg}/bin/setbg \"$0\" || true'"; desc = "Set background"; }
