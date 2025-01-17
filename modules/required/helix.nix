@@ -25,6 +25,7 @@
       omnisharp-roslyn
       ruff
       taplo
+      tinymist
       typescript-language-server
       vscode-langservers-extracted
       wgsl-analyzer

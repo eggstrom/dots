@@ -48,6 +48,7 @@
     rustup
     sccache
     scrcpy
+    typst
     valgrind
     zig
   ];
