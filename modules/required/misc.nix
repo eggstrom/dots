@@ -20,15 +20,11 @@
     jq
     mpv
     obs-studio
-    prismlauncher
     ripgrep
-    steam
-    steam-run
     translate-shell
     trash-cli
     unzip
     wget
-    wineWowPackages.stable
     yt-dlp
     zip
 
