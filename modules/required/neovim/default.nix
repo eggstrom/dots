@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 {
   # Make $SUDO_EDITOR and $VISUAL depend on $EDITOR
-  home.sessionVariables = {
-    SUDO_EDITOR = config.home.sessionVariables.EDITOR;
-    VISUAL = config.home.sessionVariables.EDITOR;
-  };
+  # home.sessionVariables = {
+  #   SUDO_EDITOR = config.home.sessionVariables.EDITOR;
+  #   VISUAL = config.home.sessionVariables.EDITOR;
+  # };
 
   programs.neovim = {
     enable = true;
-    defaultEditor = true; # Set $EDITOR
+    # defaultEditor = true; # Set $EDITOR
 
     extraPackages = with pkgs; [
       # Clipboard
