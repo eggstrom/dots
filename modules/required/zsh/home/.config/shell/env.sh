@@ -10,7 +10,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Home decluttering
 # .config/
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"        # .docker/
-export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"        # .dotnet/, .nuget/, .templateengine/
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc" # .npmrc
 export OMNISHARPHOME="$XDG_CONFIG_HOME/omnisharp"     # .omnisharp/
 export XINITRC="$XDG_CONFIG_HOME/xinitrc"             # .xinitrc
@@ -20,6 +19,7 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"    # .nv
 export XAUTHORITY="$XDG_CACHE_HOME/Xauthority" # .Xauthority
 # .local/share/
 export CARGO_HOME="$XDG_DATA_HOME/cargo"        # .cargo/
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"  # .dotnet/, .nuget/, .templateengine/
 export GOPATH="$XDG_DATA_HOME/go"               # go/
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle" # .gradle/
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"      # .rustup/
