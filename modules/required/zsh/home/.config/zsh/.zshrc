@@ -44,7 +44,11 @@ setopt share_history
 setopt glob_dots  # Show dotfiles during expansion
 setopt no_clobber # Don't overwrite files when redirecting
 
-# Key binds
+# Vi mode
+bindkey -v   # Enable Vi mode
+KEYTIMEOUT=1 # Disable mode switching delay
+
+# Keybinds
 bindkey '^?'      backward-delete-char  # Backspace
 bindkey '^[[3~'   delete-char           # Delete
 bindkey '^[[H'    beginning-of-line     # Home
@@ -54,10 +58,6 @@ bindkey '^[[1;5D' backward-word         # Ctrl + Left
 bindkey '^H'      backward-kill-word    # Ctrl + Backspace
 bindkey '^[[3;5~' kill-word             # Ctrl + Delete
 bindkey '^[[Z'    reverse-menu-complete # Shift + Tab
-
-# Vi mode
-bindkey -v   # Enable Vi mode
-KEYTIMEOUT=1 # Disable mode switching delay
 
 # Change default cursor
 zle-line-init() {
