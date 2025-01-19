@@ -70,9 +70,13 @@
       keys =
         let
           toggleKeys = {
+            n = ":toggle line-number absolute relative";
             w = ":toggle soft-wrap.enable";
-            s = ":toggle whitespace.render all none";
+            s = ":toggle whitespace.render none all";
             h = ":toggle lsp.display-inlay-hints";
+            d = ":toggle end-of-line-diagnostics hint disable";
+            D = ":toggle inline-diagnostics.cursor-line hint disable";
+            c = ":toggle search.smart-case";
           };
         in
         {
@@ -83,8 +87,17 @@
 
     languages = {
       language = [
-        { name = "nix"; language-servers = [ "nixd" ]; }
-        { name = "python"; language-servers = [ "basedpyright" "ruff" ]; }
+        {
+          name = "nix";
+          language-servers = [ "nixd" ];
+        }
+        {
+          name = "python";
+          language-servers = [
+            "basedpyright"
+            "ruff"
+          ];
+        }
       ];
     };
   };
