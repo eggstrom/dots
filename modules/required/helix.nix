@@ -62,6 +62,8 @@
         };
 
         auto-format = false;
+        completion-timeout = 5; # Show completions instantly
+        completion-trigger-len = 1; # Show completions after typing 1 character
         lsp.snippets = false;
         end-of-line-diagnostics = "hint";
         inline-diagnostics.cursor-line = "hint";
@@ -74,8 +76,6 @@
             w = ":toggle soft-wrap.enable";
             s = ":toggle whitespace.render none all";
             h = ":toggle lsp.display-inlay-hints";
-            d = ":toggle end-of-line-diagnostics hint disable";
-            D = ":toggle inline-diagnostics.cursor-line hint disable";
             c = ":toggle search.smart-case";
           };
         in
