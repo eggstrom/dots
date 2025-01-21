@@ -71,33 +71,38 @@
 
       keys =
         let
-          toggleKeys = {
-            n = ":toggle line-number absolute relative";
-            w = ":toggle soft-wrap.enable";
-            s = ":toggle whitespace.render none all";
-            h = ":toggle lsp.display-inlay-hints";
-            c = ":toggle search.smart-case";
+          moveSelectionDown = [ "extend_to_line_bounds" "delete_selection" "paste_after" ];
+          moveSelectionUp = [ "extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before" ];
+
+          normalAndSelectKeys = {
+            C-left = "unindent";
+            C-down = moveSelectionDown;
+            C-up = moveSelectionUp;
+            C-right = "indent";
+            C-h = "unindent";
+            C-j = moveSelectionDown;
+            C-k = moveSelectionUp;
+            C-l = "indent";
+
+            space.t = {
+              n = ":toggle line-number absolute relative";
+              w = ":toggle soft-wrap.enable";
+              s = ":toggle whitespace.render none all";
+              h = ":toggle lsp.display-inlay-hints";
+              c = ":toggle search.smart-case";
+            };
           };
         in
         {
-          normal.space.t = toggleKeys;
-          select.space.t = toggleKeys;
+          normal = normalAndSelectKeys;
+          select = normalAndSelectKeys;
         };
     };
 
     languages = {
       language = [
-        {
-          name = "nix";
-          language-servers = [ "nixd" ];
-        }
-        {
-          name = "python";
-          language-servers = [
-            "basedpyright"
-            "ruff"
-          ];
-        }
+        { name = "nix"; language-servers = [ "nixd" ]; }
+        { name = "python"; language-servers = [ "basedpyright" "ruff" ]; }
       ];
     };
   };
