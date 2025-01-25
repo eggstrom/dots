@@ -1,9 +1,5 @@
 {
-  hostname = "eggos";
-  username = "eggstrom";
-
-  timeZone = "Europe/Ljubljana";
-
+  minimal = false;
   git = {
     username = "eggstrom";
     email = "tristan65536@gmail.com";

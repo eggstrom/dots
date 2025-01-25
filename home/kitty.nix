@@ -1,4 +1,5 @@
-{
+{ config, lib, ... }:
+lib.mkIf (!config.userConfig.minimal) {
   home.sessionVariables.TERMINAL = "kitty";
 
   programs.kitty = {

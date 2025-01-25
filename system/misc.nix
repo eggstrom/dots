@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Disable stinky defaults
   programs.nano.enable = false;
   environment.shellAliases = {

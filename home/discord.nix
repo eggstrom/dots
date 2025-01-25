@@ -1,5 +1,10 @@
-{ pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+lib.mkIf (!config.userConfig.minimal) {
   # Create wrapper script that enables Vencord and disables smooth scrolling
   home.packages = with pkgs; [
     (writeShellScriptBin "discord" "${

@@ -1,4 +1,5 @@
-{
+{ config, lib, ... }:
+lib.mkIf (!config.userConfig.minimal) {
   programs.zathura = {
     enable = true;
   };
