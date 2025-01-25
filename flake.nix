@@ -23,13 +23,14 @@
       ...
     }@inputs:
     let
+      lib = nixpkgs.lib;
       inherit (builtins)
         attrValues
         listToAttrs
         mapAttrs
         readDir
         ;
-      inherit (nixpkgs.lib) attrsets strings;
+      inherit (lib) attrsets strings;
 
       systemConfig = import ./config/system.nix;
       userConfigs =
@@ -54,7 +55,7 @@
             };
             imports = [
               ./home
-              inputs.catppuccin.homeManagerModules.catppuccin
+              catppuccin.homeManagerModules.catppuccin
               { inherit userConfig; }
             ];
           }
@@ -80,7 +81,7 @@
       extraSpecialArgs = specialArgs;
     in
     {
-      nixosConfigurations.${systemConfig.hostname} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${systemConfig.hostname} = lib.nixosSystem {
         inherit specialArgs;
         modules = [
           ./hardware-configuration.nix
