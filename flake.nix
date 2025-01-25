@@ -50,9 +50,9 @@
               homeDirectory = if username == "root" then "/root" else "/home/${username}";
             };
             imports = [
-              { inherit userConfig; }
               ./home
               inputs.catppuccin.homeManagerModules.catppuccin
+              { inherit userConfig; }
             ];
           }
         );
@@ -91,6 +91,7 @@
             };
           }
           catppuccin.nixosModules.catppuccin
+          { inherit systemConfig; }
         ];
       };
 
