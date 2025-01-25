@@ -1,5 +1,5 @@
 # Source Home Manager session variables
-. ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+. ~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"

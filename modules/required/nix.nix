@@ -18,6 +18,8 @@
 
       # Optimise store on every build
       auto-optimise-store = true;
+      # .nix-{defexpr,profile} -> .local/state/nix/{defexpr,profile}
+      use-xdg-base-directories = true;
     };
 
     gc = {

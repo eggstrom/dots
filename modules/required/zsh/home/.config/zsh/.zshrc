@@ -85,7 +85,7 @@ zstyle ':completion:*' menu select                      # Enable highlight on se
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # Enable file colors
 
 # Enable plugins and integration
-. ~/.nix-profile/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-. ~/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. ~/.local/state/nix/profile/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+. ~/.local/state/nix/profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
