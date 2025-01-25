@@ -44,10 +44,6 @@ setopt share_history
 setopt glob_dots  # Show dotfiles during expansion
 setopt no_clobber # Don't overwrite files when redirecting
 
-# Vi mode
-bindkey -v   # Enable Vi mode
-KEYTIMEOUT=1 # Disable mode switching delay
-
 # Keybinds
 bindkey '^?'      backward-delete-char  # Backspace
 bindkey '^[[3~'   delete-char           # Delete
@@ -59,25 +55,8 @@ bindkey '^H'      backward-kill-word    # Ctrl + Backspace
 bindkey '^[[3;5~' kill-word             # Ctrl + Delete
 bindkey '^[[Z'    reverse-menu-complete # Shift + Tab
 
-# Change default cursor
-zle-line-init() {
-    echo -ne '\e[6 q'
-}
-zle -N zle-line-init
-
-# Change cursor in Vi mode
-zle-keymap-select() {
-    if [[ ${KEYMAP} == vicmd ]] ||
-        [[ $1 = 'block' ]]; then
-        echo -ne '\e[2 q'
-    elif [[ ${KEYMAP} == main ]] ||
-        [[ ${KEYMAP} == viins ]] ||
-        [[ ${KEYMAP} = '' ]] ||
-        [[ $1 = 'beam' ]]; then
-        echo -ne '\e[6 q'
-    fi
-}
-zle -N zle-keymap-select
+# Change cursor to bar
+zle-line-init() { echo -en '\e[6 q'; }
 
 # Completion
 autoload -Uz compinit && compinit
