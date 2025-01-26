@@ -4,6 +4,9 @@
   userConfigs,
   ...
 }:
+let
+  inherit (builtins) mapAttrs;
+in
 {
   options.systemConfig = {
     hostname = options.networking.hostName;
@@ -24,7 +27,7 @@
 
     users.users =
       userConfigs
-      |> builtins.mapAttrs (
+      |> mapAttrs (
         username: _: {
           isNormalUser = true;
           extraGroups = [

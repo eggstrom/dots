@@ -23,27 +23,27 @@
       ...
     }@inputs:
     let
-      lib = nixpkgs.lib;
       inherit (builtins)
         attrValues
         listToAttrs
         mapAttrs
         readDir
         ;
-      inherit (lib) attrsets strings;
+      lib = nixpkgs.lib;
 
+      helpers = import ./helpers.nix;
       systemConfig = import ./config/system.nix;
       userConfigs =
         readDir ./config/users
         |> mapAttrs (
           file: _: {
-            name = strings.removeSuffix ".nix" file;
+            name = lib.strings.removeSuffix ".nix" file;
             value = import ./config/users/${file};
           }
         )
         |> attrValues
         |> listToAttrs
-        |> attrsets.filterAttrs (username: _: username != "root");
+        |> lib.attrsets.filterAttrs (username: _: username != "root");
 
       homeConfigs =
         (userConfigs // { root = { }; })
@@ -74,6 +74,7 @@
           inputs
           system
           pkgs-stable
+          helpers
           systemConfig
           userConfigs
           ;
