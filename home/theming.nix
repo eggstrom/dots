@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }:
 lib.mkMerge [
@@ -17,9 +16,10 @@ lib.mkMerge [
     ];
 
     home.pointerCursor = {
-      package = pkgs-stable.catppuccin-cursors.mochaDark;
+      package = pkgs.catppuccin-cursors.mochaDark;
       name = "catppuccin-mocha-dark-cursors";
-      size = 48;
+      size = 42;
+      x11.enable = true;
       gtk.enable = true;
     };
 
