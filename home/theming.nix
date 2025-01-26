@@ -19,7 +19,6 @@ lib.mkMerge [
       package = pkgs.catppuccin-cursors.mochaDark;
       name = "catppuccin-mocha-dark-cursors";
       size = 42;
-      x11.enable = true;
       gtk.enable = true;
     };
 
