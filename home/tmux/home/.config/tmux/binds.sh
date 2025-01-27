@@ -63,8 +63,8 @@ bind_ 0 selectw -t :10
 
 # Sessions
 LS_CMD="tmux ls \
-  | sed -e $'/(attached)$/ s/^/\e[32m/' \
-        -e $'/(attached)$/! s/^/\e[33m/'"
+  | sed -e $'/(attached)$/ s/^/$(tput setaf 2)/' \
+        -e $'/(attached)$/! s/^/$(tput setaf 3)/'"
 NAME_CMD='echo {} | cut -d: -f1'
 FZF_CMD="$LS_CMD \
   | fzf --ansi \
