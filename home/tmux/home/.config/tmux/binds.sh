@@ -2,17 +2,17 @@
 
 # Create a bind for both key and Ctrl + key
 bind_() {
-    local key="$1"
-    shift
-    tmux bind "$key" "$@"
-    tmux bind "C-$key" "$@"
+  local key="$1"
+  shift
+  tmux bind "$key" "$@"
+  tmux bind "C-$key" "$@"
 }
 
 # Create a repeating bind
 bind_r() {
-    local key="$1"
-    shift
-    tmux bind -r "$key" "$@"
+  local key="$1"
+  shift
+  tmux bind -r "$key" "$@"
 }
 
 tmux unbind -a
@@ -62,18 +62,21 @@ bind_ 9 selectw -t :9
 bind_ 0 selectw -t :10
 
 # Sessions
+LS_CMD="tmux ls \
+  | sed -e $'/(attached)$/ s/^/\e[32m/' \
+        -e $'/(attached)$/! s/^/\e[33m/'"
+NAME_CMD='echo {} | cut -d: -f1'
+FZF_CMD="$LS_CMD \
+  | fzf --ansi \
+        --bind=\"ctrl-q:execute($NAME_CMD | xargs tmux kill-session -t)+reload($LS_CMD)\" \
+        --bind=\"ctrl-r:reload($LS_CMD)\" \
+        --preview='$NAME_CMD | xargs tmux capturep -pet | cat' \
+  | cut -d: -f1 \
+  | xargs tmux switchc -t 2>/dev/null || true"
+
 bind_ r command-prompt -p 'Session name:' 'run-shell "echo %% | tr \" \" - | xargs tmux rename"'
 bind_ d detach
-
-LIST_SESSIONS="tmux ls \
-    | sed -e $'/(attached)$/ s/^/\e[32m/' \
-          -e $'/(attached)$/! s/^/\e[33m/'"
-bind_ a display-popup -E "$LIST_SESSIONS \
-    | fzf --ansi \
-          --bind=\"ctrl-q:execute(echo {} | cut -d: -f1 | xargs tmux kill-session -t)+reload($LIST_SESSIONS)\" \
-          --bind=\"ctrl-r:reload($LIST_SESSIONS)\" \
-    | cut -d: -f1 \
-    | xargs tmux switchc -t 2>/dev/null || true"
+bind_ a neww "$FZF_CMD"
 
 # Miscellaneous
 bind_ c clearhist
