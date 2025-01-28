@@ -12,9 +12,9 @@ let
                         -e '/(attached)\$/! s/^/$(tput setaf 3)/'"
 
     eval "$LIST" | fzf --ansi \
-      --bind="ctrl-r:reload($LIST)" \
-      --bind="ctrl-q:execute($KILL)+reload($LIST)" \
-      --preview="$PREVIEW" \
+      --bind "ctrl-r:reload($LIST)" \
+      --bind "ctrl-q:execute($KILL)+reload($LIST)" \
+      --preview "$PREVIEW" \
       | cut -d: -f1 | xargs tmux switchc -t 2>/dev/null || true
   '';
 
