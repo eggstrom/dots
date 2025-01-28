@@ -3,7 +3,7 @@ let
   inherit (builtins) attrValues mapAttrs;
 
   sessionManager = pkgs.writeShellScript "tmux-session-manager" ''
-    set -e
+    set -euo pipefail
 
     NAME='echo {} | cut -d: -f1'
     PREVIEW="tmux capturep -pet \"\$($NAME)\""
@@ -19,7 +19,7 @@ let
   '';
 
   editScrollback = pkgs.writeShellScript "tmux-edit-scrollback" ''
-    set -e
+    set -euo pipefail
 
     file="$(mktemp -t tmux-scrollback.XXXXXX)"
     echo "$(cat)" > "$file" # Command substitution trims trailing \n

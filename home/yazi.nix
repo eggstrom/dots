@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   setbg = pkgs.writeShellScriptBin "setbg" ''
-    set -e
+    set -euo pipefail
 
     [[ -n "$1" ]] &&
       magick "$1" -scale "$(${pkgs.xorg.xwininfo}/bin/xwininfo -root | grep -oP '(?<=-geometry )\d+x\d+')" ~/Pictures/background.png

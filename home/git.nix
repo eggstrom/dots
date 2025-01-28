@@ -30,22 +30,24 @@
     # Create script for conveniently setting username and email
     home.packages = with pkgs; [
       (writeShellScriptBin "git-user" ''
-        set -e
-        git rev-parse --is-inside-work-tree >/dev/null
+        set -euo pipefail
 
-        # Unset username and email if no parameters are given
-        if [[ -z "$1" && -z "$2" ]]; then
+        git rev-parse --is-inside-work-tree >/dev/null
+        case "$#" in
+        0)
           git config --unset user.name || true
           git config --unset user.email || true
           git config --unset credential.username || true
-          exit 0
-        fi
-
-        # Set username and email if two parameters are given
-        [[ -n "$1" && -n "$2" ]]
-        git config user.name "$1"
-        git config user.email "$2"
-        git config credential.username "$1"
+          ;;
+        2)
+          git config user.name "$1"
+          git config user.email "$2"
+          git config credential.username "$1"
+          ;;
+        *)
+          exit 1
+          ;;
+        esac
       '')
     ];
 
