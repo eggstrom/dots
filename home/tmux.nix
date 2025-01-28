@@ -18,6 +18,14 @@ let
       | cut -d: -f1 | xargs tmux switchc -t 2>/dev/null || true
   '';
 
+  editScrollback = pkgs.writeShellScript "tmux-edit-scrollback" ''
+    set -e
+
+    file="$(mktemp -t tmux-scrollback.XXXXXX)"
+    echo "$(cat)" > "$file" # Command substitution trims trailing \n
+    tmux neww "$EDITOR $file +$1; rm $file"
+  '';
+
   binds = {
     # Pane navigation
     Left = "selectp -L";
@@ -58,8 +66,11 @@ let
     d = "detach";
     a = "neww ${sessionManager}";
 
-    # Miscellaneous
+    # Scrollback
+    e = "run-shell 'tmux capturep -pS -#{history_limit} | ${editScrollback} #{history_limit}'";
     c = "clearhist";
+
+    # Miscellaneous
     "." = "source ~/.config/tmux/tmux.conf";
     ":" = "command-prompt";
   };
