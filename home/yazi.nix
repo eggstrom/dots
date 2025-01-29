@@ -3,10 +3,12 @@ let
   setbg = pkgs.writeShellScriptBin "setbg" ''
     set -euo pipefail
 
-    [[ -n "$1" ]] &&
+    if [[ "$#" > 0 ]]; then
       magick "$1" -scale "$(${pkgs.xorg.xwininfo}/bin/xwininfo -root | grep -oP '(?<=-geometry )\d+x\d+')" ~/Pictures/background.png
-    [[ -e ~/Pictures/background.png ]] &&
+    fi
+    if [[ -e ~/Pictures/background.png ]]; then
       feh --no-fehbg --bg-fill --force-aliasing ~/Pictures/background.png
+    fi
   '';
 in
 {
