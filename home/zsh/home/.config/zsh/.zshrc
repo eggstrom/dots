@@ -26,6 +26,10 @@ fman() {
         "$(echo "$result" | cut -d ' ' -f '1')"
 }
 
+fzf-mpd() { command fzf-mpd; }
+zle -N fzf-mpd
+bindkey '^F^P' fzf-mpd
+
 # Directory options
 setopt auto_cd           # Change directory without cd
 setopt auto_pushd        # Push visited directories onto stack
