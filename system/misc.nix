@@ -11,12 +11,6 @@
   # Generate caches for searching man pages
   documentation.man.generateCaches = true;
 
-  # Make Zsh the default shell
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  # Required for system package completion
-  environment.pathsToLink = [ "/share/zsh" ];
-
   services = {
     fstrim.enable = true;
     # Enable daemon for device mounting

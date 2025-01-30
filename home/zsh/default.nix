@@ -7,8 +7,6 @@
       zsh-completions
       zsh-syntax-highlighting
     ];
-
-    file.".zshenv".source = ./home/.zshenv;
   };
 
   xdg.configFile = {
