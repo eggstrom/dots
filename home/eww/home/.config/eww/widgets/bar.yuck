@@ -27,6 +27,7 @@
        :space-evenly false
     (sink_widget)
     (source_widget)
+    (music_widget)
     (brightness_widget)
     (battery_widget)))
 
