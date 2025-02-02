@@ -52,10 +52,11 @@
           insert = "bar";
           select = "underline";
         };
-
         line-number = "relative";
         bufferline = "multiple";
 
+        auto-pairs = false;
+        smart-tab = false;
         file-picker = {
           hidden = false; # Show hidden files
           deduplicate-links = false; # Don't remove links
