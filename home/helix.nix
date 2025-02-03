@@ -56,7 +56,7 @@
         bufferline = "multiple";
 
         auto-pairs = false;
-        smart-tab = false;
+        smart-tab.enable = false;
         file-picker = {
           hidden = false; # Show hidden files
           deduplicate-links = false; # Don't remove links
@@ -72,8 +72,17 @@
 
       keys =
         let
-          moveSelectionDown = [ "extend_to_line_bounds" "delete_selection" "paste_after" ];
-          moveSelectionUp = [ "extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before" ];
+          moveSelectionDown = [
+            "extend_to_line_bounds"
+            "delete_selection"
+            "paste_after"
+          ];
+          moveSelectionUp = [
+            "extend_to_line_bounds"
+            "delete_selection"
+            "move_line_up"
+            "paste_before"
+          ];
 
           normalAndSelectKeys = {
             C-left = "unindent";
@@ -102,8 +111,17 @@
 
     languages = {
       language = [
-        { name = "nix"; language-servers = [ "nixd" ]; }
-        { name = "python"; language-servers = [ "basedpyright" "ruff" ]; }
+        {
+          name = "nix";
+          language-servers = [ "nixd" ];
+        }
+        {
+          name = "python";
+          language-servers = [
+            "basedpyright"
+            "ruff"
+          ];
+        }
       ];
     };
   };
