@@ -11,11 +11,9 @@
     curl
     dust
     eza
-    fd
     feh
     file
     firefox
-    fzf
     gimp
     jq
     mpv

@@ -38,12 +38,6 @@ export HISTCONTROL='ignoreboth:erasedups'
 export BAT_THEME='base16-256'
 eval "$(dircolors)"
 
-# fzf
-export FZF_DEFAULT_OPTS='--color=16 --prompt="❯ "'
-export FZF_DEFAULT_COMMAND='fd -u'
-export FZF_CTRL_T_COMMAND='fd -u'
-export FZF_ALT_C_COMMAND='fd -utd'
-
 # Cache Rust builds globally
 export RUSTC_WRAPPER='sccache'
 

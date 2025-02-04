@@ -2,22 +2,6 @@
 let
   inherit (builtins) attrValues mapAttrs;
 
-  sessionManager = pkgs.writeShellScript "tmux-session-manager" ''
-    set -euo pipefail
-
-    NAME='echo {} | cut -d: -f1'
-    PREVIEW="tmux capturep -pet \"\$($NAME)\""
-    KILL="tmux kill-session -t \"\$($NAME)\""
-    LIST="tmux ls | sed -e '/(attached)\$/ s/^/$(tput setaf 2)/' \
-                        -e '/(attached)\$/! s/^/$(tput setaf 3)/'"
-
-    eval "$LIST" | fzf --ansi \
-      --bind "ctrl-r:reload($LIST)" \
-      --bind "ctrl-q:execute($KILL)+reload($LIST)" \
-      --preview "$PREVIEW" \
-      | cut -d: -f1 | xargs tmux switchc -t 2>/dev/null || true
-  '';
-
   editScrollback = pkgs.writeShellScript "tmux-edit-scrollback" ''
     set -euo pipefail
 
@@ -64,7 +48,7 @@ let
     # Sessions
     r = "command-prompt -p 'Session name:' 'run-shell \"echo %% | tr \\\" \\\" - | xargs tmux rename\"'";
     d = "detach";
-    a = "neww ${sessionManager}";
+    a = "neww fzf-session-manager";
 
     # Scrollback
     e = "run-shell 'tmux capturep -pS -#{history_limit} | ${editScrollback} #{history_limit}'";

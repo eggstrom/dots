@@ -10,25 +10,17 @@ f() {
     \rm -f -- "$tmp"
 }
 
-# Quickly evaluate a Python expression
-py() {
-    local result="$(python <<< "from math import *; from random import *; print($*)")"
-    [[ -n "$result" ]] &&
-        echo "$result"
+create_fzf_bind() {
+  eval "fzf-$2() { command fzf-$2; }"
+  zle -N fzf-"$2"
+  bindkey "^F$1" fzf-"$2"
 }
-alias py='noglob py'
-
-# Fuzzy find man pages
-fman() {
-    local result="$(man -k . | cut -d ' ' -f '1-2' | fzf)"
-    man \
-        "${"$(echo "$result" | cut -d ' ' -f '2')":1:-1}" \
-        "$(echo "$result" | cut -d ' ' -f '1')"
-}
-
-fzf-mpd() { command fzf-mpd; }
-zle -N fzf-mpd
-bindkey '^F^P' fzf-mpd
+create_fzf_bind ^R app-launcher
+create_fzf_bind ^K calculator
+create_fzf_bind ^M man-browser
+create_fzf_bind ^P music-player
+create_fzf_bind '^[' power-menu
+unset -f create_fzf_bind
 
 # Directory options
 setopt auto_cd           # Change directory without cd
