@@ -5,7 +5,8 @@ cd "$(dirname "$(realpath "$0")")"/..
 . helpers/init.sh
 
 export FZF_TITLE='Power Menu'
-option with-nth 2..
+option with-nth 2
+bind 'enter:become(echo {1})'
 
 options=(
   Lock
@@ -24,7 +25,7 @@ commands=(
   "$XDG_CONFIG_HOME/i3/lock.sh; systemctl hibernate"
 )
 
-index="$(printf '%s\n' "${options[@]}" | cat -n | fzf || :)"
+index="$(printf '%s\n' "${options[@]}" | nl -w1 -v0 -s"$D" | fzf || :)"
 if [[ -n "$index" ]]; then
-  "${commands["${index%% *}"]}"
+  eval "${commands[index]}"
 fi

@@ -5,7 +5,7 @@ cd "$(dirname "$(realpath "$0")")"/..
 . helpers/init.sh
 
 export FZF_TITLE='Music Player'
-option no-sort
+export FZF_NTH_MAX=2
 option header-lines 1
 option preview preview
 
@@ -24,7 +24,7 @@ bind 'alt--:execute-silent(mpc volume -1)'
 bind 'alt-r:execute-silent(mpc clear; mpc update; mpc ls | mpc add)'
 
 print_playlist() {
-  mpc listall | nl -w1 -s, | column -ts, -NPosition,File -R1
+  mpc listall | nl -w1 -s"$D" | print_columns Position,File 1
 }
 export -f print_playlist
 

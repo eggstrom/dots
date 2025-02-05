@@ -9,6 +9,7 @@ B="$(tput setaf 4)" # Blue
 M="$(tput setaf 5)" # Magenta
 C="$(tput setaf 6)" # Cyan
 W="$(tput setaf 7)" # White
+D=$'\x01' # Delimiter
 export S K R G Y B M C W D
 
 option() {  
@@ -30,7 +31,14 @@ post() {
 }
 export -f post
 
-nth_step() {
+print_columns() {
+  local COLUMNS="$1"
+  local RIGHT_ALIGNED="${2:-,}"
+  cat | column -ts"$D" -o" $D " -N"$COLUMNS" -R"$RIGHT_ALIGNED",
+}
+export -f print_columns
+
+change_nth () {
   if [[ ! -v FZF_NTH_MAX ]]; then return; fi
   local STEPS="$1"
 
@@ -40,7 +48,16 @@ nth_step() {
 
   post "change-nth($nth)"
 }
-export -f nth_step
+export -f change_nth 
+
+change_preview_size() {
+  local STEPS="$1"
+  local size=$((FZF_PREVIEW_COLUMNS + STEPS))
+  if [[ "$size" -lt 1 ]]; then size=1; fi
+
+  post "change-preview-window($size)"
+}
+export -f change_preview_size
 
 option with-shell "$(which bash) -euo pipefail -c"
 option listen
@@ -48,10 +65,11 @@ option cycle
 
 option reverse
 option height ~50%
-option preview-border bold
 option info-command 'echo "$FZF_INFO$([[ -v FZF_TITLE ]] && echo -n " [$FZF_TITLE]")"'
 option no-separator
 option no-scrollbar
+option delimiter "$D"
+option preview-border bold
 
 option prompt '❯ '
 option pointer ▶
@@ -64,8 +82,18 @@ option color hl:yellow:underline,current-hl:yellow:underline
 option color nth:dim
 option color spinner:blue,info:blue
 
-bind 'ctrl-c:cancel'
-bind 'ctrl-d:delete-char'
-bind 'ctrl-t:toggle-preview'
-bind 'alt-n:execute-silent(nth_step +1)'
-bind 'alt-p:execute-silent(nth_step -1)'
+bind ctrl-c:cancel
+bind ctrl-d:delete-char
+bind ctrl-j:jump
+bind ctrl-k:kill-line
+bind tab:toggle
+bind shift-tab:toggle
+
+bind 'alt-h:execute-silent(change_preview_size +1)'
+bind alt-j:preview-down
+bind alt-k:preview-up
+bind 'alt-l:execute-silent(change_preview_size -1)'
+bind alt-t:toggle-preview
+
+bind 'alt-n:execute-silent(change_nth +1)'
+bind 'alt-p:execute-silent(change_nth -1)'

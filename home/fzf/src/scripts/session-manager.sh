@@ -20,7 +20,8 @@ print_sessions() {
   local DATE_FORMAT='%Y-%m-%d %T'
   tmux ls -F \
     "#S,#{?session_attached,Yes,No},#{t/f/$DATE_FORMAT:session_created},#{t/f/$DATE_FORMAT:session_activity}" \
-    | column -ts, -N'Name,Attached,Created,Last Activity' -R3,4
+    | tr , "$D" \
+    | print_columns 'Name,Attached,Created,Last Activity' 3,4
 }
 export -f print_sessions
 
