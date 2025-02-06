@@ -42,16 +42,16 @@ preview() {
   consume="$(mpc status %consume%)"
 
   cat <<-EOF
-	${C}File:     $S${file:-N/A}
-	${C}Position: $S$songpos/$length
-	${C}Time:     $S$currenttime/$totaltime
+		${C}File:     $S${file:-N/A}
+		${C}Position: $S$songpos/$length
+		${C}Time:     $S$currenttime/$totaltime
 
-	${C}Volume:   $S${volume//[ %]/}%
-	${C}State:    $S${state^}
-	${C}Repeat:   $S${repeat^}
-	${C}Random:   $S${random^}
-	${C}Single:   $S${single^}
-	${C}Consume:  $S${consume^}
+		${C}Volume:   $S${volume//[ %]/}%
+		${C}State:    $S${state^}
+		${C}Repeat:   $S${repeat^}
+		${C}Random:   $S${random^}
+		${C}Single:   $S${single^}
+		${C}Consume:  $S${consume^}
 	EOF
 }
 export -f preview
@@ -59,13 +59,15 @@ export -f preview
 # Updates preview every second or once there's an event
 listen() {
   while post refresh-preview; do
-    sleep 1 & sleep_pid=$!
-    mpc idle & mpc_pid=$!
+    sleep 1 &
+    sleep_pid=$!
+    mpc idle &
+    mpc_pid=$!
     wait -np pid $sleep_pid $mpc_pid
 
     case $pid in
-      "$sleep_pid") kill $mpc_pid ;;
-      "$mpc_pid") kill $sleep_pid ;;
+    "$sleep_pid") kill $mpc_pid ;;
+    "$mpc_pid") kill $sleep_pid ;;
     esac
   done
 }

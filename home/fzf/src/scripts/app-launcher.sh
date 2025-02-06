@@ -13,5 +13,6 @@ print_programs() {
 
 program="$(print_programs | sort -u | fzf || :)"
 if [[ -n "$program" ]]; then
-  "$program" >/dev/null 2>&1 & disown
+  "$program" >/dev/null 2>&1 &
+  disown
 fi

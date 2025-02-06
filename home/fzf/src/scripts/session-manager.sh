@@ -21,17 +21,17 @@ print_sessions() {
   local DATE_FORMAT='%Y-%m-%d %T'
 
   tmux ls -F \
-    "#S$TD#{?session_attached,Yes,No}$TD#{t/f/$DATE_FORMAT:session_created}$TD#{t/f/$DATE_FORMAT:session_activity}" \
-    | sed "s/::/$D/g" \
-    | sort -t"$D" -rk3 \
-    | print_columns 'Name,Attached,Created,Last Activity' 3,4
+    "#S$TD#{?session_attached,Yes,No}$TD#{t/f/$DATE_FORMAT:session_created}$TD#{t/f/$DATE_FORMAT:session_activity}" |
+    sed "s/::/$D/g" |
+    sort -t"$D" -rk3 |
+    print_columns 'Name,Attached,Created,Last Activity' 3,4
 }
 export -f print_sessions
 
 go_to_current() {
-  line="$(tmux ls -F '#S,#{session_created}' \
-    | sort -rt, -k2 \
-    | grep -n "^$(tmux display -p '#S')")"
+  line="$(tmux ls -F '#S,#{session_created}' |
+    sort -rt, -k2 |
+    grep -n "^$(tmux display -p '#S')")"
   post "pos(${line%%:*})"
 }
 export -f go_to_current
@@ -50,7 +50,7 @@ set_hook() {
 export -f set_hook
 
 set_hooks() {
-  echo -n "$FZF_PORT" > "$PORT_FILE"
+  echo -n "$FZF_PORT" >"$PORT_FILE"
   set_hook session-created 'reload(print_sessions)'
   set_hook session-closed 'reload(print_sessions)'
   set_hook session-renamed 'reload(print_sessions)'
@@ -58,10 +58,10 @@ set_hooks() {
 export -f set_hooks
 
 unset_hooks() {
-  tmux show-hooks -g \
-    | grep -F "$(post_string "$(cat "$PORT_FILE")")" \
-    | cut -d' ' -f1 \
-    | xargs -L1 tmux set-hook -gu
+  tmux show-hooks -g |
+    grep -F "$(post_string "$(cat "$PORT_FILE")")" |
+    cut -d' ' -f1 |
+    xargs -L1 tmux set-hook -gu
   rm "$PORT_FILE"
 }
 trap unset_hooks EXIT SIGINT SIGTERM SIGHUP

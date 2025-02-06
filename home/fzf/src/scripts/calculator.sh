@@ -24,12 +24,15 @@ accept() {
   local OPTION="$1"
 
   if [[ -z "$OPTION" ]]; then
-    local value options
+    local value
 
     value="$(evaluate "$FZF_QUERY")"
     if [[ "$value" != 0 ]]; then
-      options="$(echo "$value"; sed "/^$value\$/d" "$FILE")"
-      echo "$options" > "$FILE"
+      options="$(
+        echo "$value"
+        sed "/^$value\$/d" "$FILE"
+      )"
+      echo "$options" >"$FILE"
       post "reload($RELOAD)+pos(1)+clear-query"
     fi
   else

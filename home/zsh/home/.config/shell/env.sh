@@ -43,7 +43,7 @@ export RUSTC_WRAPPER='sccache'
 
 # Add paths to $PATH if they're not already present
 add_path() {
-    [[ ":$PATH:" != *":$1:"* ]] && PATH="$PATH:$1"
+  [[ ":$PATH:" != *":$1:"* ]] && PATH="$PATH:$1"
 }
 
 add_path "$CARGO_HOME/bin"

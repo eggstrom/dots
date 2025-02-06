@@ -39,6 +39,7 @@
 
       # Formatters
       nixfmt-rfc-style
+      shfmt
       zig
     ];
 

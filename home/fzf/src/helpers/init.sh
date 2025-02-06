@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-S="$(tput sgr0)" # Reset
+S="$(tput sgr0)"    # Reset
 K="$(tput setaf 0)" # Black
 R="$(tput setaf 1)" # Red
 G="$(tput setaf 2)" # Green
@@ -9,10 +9,10 @@ B="$(tput setaf 4)" # Blue
 M="$(tput setaf 5)" # Magenta
 C="$(tput setaf 6)" # Cyan
 W="$(tput setaf 7)" # White
-D=$'\x01' # Delimiter
+D=$'\x01'           # Delimiter
 export S K R G Y B M C W D
 
-option() {  
+option() {
   FZF_DEFAULT_OPTS+=$'\n'--"$1"
   if [[ "$#" -gt 1 ]]; then
     FZF_DEFAULT_OPTS+=" '${*:2}'"
@@ -27,7 +27,7 @@ export -f bind
 
 post() {
   ACTION="$1"
-  curl localhost:"$FZF_PORT" -XPOST -d"$ACTION";
+  curl localhost:"$FZF_PORT" -XPOST -d"$ACTION"
 }
 export -f post
 
@@ -38,17 +38,17 @@ print_columns() {
 }
 export -f print_columns
 
-change_nth () {
+change_nth() {
   if [[ ! -v FZF_NTH_MAX ]]; then return; fi
   local STEPS="$1"
 
   local nth="${FZF_NTH:-..}" # FZF_NTH can be unset at first
-  nth="${nth%%.*}" # Trim '..X' and use LHS
+  nth="${nth%%.*}"           # Trim '..X' and use LHS
   ((nth += STEPS, nth %= FZF_NTH_MAX + 1)) || nth=..
 
   post "change-nth($nth)"
 }
-export -f change_nth 
+export -f change_nth
 
 change_preview_size() {
   local STEPS="$1"
