@@ -11,6 +11,7 @@
     defaultEditor = true; # Set $EDITOR
     extraPackages = with pkgs; [
       # Language servers
+      awk-language-server
       basedpyright
       bash-language-server
       clang-tools
