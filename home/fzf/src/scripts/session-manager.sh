@@ -17,16 +17,21 @@ bind 'ctrl-q:execute-silent(tmux kill-session -t {1})'
 bind 'ctrl-q:+reload(print_sessions)'
 
 print_sessions() {
+  local TD=:: # Temporary delimiter
   local DATE_FORMAT='%Y-%m-%d %T'
+
   tmux ls -F \
-    "#S,#{?session_attached,Yes,No},#{t/f/$DATE_FORMAT:session_created},#{t/f/$DATE_FORMAT:session_activity}" \
-    | tr , "$D" \
+    "#S$TD#{?session_attached,Yes,No}$TD#{t/f/$DATE_FORMAT:session_created}$TD#{t/f/$DATE_FORMAT:session_activity}" \
+    | sed "s/::/$D/g" \
+    | sort -t"$D" -rk3 \
     | print_columns 'Name,Attached,Created,Last Activity' 3,4
 }
 export -f print_sessions
 
 go_to_current() {
-  line="$(tmux ls -F \#S | grep -n "$(tmux display -p \#S)")"
+  line="$(tmux ls -F '#S,#{session_created}' \
+    | sort -rt, -k2 \
+    | grep -n "^$(tmux display -p '#S')")"
   post "pos(${line%%:*})"
 }
 export -f go_to_current
