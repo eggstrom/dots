@@ -5,7 +5,7 @@ cd "$(dirname "$(realpath "$0")")"/..
 . helpers/init.sh
 
 option disabled
-option height 7
+option height 50%
 option info inline:'= '
 option info-command 'echo "$(evaluate {q}) [Calculator]"'
 
