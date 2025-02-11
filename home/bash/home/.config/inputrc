@@ -1,0 +1,9 @@
+# Completion
+set show-all-if-ambiguous on  # Show on first tab
+set completion-query-items -1 # Don't prompt for high completion counts
+set page-completions off      # Disable pager for high completion counts
+set colored-stats on          # Enable file colors
+set visible-stats on          # Append type indicator to files
+
+# Binds
+'\C-h': backward-kill-word # Ctrl-Backspace

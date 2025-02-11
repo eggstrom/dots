@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+. ~/.config/bash/env.sh
+. ~/.config/bash/aliases.sh
+
+# Enable completion
+data_dirs="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+for data_dir in ${data_dirs//:/ }; do
+  if [[ -r "$data_dir/bash-completion/bash_completion" ]]; then
+    . "$data_dir/bash-completion/bash_completion"
+    break
+  fi
+done
+unset data_dirs data_dir
+
+# Enable integration
+eval "$(starship init bash)"
+eval "$(fzf --bash)"
+
+set -o noclobber # Prevent implicit overwritting with redirection
+shopt -s autocd  # Change directory without cd
+shopt -s dotglob # Show hidden files during completion
+shopt -s extglob # Enable additional globbing syntax
+
+# Disable autocd output by redirecting xtrace
+_hide_xtrace() { exec {BASH_XTRACEFD}>/dev/null; }
+_show_xtrace() { exec {BASH_XTRACEFD}>/dev/stdout; }
+[[ $- != *x* ]] && _hide_xtrace
+
+# History
+# ignoreboth: Don't save commands that start with a space or duplicates
+# erasedups: Erase previous duplicates
+HISTCONTROL=ignoreboth:erasedups
+# Append history instead of overwritting it
+shopt -s histappend
+# Append and reload history when pressing enter
+PROMPT_COMMAND+='; history -a; history -c; history -r'
+
+# Set cursor to bar
+PROMPT_COMMAND+='; printf "%b" "\1\e[6 q\2"'
+
+bind -x '"\er": fzf-app-launcher'
+bind -x '"\ec": fzf-calculator'
+bind -x '"\em": fzf-manual-browser'
+bind -x '"\ep": fzf-music-player'
+bind -x '"\eq": fzf-power-menu'
+
+# Change directory with Yazi
+f() {
+  local tmp cwd
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file "$tmp"
+  if cwd="$(command cat -- "$tmp")" && [[ -n "$cwd" ]] && [[ "$cwd" != "$PWD" ]]; then
+    \cd "$cwd" || exit
+  fi
+  \rm "$tmp"
+}

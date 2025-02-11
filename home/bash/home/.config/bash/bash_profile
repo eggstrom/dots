@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+. ~/.config/bash/env.sh
+
+# Start graphical environment in first tty if user isn't root
+[[ $(tty) = /dev/tty1 && $(id -u) != 0 ]] && startx
