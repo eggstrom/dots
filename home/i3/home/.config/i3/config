@@ -31,16 +31,16 @@ bindsym $mod+Ctrl+F5     restart
 
 # Escape: Open power menu
 # Q:      Close window
+# W:      Toggle scratchpad terminal
+# E:      Open terminal
 # S:      Create horizontal split
 # V:      Create vertical split
-# W:      Open run menu
-# E:      Open terminal
 bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/scripts/power.sh
 bindsym $mod+q      kill
+bindsym $mod+w      exec --no-startup-id ~/.config/i3/scratchpad-terminal.sh
+bindsym $mod+e      exec --no-startup-id $TERMINAL
 bindsym $mod+s      split vertical
 bindsym $mod+v      split horizontal
-bindsym $mod+w      exec --no-startup-id ~/.config/rofi/scripts/run.sh
-bindsym $mod+e      exec --no-startup-id $TERMINAL
 
 # F:         Toggle floating
 # Ctrl + F:  Toggle fullscreen
@@ -135,3 +135,7 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id eww open bar
 # Reload background
 exec_always --no-startup-id setbg
+
+# Make sure there's always a scratchpad terminal running
+for_window [class=scratchpad-terminal] move to scratchpad
+exec --no-startup-id "while $TERMINAL --class scratchpad-terminal 2>/dev/null; do :; done"
