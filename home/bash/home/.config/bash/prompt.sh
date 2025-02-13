@@ -45,9 +45,6 @@ _update_prompt() {
   if [[ "$running_jobs" != 0 ]]; then PS1+="$W 󰊠 $running_jobs"; fi
   if [[ "$stopped_jobs" != 0 ]]; then PS1+="$K 󰧵 $stopped_jobs"; fi
 
-  # Exit code
-  if [[ $exit_code != 0 ]]; then PS1+="$R  $exit_code"; fi
-
   # Execution time
   if [[ "$time" -gt 0 ]]; then
     if [[ "$time" -ge 3600 ]]; then
@@ -62,6 +59,9 @@ _update_prompt() {
     fi
     PS1+="$Y 󰥔 $time"
   fi
+
+  # Exit code
+  if [[ $exit_code != 0 ]]; then PS1+="$R  $exit_code"; fi
 
   # Arrow
   if [[ $(id -u) = 0 ]]; then
