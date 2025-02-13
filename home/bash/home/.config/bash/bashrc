@@ -13,8 +13,7 @@ for data_dir in ${data_dirs//:/ }; do
 done
 unset data_dirs data_dir
 
-# Enable integration
-eval "$(starship init bash)"
+# Enable fzf integration
 eval "$(fzf --bash)"
 
 set -o noclobber # Prevent implicit overwritting with redirection
@@ -34,10 +33,10 @@ HISTCONTROL=ignoreboth:erasedups
 # Append history instead of overwritting it
 shopt -s histappend
 # Append and reload history when pressing enter
-PROMPT_COMMAND+='; history -a; history -c; history -r'
+PROMPT_COMMAND+='history -a; history -c; history -r;'
 
 # Set cursor to bar
-PROMPT_COMMAND+='; printf "%b" "\1\e[6 q\2"'
+PROMPT_COMMAND+='printf "%b" "\1\e[6 q\2";'
 
 bind -x '"\er": fzf-app-launcher'
 bind -x '"\ec": fzf-calculator'
@@ -55,3 +54,5 @@ f() {
   fi
   \rm "$tmp"
 }
+
+. ~/.config/bash/prompt.sh

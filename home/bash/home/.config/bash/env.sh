@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Source Home Manager session variables
 if [[ -r ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
   . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
@@ -16,7 +18,7 @@ export RUSTC_WRAPPER=sccache
 
 # Add paths to $PATH if they're not already present
 add_path() {
-  [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH:+$PATH:}$1"
+  if [[ ":$PATH:" != *":$1:"* ]]; then PATH="${PATH:+$PATH:}$1"; fi
 }
 add_path ~/.local/bin
 add_path "$CARGO_HOME/bin"

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Make sudo respect aliases
 alias sudo='sudo '
 
