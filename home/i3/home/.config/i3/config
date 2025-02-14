@@ -19,115 +19,113 @@ client.urgent           $red  $red  $red  $red  $red
 client.placeholder      $gray $gray $gray $gray $gray
 client.background       $black
 
-# Set mod key to Super
-set $mod Mod4
+set $alt   Mod1
+set $super Mod4
 
-# Ctrl + Escape: Exit i3
-# F5:            Reload i3
-# Ctrl + F5:     Restart i3
-bindsym $mod+Ctrl+Escape exit
-bindsym $mod+F5          reload
-bindsym $mod+Ctrl+F5     restart
+# Ctrl + Alt + Escape: Exit
+# Ctrl + Alt + R:      Restart
+# Ctrl + Alt + L:      Lock
+bindsym Ctrl+$alt+Escape exit
+bindsym Ctrl+$alt+R      restart
+bindsym Ctrl+$alt+L      exec --no-startup-id ~/.config/i3/lock.sh
 
-# Escape: Open power menu
-# Q:      Close window
-# W:      Toggle scratchpad terminal
-# E:      Open terminal
-# S:      Create horizontal split
-# V:      Create vertical split
-bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/scripts/power.sh
-bindsym $mod+q      kill
-bindsym $mod+w      exec --no-startup-id ~/.config/i3/scratchpad-terminal.sh
-bindsym $mod+e      exec --no-startup-id $TERMINAL
-bindsym $mod+s      split vertical
-bindsym $mod+v      split horizontal
+# Super + Q: Close window
+# Super + W: Toggle scratchpad terminal
+# Super + E: Open terminal
+# Super + S: Create horizontal split
+# Super + V: Create vertical split
+bindsym $super+q kill
+bindsym $super+w exec --no-startup-id ~/.config/i3/scratchpad-terminal.sh
+bindsym $super+e exec --no-startup-id $TERMINAL
+bindsym $super+s split vertical
+bindsym $super+v split horizontal
 
-# F:         Toggle floating
-# Ctrl + F:  Toggle fullscreen
-# Shift + F: Toggle focus between tiled and floating windows
-bindsym $mod+f       fullscreen disable; floating toggle
-bindsym $mod+Ctrl+f  floating disable;   fullscreen toggle
-bindsym $mod+Shift+f focus mode_toggle
+# Super + F:         Toggle floating
+# Super + Ctrl + F:  Toggle fullscreen
+# Super + Shift + F: Toggle focus between tiled and floating windows
+bindsym $super+f       fullscreen disable; floating toggle
+bindsym $super+Ctrl+f  floating disable;   fullscreen toggle
+bindsym $super+Shift+f focus mode_toggle
 
-# M:        Toggle sink mute
-# Ctrl + M: Toggle source mute
-bindsym $mod+m      exec --no-startup-id pamixer --toggle-mute
-bindsym $mod+Ctrl+m exec --no-startup-id pamixer --toggle-mute --default-source
+# Super + M:        Toggle sink mute
+# Super + Ctrl + M: Toggle source mute
+bindsym $super+m      exec --no-startup-id pamixer --toggle-mute
+bindsym $super+Ctrl+m exec --no-startup-id pamixer --toggle-mute --default-source
 
-# P:        Screenshot selection
-# Ctrl + P: Screenshot everything
-bindsym $mod+p      exec --no-startup-id "maim -Blsu --color=0.12,0.12,0.18,0.9 | xclip -selection clipboard -t image/png"
-bindsym $mod+Ctrl+p exec --no-startup-id "maim                                  | xclip -selection clipboard -t image/png"
+# Super + P:        Screenshot selection
+# Super + Ctrl + P: Screenshot everything
+bindsym $super+p      exec --no-startup-id "maim -Blsu --color=0.12,0.12,0.18,0.9 | xclip -selection clipboard -t image/png"
+bindsym $super+Ctrl+p exec --no-startup-id "maim                                  | xclip -selection clipboard -t image/png"
 
-# Arrow Keys/HJKL: Move focus
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-bindsym $mod+h     focus left
-bindsym $mod+j     focus down
-bindsym $mod+k     focus up
-bindsym $mod+l     focus right
+# Super + Arrow Keys/HJKL: Move focus
+bindsym $super+Left  focus left
+bindsym $super+Down  focus down
+bindsym $super+Up    focus up
+bindsym $super+Right focus right
+bindsym $super+h     focus left
+bindsym $super+j     focus down
+bindsym $super+k     focus up
+bindsym $super+l     focus right
 
-# Ctrl + Arrow Keys/HJKL: Move window
-bindsym $mod+Ctrl+Left  move left  $gap_size px
-bindsym $mod+Ctrl+Down  move down  $gap_size px
-bindsym $mod+Ctrl+Up    move up    $gap_size px
-bindsym $mod+Ctrl+Right move right $gap_size px
-bindsym $mod+Ctrl+h     move left  $gap_size px
-bindsym $mod+Ctrl+j     move down  $gap_size px
-bindsym $mod+Ctrl+k     move up    $gap_size px
-bindsym $mod+Ctrl+l     move right $gap_size px
+# Super + Ctrl + Arrow Keys/HJKL: Move window
+bindsym $super+Ctrl+Left  move left  $gap_size px
+bindsym $super+Ctrl+Down  move down  $gap_size px
+bindsym $super+Ctrl+Up    move up    $gap_size px
+bindsym $super+Ctrl+Right move right $gap_size px
+bindsym $super+Ctrl+h     move left  $gap_size px
+bindsym $super+Ctrl+j     move down  $gap_size px
+bindsym $super+Ctrl+k     move up    $gap_size px
+bindsym $super+Ctrl+l     move right $gap_size px
 
-# Shift + Arrow Keys/HJKL: Resize window
-bindsym $mod+Shift+Left  resize shrink width  $gap_size px
-bindsym $mod+Shift+Down  resize grow   height $gap_size px
-bindsym $mod+Shift+Up    resize shrink height $gap_size px
-bindsym $mod+Shift+Right resize grow   width  $gap_size px
-bindsym $mod+Shift+h     resize shrink width  $gap_size px
-bindsym $mod+Shift+j     resize grow   height $gap_size px
-bindsym $mod+Shift+k     resize shrink height $gap_size px
-bindsym $mod+Shift+l     resize grow   width  $gap_size px
+# Super + Shift + Arrow Keys/HJKL: Resize window
+bindsym $super+Shift+Left  resize shrink width  $gap_size px
+bindsym $super+Shift+Down  resize grow   height $gap_size px
+bindsym $super+Shift+Up    resize shrink height $gap_size px
+bindsym $super+Shift+Right resize grow   width  $gap_size px
+bindsym $super+Shift+h     resize shrink width  $gap_size px
+bindsym $super+Shift+j     resize grow   height $gap_size px
+bindsym $super+Shift+k     resize shrink height $gap_size px
+bindsym $super+Shift+l     resize grow   width  $gap_size px
 
-# Number Keys: Move to workspace
-# Tab:         Move to next workspace
-# Shift + Tab: Move to previous workspace
-bindsym $mod+1         workspace number 1
-bindsym $mod+2         workspace number 2
-bindsym $mod+3         workspace number 3
-bindsym $mod+4         workspace number 4
-bindsym $mod+5         workspace number 5
-bindsym $mod+6         workspace number 6
-bindsym $mod+7         workspace number 7
-bindsym $mod+8         workspace number 8
-bindsym $mod+9         workspace number 9
-bindsym $mod+0         workspace number 10
-bindsym $mod+Tab       workspace next
-bindsym $mod+Shift+Tab workspace prev
+# Super + Number Keys: Move to workspace
+# Super + Tab:         Move to next workspace
+# Super + Shift + Tab: Move to previous workspace
+bindsym $super+1         workspace number 1
+bindsym $super+2         workspace number 2
+bindsym $super+3         workspace number 3
+bindsym $super+4         workspace number 4
+bindsym $super+5         workspace number 5
+bindsym $super+6         workspace number 6
+bindsym $super+7         workspace number 7
+bindsym $super+8         workspace number 8
+bindsym $super+9         workspace number 9
+bindsym $super+0         workspace number 10
+bindsym $super+Tab       workspace next
+bindsym $super+Shift+Tab workspace prev
 
-# Ctrl + Number Keys: Move window to workspace
-# Ctrl + Tab:         Move window to next workspace
-# Ctrl + Shift + Tab: Move window to previous workspace
-bindsym $mod+Ctrl+1         move container to workspace number 1
-bindsym $mod+Ctrl+2         move container to workspace number 2
-bindsym $mod+Ctrl+3         move container to workspace number 3
-bindsym $mod+Ctrl+4         move container to workspace number 4
-bindsym $mod+Ctrl+5         move container to workspace number 5
-bindsym $mod+Ctrl+6         move container to workspace number 6
-bindsym $mod+Ctrl+7         move container to workspace number 7
-bindsym $mod+Ctrl+8         move container to workspace number 8
-bindsym $mod+Ctrl+9         move container to workspace number 9
-bindsym $mod+Ctrl+0         move container to workspace number 10
-bindsym $mod+Ctrl+Tab       move container to workspace next
-bindsym $mod+Ctrl+Shift+Tab move container to workspace prev
+# Super + Ctrl + Number Keys: Move window to workspace
+# Super + Ctrl + Tab:         Move window to next workspace
+# Super + Ctrl + Shift + Tab: Move window to previous workspace
+bindsym $super+Ctrl+1         move container to workspace number 1
+bindsym $super+Ctrl+2         move container to workspace number 2
+bindsym $super+Ctrl+3         move container to workspace number 3
+bindsym $super+Ctrl+4         move container to workspace number 4
+bindsym $super+Ctrl+5         move container to workspace number 5
+bindsym $super+Ctrl+6         move container to workspace number 6
+bindsym $super+Ctrl+7         move container to workspace number 7
+bindsym $super+Ctrl+8         move container to workspace number 8
+bindsym $super+Ctrl+9         move container to workspace number 9
+bindsym $super+Ctrl+0         move container to workspace number 10
+bindsym $super+Ctrl+Tab       move container to workspace next
+bindsym $super+Ctrl+Shift+Tab move container to workspace prev
 
-# Scroll up/down:        Move to next/previous workspace
-# Ctrl + Scroll up/down: Move window to next/previous workspace
-floating_modifier $mod
-bindsym --whole-window $mod+button4      workspace next
-bindsym --whole-window $mod+button5      workspace prev
-bindsym --whole-window $mod+Ctrl+button4 move container to workspace next
-bindsym --whole-window $mod+Ctrl+button5 move container to workspace prev
+# Super + Scroll up/down:        Move to next/previous workspace
+# Super + Ctrl + Scroll up/down: Move window to next/previous workspace
+floating_modifier $super
+bindsym --whole-window $super+button4      workspace next
+bindsym --whole-window $super+button5      workspace prev
+bindsym --whole-window $super+Ctrl+button4 move container to workspace next
+bindsym --whole-window $super+Ctrl+button5 move container to workspace prev
 
 # Start compositor
 exec_always --no-startup-id picom
