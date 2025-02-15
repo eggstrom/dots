@@ -20,7 +20,7 @@ _update_prompt() {
   local S=$'\[\033[m\]'   # Reset
 
   # Directory
-  PS1="$C"
+  PS1="$S$C"
   if [[ ! -w "$PWD" ]]; then PS1+='󰌾 '; fi
   local path
   if path="$(git rev-parse --show-toplevel 2>/dev/null)"; then
