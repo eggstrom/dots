@@ -25,6 +25,9 @@ _update_prompt() {
   local path
   if path="$(git rev-parse --show-toplevel 2>/dev/null)"; then
     PS1+="${path##*/}"
+    if path="$(git rev-parse --show-prefix 2>/dev/null)" && [[ -n "$path" ]]; then
+      PS1+="/${path%/}"
+    fi
   else
     PS1+='\w'
   fi
