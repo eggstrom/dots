@@ -91,15 +91,32 @@ in
         set -g exit-empty off      # Don't kill server if there are no sessions
         set -g repeat-time 32767   # Make time between repeats very long
         set -g renumber-windows on # Make window number depend on position
+
+        set -g status-interval 1
+        set -g status-style default
+
+        set -g status-left '#[reverse] 󰀄 #[none] #S '
+        set -g status-left-style 'fg=#{?client_prefix,red,green}'
+        set -g status-left-length 40
+
+        set -g window-status-format '#[reverse] #I #{?#{>:#{window_panes},1},#[none] #{window_panes} ,}'
+        set -g window-status-current-format '#[reverse] #I #{?#{>:#{window_panes},1},#[none] #{window_panes} ,}'
+        set -g window-status-separator ""
+        set -g window-status-style fg=black
+        set -g window-status-current-style fg=blue
+        set -g window-status-last-style fg=white
+
+        set -g status-right '#[reverse] 󰞌 #[none] %a %b %Y-%m-%d %T '
+        set -g status-right-style fg=yellow
+
+        set -g pane-border-style fg=black
+        set -g pane-active-border-style fg=blue
+        set -g mode-style bg=black,fg=white
+        set -g message-style default
+        set -g message-command-style default
+
         unbind -a
       ''
       + bindsConfig;
-
-    plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = catppuccin;
-        extraConfig = "set -g @catppuccin_status_left_separator '█'";
-      }
-    ];
   };
 }
