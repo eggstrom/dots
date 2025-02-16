@@ -1,6 +1,0 @@
-(defwidget menu_widget []
-  (eventbox :class        "hoverable"
-            :cursor       "pointer"
-            :onclick      "~/.config/rofi/scripts/run.sh &"
-            :onrightclick "~/.config/rofi/scripts/power.sh &"
-    (icon_label :text "")))

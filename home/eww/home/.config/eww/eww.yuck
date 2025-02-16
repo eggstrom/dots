@@ -1,5 +1,4 @@
 (include "widgets/bar.yuck")
-(include "widgets/menu.yuck")
 (include "widgets/desktops.yuck")
 (include "widgets/time.yuck")
 (include "widgets/audio.yuck")

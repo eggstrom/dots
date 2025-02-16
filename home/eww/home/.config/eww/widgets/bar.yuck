@@ -14,7 +14,6 @@
 (defwidget left_widgets []
   (box :halign       "start"
        :space-evenly false
-    (menu_widget)
     (desktop_widget)))
 
 (defwidget middle_widgets []
