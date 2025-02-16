@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
+  # Nvidia
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.beta;
     open = true;
@@ -24,6 +25,12 @@
     #   nvidiaBusId = "PCI:1:0:0";
     # };
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-  programs.xwayland.enable = true;
+  # X11
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+    excludePackages = with pkgs; [ xterm ];
+  };
 }
