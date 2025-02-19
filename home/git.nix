@@ -32,12 +32,12 @@
       (writeShellScriptBin "git-user" ''
         set -euo pipefail
 
-        git rev-parse --is-inside-work-tree >/dev/null
+        git rev-parse
         case "$#" in
         0)
-          git config --unset user.name || true
-          git config --unset user.email || true
-          git config --unset credential.username || true
+          git config --unset user.name || :
+          git config --unset user.email || :
+          git config --unset credential.username || :
           ;;
         2)
           git config user.name "$1"
