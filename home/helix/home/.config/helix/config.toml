@@ -25,7 +25,57 @@ select = "underline"
 hidden = false            # Show hidden files
 deduplicate-links = false # Don't remove links
 
-# Keys for toggling options
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+C-c = ["collapse_selection", "keep_primary_selection"]
+
+# Move selection
+C-left = "unindent"
+C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-up = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-right = "indent"
+C-h = "unindent"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-l = "indent"
+
+[keys.insert]
+C-c = "normal_mode"
+
+[keys.select]
+C-c = "normal_mode"
+
+# Move selection
+C-left = "unindent"
+C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-up = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-right = "indent"
+C-h = "unindent"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-l = "indent"
+
+# Toggle options
 [keys.normal.space.t]
 n = ":toggle line-number absolute relative"
 w = ":toggle soft-wrap.enable"
@@ -38,43 +88,3 @@ w = ":toggle soft-wrap.enable"
 s = ":toggle whitespace.render none all"
 h = ":toggle lsp.display-inlay-hints"
 c = ":toggle search.smart-case"
-
-# Keys for moving selection
-[keys.normal]
-C-left = "unindent"
-C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-up = [
-  "extend_to_line_bounds",
-  "delete_selection",
-  "move_line_up",
-  "paste_before",
-]
-C-right = "indent"
-C-h = "unindent"
-C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-k = [
-  "extend_to_line_bounds",
-  "delete_selection",
-  "move_line_up",
-  "paste_before",
-]
-C-l = "indent"
-[keys.select]
-C-left = "unindent"
-C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-up = [
-  "extend_to_line_bounds",
-  "delete_selection",
-  "move_line_up",
-  "paste_before",
-]
-C-right = "indent"
-C-h = "unindent"
-C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-k = [
-  "extend_to_line_bounds",
-  "delete_selection",
-  "move_line_up",
-  "paste_before",
-]
-C-l = "indent"
