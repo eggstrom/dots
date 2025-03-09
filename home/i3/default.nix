@@ -2,14 +2,13 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   ...
 }:
 lib.mkIf (!config.userConfig.minimal) {
   home.packages = with pkgs; [
     i3
     i3lock
-    pkgs-stable.maim
+    maim
     xclip
   ];
 
