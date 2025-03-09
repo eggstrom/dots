@@ -1,0 +1,80 @@
+theme = "catppuccin_mocha"
+
+[editor]
+cursorline = true
+line-number = "relative"
+bufferline = "multiple"
+
+smart-tab.enable = false
+auto-pairs = false
+auto-format = false
+
+lsp.snippets = false
+completion-timeout = 5     # Show completions instantly
+completion-trigger-len = 1 # Show completions after typing 1 character
+
+end-of-line-diagnostics = "hint"
+inline-diagnostics.cursor-line = "hint"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false            # Show hidden files
+deduplicate-links = false # Don't remove links
+
+# Keys for toggling options
+[keys.normal.space.t]
+n = ":toggle line-number absolute relative"
+w = ":toggle soft-wrap.enable"
+s = ":toggle whitespace.render none all"
+h = ":toggle lsp.display-inlay-hints"
+c = ":toggle search.smart-case"
+[keys.select.space.t]
+n = ":toggle line-number absolute relative"
+w = ":toggle soft-wrap.enable"
+s = ":toggle whitespace.render none all"
+h = ":toggle lsp.display-inlay-hints"
+c = ":toggle search.smart-case"
+
+# Keys for moving selection
+[keys.normal]
+C-left = "unindent"
+C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-up = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-right = "indent"
+C-h = "unindent"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-l = "indent"
+[keys.select]
+C-left = "unindent"
+C-down = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-up = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-right = "indent"
+C-h = "unindent"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-l = "indent"

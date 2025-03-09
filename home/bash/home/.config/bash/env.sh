@@ -9,6 +9,11 @@ fi
 
 . ~/.config/bash/xdg.sh
 
+# Default programs
+export EDITOR=hx
+export SUDO_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
+
 # Colors
 eval "$(dircolors)"
 export BAT_THEME=base16-256
