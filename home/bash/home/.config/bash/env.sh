@@ -13,6 +13,7 @@ fi
 export EDITOR=hx
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
+export TERMINAL=kitty
 
 # Colors
 eval "$(dircolors)"
