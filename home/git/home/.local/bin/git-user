@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git rev-parse
+case "$#" in
+0)
+  git config --unset user.name || :
+  git config --unset user.email || :
+  git config --unset credential.username || :
+  ;;
+2)
+  git config user.name "$1"
+  git config user.email "$2"
+  git config credential.username "$1"
+  ;;
+*) exit 1 ;;
+esac

@@ -1,0 +1,10 @@
+[user]
+name = "eggstrom"
+email = "tristan65536@gmail.com"
+
+[credential]
+username = "eggstrom"
+helper = "manager"
+# Use pass for storing credentials
+credentialStore = "gpg"
+guiPrompt = false
