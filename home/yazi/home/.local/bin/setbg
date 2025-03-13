@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "$#" -gt 0 ]]; then
+  magick "$1" -scale "$(xwininfo -root | grep -oP '(?<=-geometry )\d+x\d+')" ~/Pictures/background.png
+fi
+if [[ -e ~/Pictures/background.png ]]; then
+  feh --no-fehbg --bg-fill --force-aliasing ~/Pictures/background.png
+fi
