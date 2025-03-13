@@ -17,7 +17,6 @@ alias ls='ls --color=auto'
 
 # Miscellaneous
 alias aria2c='aria2c -d $HOME/Downloads'
-alias d='eval cd "$(dirs -p | fzf)"'
 alias e='$EDITOR'
 alias g='lazygit'
 alias git='GPG_TTY=$(tty) git'
