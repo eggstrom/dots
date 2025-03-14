@@ -53,9 +53,6 @@
   # Let Home Manager manage mimetypes
   xdg.mimeApps.enable = true;
 
-  # Add ~/.local/bin/ to $PATH
-  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
-
   # Enable automounting daemon
   services.udiskie.enable = true;
   # Make daemon start on login
