@@ -23,43 +23,23 @@
       ...
     }@inputs:
     let
-      inherit (builtins)
-        attrValues
-        listToAttrs
-        mapAttrs
-        readDir
-        ;
-      lib = nixpkgs.lib;
-
+      inherit (builtins) mapAttrs;
       helpers = import ./helpers.nix;
-      systemConfig = import ./config/system.nix;
-      userConfigs =
-        readDir ./config/users
-        |> mapAttrs (
-          file: _: {
-            name = lib.strings.removeSuffix ".nix" file;
-            value = import ./config/users/${file};
-          }
-        )
-        |> attrValues
-        |> listToAttrs
-        |> lib.attrsets.filterAttrs (username: _: username != "root");
 
-      homeConfigs =
-        (userConfigs // { root = { }; })
-        |> mapAttrs (
-          username: userConfig: {
-            home = {
-              inherit username;
-              homeDirectory = if username == "root" then "/root" else "/home/${username}";
-            };
-            imports = [
-              ./home
-              catppuccin.homeManagerModules.catppuccin
-              { inherit userConfig; }
-            ];
-          }
-        );
+      homeConfig = username: {
+        home = {
+          inherit username;
+          homeDirectory = if username == "root" then "/root" else "/home/${username}";
+        };
+        imports = [
+          ./home
+          catppuccin.homeManagerModules.catppuccin
+        ];
+      };
+      homeConfigs = {
+        root = homeConfig "root";
+        eggstrom = homeConfig "eggstrom";
+      };
 
       system = "x86_64-linux";
       pkgsAttrs = {
@@ -75,14 +55,12 @@
           system
           pkgs-stable
           helpers
-          systemConfig
-          userConfigs
           ;
       };
       extraSpecialArgs = specialArgs;
     in
     {
-      nixosConfigurations.${systemConfig.hostname} = lib.nixosSystem {
+      nixosConfigurations.eggos = nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = [
           ./hardware-configuration.nix
@@ -96,7 +74,6 @@
             };
           }
           catppuccin.nixosModules.catppuccin
-          { inherit systemConfig; }
         ];
       };
 
