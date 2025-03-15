@@ -1,0 +1,4 @@
+[updates]
+auto_update = true
+# Update if cached pages are older than a week
+auto_update_interval_hours = 168

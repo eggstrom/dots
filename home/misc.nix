@@ -64,16 +64,6 @@
     };
   };
 
-  # Enable tldr and make it update on execution if needed
-  programs.tealdeer = {
-    enable = true;
-    settings.updates = {
-      auto_update = true;
-      # Update if cached data is older than a week
-      auto_update_interval_hours = 168;
-    };
-  };
-
   # ~/.npm/ -> ~/.cache/npm/
   xdg.configFile.npmrc.text = "cache=${config.xdg.cacheHome}/npm";
 }
