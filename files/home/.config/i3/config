@@ -19,15 +19,14 @@ client.urgent           $red  $red  $red  $red  $red
 client.placeholder      $gray $gray $gray $gray $gray
 client.background       $black
 
-set $alt   Mod1
 set $super Mod4
 
-# Ctrl + Alt + Escape: Exit
-# Ctrl + Alt + R:      Restart
-# Ctrl + Alt + L:      Lock
-bindsym Ctrl+$alt+Escape exit
-bindsym Ctrl+$alt+R      restart
-bindsym Ctrl+$alt+L      exec --no-startup-id ~/.config/i3/lock.sh
+# Super + Backspace: Exit
+# Super + Escape:    Lock
+# Super + F5:        Restart
+bindsym $super+BackSpace exit
+bindsym $super+Escape    exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $super+F5        restart
 
 # Super + Q: Close window
 # Super + W: Toggle scratchpad terminal
