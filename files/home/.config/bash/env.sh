@@ -23,10 +23,10 @@ export BAT_THEME=base16-256
 export RUSTC_WRAPPER=sccache
 
 # Add paths to $PATH if they're not already present
-add_path() {
-  if [[ ":$PATH:" != *":$1:"* ]]; then PATH="${PATH:+$PATH:}$1"; fi
-}
-add_path ~/.local/bin
-add_path "$CARGO_HOME/bin"
-add_path "$GOPATH/bin"
-unset -f add_path
+prepend_path() { [[ ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+:$PATH}"; }
+
+prepend_path "$CARGO_HOME/bin"
+prepend_path "$GOPATH/bin"
+prepend_path ~/.local/bin
+
+unset -f prepend_path
