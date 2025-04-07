@@ -58,6 +58,7 @@
       steam
       steam-run
       tealdeer
+      tmux
       trash-cli
       typst
       unzip

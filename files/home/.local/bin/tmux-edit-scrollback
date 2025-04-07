@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+file="$(mktemp -t tmux-scrollback.XXXXXX)"
+echo "$(cat)" > "$file" # Command substitution trims trailing \n
+tmux neww "$EDITOR $file +$1; rm $file"
