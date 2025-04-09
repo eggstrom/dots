@@ -1,2 +1,43 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+print_sessions() {
+  local TEMP_DELIM=::
+  local DATE_FORMAT='%Y-%m-%d %T'
+
+  tmux ls -F \
+    "#S$TEMP_DELIM#{?session_attached,Yes,No}$TEMP_DELIM#{t/f/$DATE_FORMAT:session_created}$TEMP_DELIM#{t/f/$DATE_FORMAT:session_activity}" |
+    sed "s/::/$DELIM/g" |
+    sort -t"$DELIM" -rk3 |
+    column -ts"$DELIM" -o" $DELIM " -N'Name,Attached,Created,Last Activity' -R3,4
+}
+export -f print_sessions
+
+select_current_session() {
+  line="$(tmux ls -F '#S,#{session_created}' |
+    sort -rt, -k2 |
+    grep -n "^$(tmux display -p '#S')")"
+  curl localhost:"$FZF_PORT" -XPOST -d"pos(${line%%:*})"
+}
+export -f select_current_session
+
+export DELIM=$'\x01'
+
+export FZF_DEFAULT_OPTS+="
+  --bind 'load:execute-silent(select_current_session)'
+  --bind 'ctrl-r:reload(print_sessions)'
+  --bind 'ctrl-q:execute-silent(tmux kill-session -t {1})'
+  --bind 'ctrl-q:+reload(print_sessions)'
+
+  --listen
+  --no-reverse
+  --height 100%
+  --header-lines 1
+  --preview 'tmux capturep -pet {1}'
+  --delimiter '$DELIM'
+"
+
+session="$(print_sessions | fzf || :)"
+if [[ -n "$session" ]]; then
+  tmux switch -t "${session%% *}" 2>/dev/null || :
+fi

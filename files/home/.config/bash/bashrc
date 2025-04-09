@@ -38,11 +38,8 @@ PROMPT_COMMAND+='history -a; history -c; history -r;'
 # Set cursor to bar
 PROMPT_COMMAND+='printf "%b" "\1\e[6 q\2";'
 
-bind -x '"\er": fzf-app-launcher'
-bind -x '"\ec": fzf-calculator'
-bind -x '"\em": fzf-manual-browser'
-bind -x '"\ep": fzf-music-player'
-bind -x '"\eq": fzf-power-menu'
+# Open app launcher with Alt + R
+bind -x '"\er": app-launcher'
 
 # Change directory with Yazi
 f() {

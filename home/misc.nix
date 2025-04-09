@@ -18,9 +18,11 @@
       dust
       eww
       eza
+      fd
       feh
       file
       firefox
+      fzf
       gcc
       gdb
       gh
