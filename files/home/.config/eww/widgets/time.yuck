@@ -8,6 +8,6 @@
                 :duration   250
                 :reveal     on_time
         (label :unindent false
-               :text     {formattime(EWW_TIME, "%a %b %d/%m/%Y ")}))
+               :text     {formattime(EWW_TIME, "%a %b %F ")}))
       (label :unindent false
              :text     {formattime(EWW_TIME, "%T")}))))

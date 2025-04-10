@@ -3,7 +3,7 @@ set -euo pipefail
 
 print_sessions() {
   local TEMP_DELIM=::
-  local DATE_FORMAT='%Y-%m-%d %T'
+  local DATE_FORMAT='%F %T'
 
   tmux ls -F \
     "#S$TEMP_DELIM#{?session_attached,Yes,No}$TEMP_DELIM#{t/f/$DATE_FORMAT:session_created}$TEMP_DELIM#{t/f/$DATE_FORMAT:session_activity}" |
