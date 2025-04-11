@@ -38,9 +38,6 @@ _update_prompt() {
     PS1+="$M  $branch"
   fi
 
-  # Nix shell
-  if [[ -v IN_NIX_SHELL ]]; then PS1+="$B  $IN_NIX_SHELL"; fi
-
   # Jobs
   local running_jobs stopped_jobs
   running_jobs="$(jobs -r | wc -l)"
