@@ -7,7 +7,6 @@ manager.prepend_keymap = [
   { desc = "Goto ~/.config", on = [ "g", "C", ], run = "cd ~/.config" },
   { desc = "Goto ~/.cache", on = [ "g", "c", ], run = "cd ~/.cache" },
   { desc = "Goto ~/.local", on = [ "g", "l", ], run = "cd ~/.local" },
-  { desc = "Goto ~/.nix", on = [ "g", "n", ], run = "cd ~/.nix" },
   { desc = "Goto /", on = [ "g", "r", ], run = "cd /" },
   { desc = "Goto /run/media", on = [ "g", "M", ], run = "cd /run/media" },
   { desc = "Set background", on = [ "b", ], run = "shell --confirm 'setbg \"$0\" || :'" },
