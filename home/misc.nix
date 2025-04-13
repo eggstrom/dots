@@ -90,6 +90,7 @@
       nixd
       omnisharp-roslyn
       ruff
+      svelte-language-server
       taplo
       tinymist
       typescript-language-server
