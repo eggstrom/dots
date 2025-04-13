@@ -32,11 +32,6 @@ _show_xtrace() { exec {BASH_XTRACEFD}>/dev/stdout; }
 HISTCONTROL=ignoreboth:erasedups
 # Append history instead of overwritting it
 shopt -s histappend
-# Append and reload history when pressing enter
-PROMPT_COMMAND+='history -a; history -c; history -r;'
-
-# Set cursor to bar
-PROMPT_COMMAND+='printf "%b" "\1\e[6 q\2";'
 
 # Open app launcher with Alt + R
 bind -x '"\er": app-launcher'

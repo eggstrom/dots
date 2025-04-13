@@ -1,3 +1,7 @@
+# Change cursor shape to bar
+set show-mode-in-prompt on
+set emacs-mode-string   "\1\e[6 q\2"
+
 # Completion
 set show-all-if-ambiguous on  # Show on first tab
 set completion-query-items -1 # Don't prompt for high completion counts
