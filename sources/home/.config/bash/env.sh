@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Source Home Manager session variables
-if [[ -r ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
-  . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-elif [[ -r ~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh ]]; then
-  . ~/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh
-fi
-
 . ~/.config/bash/xdg.sh
 
 # Default programs
