@@ -10,7 +10,7 @@ fi
 . ~/.config/bash/xdg.sh
 
 # Default programs
-export EDITOR=hx
+export EDITOR=helix
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export TERMINAL=kitty
