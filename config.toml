@@ -1,0 +1,7 @@
+[modules.home]
+user = "eggstrom"
+symlinks."~" = "home"
+
+[modules.root]
+user = "root"
+files."/" = "root"
