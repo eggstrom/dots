@@ -15,6 +15,11 @@ export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export TERMINAL=kitty
 
+# Theming
+export XCURSOR_THEME=catppuccin-mocha-dark-cursors
+export XCURSOR_SIZE=42
+export GTK_THEME=catppuccin-mocha-blue-standard+default
+
 # Colors
 eval "$(dircolors)"
 export BAT_THEME=base16-256
