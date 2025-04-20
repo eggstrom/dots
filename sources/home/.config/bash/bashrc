@@ -3,16 +3,6 @@
 . ~/.config/bash/env.sh
 . ~/.config/bash/aliases.sh
 
-# Enable completion
-data_dirs="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-for data_dir in ${data_dirs//:/ }; do
-  if [[ -r "$data_dir/bash-completion/bash_completion" ]]; then
-    . "$data_dir/bash-completion/bash_completion"
-    break
-  fi
-done
-unset data_dirs data_dir
-
 # Enable fzf integration
 eval "$(fzf --bash)"
 
