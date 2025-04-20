@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Make sure XDG desktop portals start properly
-systemctl --user import-environment
-
 # Get highest resolution and refresh rate from xrandr
 output="$(xrandr --query | grep ' connected' | cut -d' ' -f1)"
 line="$(xrandr --query | grep -A1 "^$output" | tail -1 | tr -d '+*' | tr -s ' ' | cut -c 2-)"
@@ -13,10 +10,6 @@ rate="$(echo "$line" | cut -d' ' -f2- | tr ' ' '\n' | sort -nr | head -1)"
 xrandr --output "$output" --mode "$mode" --rate "$rate"
 # Disable DPMS (Monitor turning off after inactivity)
 xset s off -dpms
-# Make autorepeat rate higher
-xset r rate 300 50
-# Swap Ctrl with Caps Lock and make Right Alt the Compose key
-setxkbmap -option ctrl:swapcaps,compose:ralt
 
 screen_height="$(echo "$mode" | cut -dx -f2)"
 export GAP_SIZE="$((screen_height / 50))"
@@ -29,7 +22,5 @@ GAP_SIZE:    $GAP_SIZE
 BORDER_SIZE: $BORDER_SIZE
 EOF
 
-# Delete leftover .serverauth files
-ls -at | grep -P '^\.serverauth\.\d+$' | tail -n+2 | xargs rm
 # Start window manager
 i3
