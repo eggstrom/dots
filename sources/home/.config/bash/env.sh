@@ -12,6 +12,7 @@ export TERMINAL=kitty
 export XCURSOR_THEME=catppuccin-mocha-dark-cursors
 export XCURSOR_SIZE=42
 export GTK_THEME=catppuccin-mocha-blue-standard+default
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 # Colors
 eval "$(dircolors)"

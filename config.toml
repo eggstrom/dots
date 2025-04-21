@@ -1,6 +1,12 @@
+[sources.qt-theme]
+url = "https://raw.githubusercontent.com/catppuccin/qt5ct/refs/heads/main/themes/catppuccin-mocha-blue.conf"
+hash = "F83AEDADA98BBB34C3E3F66DBB65AEF416E9385B4FD3B612F2826D478A328C33"
+
 [modules.home]
 user = "eggstrom"
-symlinks."~" = "home"
+[modules.home.symlinks]
+"~" = "home"
+"~/.config/qt6ct/colors/catppuccin-mocha-blue.conf" = "qt-theme"
 
 [modules.root]
 user = "root"
