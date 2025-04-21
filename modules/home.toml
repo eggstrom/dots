@@ -1,0 +1,6 @@
+user = "eggstrom"
+
+[symlinks]
+"~" = "home"
+"~/.config/kitty/theme.conf" = "kitty-theme"
+"~/.config/qt6ct/colors/catppuccin-mocha-blue.conf" = "qt-theme"
