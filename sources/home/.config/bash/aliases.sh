@@ -16,7 +16,6 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 # Miscellaneous
-alias aria2c='aria2c -d $HOME/Downloads'
 alias e='$EDITOR'
 alias g='lazygit'
 alias git='GPG_TTY=$(tty) git'
