@@ -129,7 +129,7 @@ bindsym --whole-window $super+Ctrl+button5 move container to workspace prev
 # Start compositor
 exec_always --no-startup-id picom
 # Start bar
-exec_always --no-startup-id eww open bar
+exec_always --no-startup-id pgrep polybar || polybar -r
 # Reload background
 exec_always --no-startup-id setbg
 
