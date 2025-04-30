@@ -5,7 +5,7 @@ set_from_resource $gap_size    GAP_SIZE    0
 focus_follows_mouse     no
 default_border          pixel $border_size
 default_floating_border pixel $border_size
-hide_edge_borders       smart
+hide_edge_borders       both
 
 # Colors
 set $black #1E1E2E
