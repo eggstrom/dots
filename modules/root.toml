@@ -1,4 +1,4 @@
-user = "root"
+owner = "root:"
 
 [files]
 "/" = "root"
