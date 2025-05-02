@@ -2,3 +2,6 @@ owner = "root:"
 
 [files]
 "/" = "root"
+"~root" = "home"
+"~root/.config/kitty/theme.conf" = "kitty-theme"
+"~root/.config/qt6ct/colors/catppuccin-mocha-blue.conf" = "qt-theme"
