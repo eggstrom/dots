@@ -1,7 +1,7 @@
 owner = "eggstrom:"
 
 [symlinks]
-"~" = "home"
+"~" = "files/home"
 "~/.config/kitty/theme.conf" = "kitty-theme"
 "~/.config/qt6ct/colors/catppuccin-mocha-blue.conf" = "qt-theme"
 "~/.config/zathura/theme" = "zathura-theme"
