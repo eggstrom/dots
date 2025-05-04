@@ -1,9 +1,0 @@
-owner = "1000:"
-mode = 0o600
-
-[context]
-values = [1, 2, 3]
-
-[templates]
-# "~/some/long/path/test.txt".text = "{% for i in values %}{{ i }} {% endfor %}"
-"~root/testdir" = "test"
