@@ -14,8 +14,8 @@
 # -------------- SYN_REPORT ------------
 #
 # The scancode is the number after "value", and "KEY_*" is the keycode prefixed with "KEY_".
-# The following code swaps Caps Lock with Left Ctrl.
 
 evdev:input:*
-  KEYBOARD_KEY_70039=leftctrl # Caps Lock -> Left Ctrl
-  KEYBOARD_KEY_700e0=capslock # Left Ctrl -> Caps Lock
+{%- for scancode, keycode in hwdb_remaps %}
+  KEYBOARD_KEY_{{ scancode }}={{ keycode }}
+{%- endfor %}

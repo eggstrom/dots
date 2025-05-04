@@ -1,8 +1,15 @@
 owner = "root:"
 
+[context.hwdb_remaps]
+70039 = "leftctrl" # Caps Lock -> Left Ctrl
+700e0 = "capslock" # Left Ctrl -> Caps Lock
+
 [files]
-"/" = "root"
+"/" = "root/files"
 "~root" = "home"
 "~root/.config/kitty/theme.conf" = "kitty-theme"
 "~root/.config/qt6ct/colors/catppuccin-mocha-blue.conf" = "qt-theme"
 "~root/.config/zathura/theme" = "zathura-theme"
+
+[templates]
+"/" = "root/templates"
