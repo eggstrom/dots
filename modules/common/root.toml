@@ -1,9 +1,5 @@
 owner = "root:"
 
-[context.hwdb_remaps]
-70039 = "leftctrl" # Caps Lock -> Left Ctrl
-700e0 = "capslock" # Left Ctrl -> Caps Lock
-
 [files]
 "/" = "root/files"
 "~root" = "home"
