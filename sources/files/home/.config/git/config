@@ -6,9 +6,9 @@
   username = eggstrom
   # Use git-credential-manager for getting credentials
   helper = manager
-  guiPrompt = false
   # Use pass for storing credentials
   credentialStore = gpg
+  guiPrompt = false
 
 [init]
   defaultBranch = main
