@@ -30,6 +30,7 @@ pacman = [
   "linux-firmware",
   "maim",
   "man-db",
+  "marksman",
   "mpc",
   "mpd",
   "mpv",
