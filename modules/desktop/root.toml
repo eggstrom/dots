@@ -1,7 +1,7 @@
 imports = "common/root"
 
 [context]
-root_partition = "/dev/sda2"
+root_partition = "/dev/nvme0n1p2"
 
 [context.hwdb_remaps]
 70039 = "leftctrl" # Caps Lock -> Left Ctrl
