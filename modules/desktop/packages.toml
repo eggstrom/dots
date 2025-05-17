@@ -1,1 +1,1 @@
-imports = "common/packages"
+imports = ["common/packages"]

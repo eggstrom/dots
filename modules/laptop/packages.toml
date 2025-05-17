@@ -1,4 +1,4 @@
-imports = "common/packages"
+imports = ["common/packages"]
 
 [packages]
 pacman = ["sof-firmware"]

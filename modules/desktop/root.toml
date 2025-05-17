@@ -1,4 +1,4 @@
-imports = "common/root"
+imports = ["common/root"]
 
 [context]
 root_partition = "/dev/nvme0n1p2"
