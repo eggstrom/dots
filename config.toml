@@ -1,4 +1,4 @@
 [aliases]
-e = ["run", "helix"]
+e = ["run", "bash", "-c", "$EDITOR"]
 g = ["run", "git"]
 j = ["run", "just"]
