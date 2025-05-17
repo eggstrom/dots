@@ -1,0 +1,4 @@
+[aliases]
+e = ["run", "helix"]
+g = ["run", "git"]
+j = ["run", "just"]

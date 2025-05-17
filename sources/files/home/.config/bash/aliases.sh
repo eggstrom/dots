@@ -16,8 +16,11 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 # Miscellaneous
+alias d='decster'
 alias e='$EDITOR'
-alias g='lazygit'
+alias g='git'
 alias git='GPG_TTY=$(tty) git'
+alias j='just'
 alias l='eza -al --icons --git --group-directories-first'
+alias lg='lazygit'
 alias t='btop'
