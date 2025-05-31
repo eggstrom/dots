@@ -89,7 +89,9 @@ paru = [
   "catppuccin-cursors-mocha",
   "catppuccin-gtk-theme-mocha",
   "git-credential-manager-bin",
+  "gzdoom-bin",
   "paru-bin",
   "paru-bin-debug",
   "vesktop-bin",
+  "zmusic-bin",
 ]
