@@ -73,6 +73,7 @@ pacman = [
   "udiskie",
   "unzip",
   "uv",
+  "wine-mono",
   "xclip",
   "xdotool",
   "xorg-server",
