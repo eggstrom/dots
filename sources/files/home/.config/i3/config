@@ -21,12 +21,12 @@ client.background       $black
 
 set $super Mod4
 
-# Super + Backspace: Exit
-# Super + Escape:    Lock
-# Super + F5:        Restart
-bindsym $super+BackSpace exit
-bindsym $super+Escape    exec --no-startup-id ~/.config/i3/lock.sh
-bindsym $super+F5        restart
+# Super + Delete: Exit
+# Super + Escape: Lock
+# Super + F5:     Restart
+bindsym $super+Delete exit
+bindsym $super+Escape exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $super+F5     restart
 
 # Super + Q: Close window
 # Super + W: Toggle scratchpad terminal
