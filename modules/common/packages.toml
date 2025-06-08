@@ -7,6 +7,8 @@ pacman = [
   "bash-completion",
   "bat",
   "btop",
+  "cargo-expand",
+  "cargo-machete",
   "discord",
   "dust",
   "eza",
