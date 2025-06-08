@@ -1,4 +1,4 @@
-manager.prepend_keymap = [
+mgr.prepend_keymap = [
   { desc = "Goto ~/Downloads", on = [ "g", "D", ], run = "cd ~/Downloads" },
   { desc = "Goto ~/Documents", on = [ "g", "d", ], run = "cd ~/Documents" },
   { desc = "Goto ~/Pictures", on = [ "g", "p", ], run = "cd ~/Pictures" },
