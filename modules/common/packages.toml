@@ -9,6 +9,7 @@ pacman = [
   "btop",
   "cargo-expand",
   "cargo-machete",
+  "cargo-outdated",
   "discord",
   "dust",
   "eza",
