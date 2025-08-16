@@ -98,6 +98,7 @@ paru = [
   "catppuccin-cursors-mocha",
   "catppuccin-gtk-theme-mocha",
   "git-credential-manager-bin",
+  "glsl_analyzer",
   "gzdoom-bin",
   "paru-bin",
   "paru-bin-debug",
