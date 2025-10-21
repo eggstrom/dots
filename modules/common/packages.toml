@@ -6,6 +6,7 @@ pacman = [
   "base-devel",
   "bash-completion",
   "bat",
+  "bore",
   "btop",
   "discord",
   "dust",
