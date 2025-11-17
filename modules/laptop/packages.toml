@@ -1,4 +1,0 @@
-imports = ["common/packages"]
-
-[packages]
-pacman = ["sof-firmware"]

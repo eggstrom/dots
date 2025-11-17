@@ -1,4 +1,0 @@
-[aliases]
-e = ["run", "bash", "-c", "$EDITOR"]
-g = ["run", "git"]
-j = ["run", "just"]

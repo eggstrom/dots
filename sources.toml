@@ -1,9 +1,0 @@
-[kitty-theme]
-url = "https://raw.githubusercontent.com/catppuccin/kitty/refs/heads/main/themes/mocha.conf"
-hash = "92FCDD01C33E64243FBBA4BB6AF4B88877769432B0BFFE862CF88DE80E909524"
-[qt-theme]
-url = "https://raw.githubusercontent.com/catppuccin/qt5ct/refs/heads/main/themes/catppuccin-mocha-blue.conf"
-hash = "F83AEDADA98BBB34C3E3F66DBB65AEF416E9385B4FD3B612F2826D478A328C33"
-[zathura-theme]
-url = "https://raw.githubusercontent.com/catppuccin/zathura/refs/heads/main/src/catppuccin-mocha"
-hash = "3CEC4CA66EFB3DDD2ACB0CBF8D8CD905717FB80287490D21C2D5C3E3097C4B64"
