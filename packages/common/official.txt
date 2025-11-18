@@ -60,7 +60,6 @@ reflector
 renderdoc
 ripgrep
 rustup
-sccache
 sdl_image
 steam
 stow

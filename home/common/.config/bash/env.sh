@@ -44,9 +44,6 @@ export FZF_DEFAULT_OPTS='
   --color spinner:blue,info:blue
 '
 
-# Cache Rust builds globally
-export RUSTC_WRAPPER=sccache
-
 # Add paths to $PATH if they're not already present
 prepend_path() { [[ ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+:$PATH}"; }
 

@@ -16,7 +16,7 @@ type 4 (EV_MSC), code 4 (MSC_SCAN), value 700e0
 type 1 (EV_KEY), code 29 (KEY_LEFTCTRL), value 0
 -------------- SYN_REPORT ------------
 ```
-The scancode is the number after "value", and "KEY_*" is the keycode prefixed with "KEY_". With the above examples, swapping Caps Lock and Left Ctrl can be done by putting the following in `/etc/udev/hwdb.d/*.hwdb`:
+The scancode is the number after `value`, and `KEY_*` is the keycode prefixed with `KEY_`. With the above examples, swapping Caps Lock and Left Ctrl can be done by putting the following in `/etc/udev/hwdb.d/*.hwdb`:
 ```
 evdev:input:*
   KEYBOARD_KEY_70039=leftctrl
