@@ -6,7 +6,7 @@
 export EDITOR=helix
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
-export TERMINAL=kitty
+export TERMINAL=foot
 
 # Theming
 export XCURSOR_THEME=catppuccin-mocha-dark-cursors

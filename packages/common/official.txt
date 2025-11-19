@@ -15,6 +15,7 @@ feh
 firefox
 foot
 fuse2
+fuzzel
 fzf
 gdb
 gimp

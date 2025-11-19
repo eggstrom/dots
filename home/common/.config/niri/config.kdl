@@ -30,12 +30,11 @@ layout {
     focus-ring { off; }
     insert-hint { color "#89B4FA44"; }
     background-color "#1E1E2E"
-
-    shadow { on; }
 }
 
 gestures { hot-corners { off; }; }
 overview { backdrop-color "#1E1E2E"; }
+animations { off; }
 
 cursor {
     xcursor-theme "catppuccin-mocha-dark-cursors"
@@ -50,6 +49,7 @@ spawn-sh-at-startup "swaybg -i ~/Pictures/background.png"
 
 binds {
     Mod+Q repeat=false { close-window; }
+    Mod+W repeat=false { spawn-sh "pkill fuzzel || fuzzel"; }
     Mod+E repeat=false { spawn "foot"; }
     Mod+S repeat=false { toggle-overview; }
 
