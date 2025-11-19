@@ -27,7 +27,7 @@ shopt -s histappend
 bind -x '"\er": app-launcher'
 
 # Change directory to or run commands in ~/.dots
-d() {
+dots() {
   if [[ "$#" = 0 ]]; then
     cd ~/.dots
   else

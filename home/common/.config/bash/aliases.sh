@@ -16,6 +16,7 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 
 # Miscellaneous
+alias d='dots'
 alias e='$EDITOR'
 alias g='git'
 alias git='GPG_TTY=$(tty) git'

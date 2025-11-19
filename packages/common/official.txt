@@ -13,12 +13,14 @@ eza
 fd
 feh
 firefox
+foot
 fuse2
 fzf
 gdb
 gimp
 git
 helix
+hyprpicker
 i3-wm
 i3lock
 imagemagick
@@ -38,6 +40,7 @@ mpc
 mpd
 mpv
 networkmanager
+niri
 nodejs
 noto-fonts
 noto-fonts-cjk
@@ -64,6 +67,8 @@ sdl_image
 steam
 stow
 strace
+swaybg
+swaylock
 taplo-cli
 tealdeer
 tesseract-data-afr
@@ -78,12 +83,14 @@ unzip
 uv
 valgrind
 wine-mono
+wl-clipboard
 woff2-font-awesome
 xclip
 xdotool
 xorg-server
 xorg-xinit
 xorg-xwininfo
+xwayland-satellite
 yazi
 yt-dlp
 zathura
