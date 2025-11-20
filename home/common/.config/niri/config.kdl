@@ -29,11 +29,14 @@ layout {
     }
     focus-ring { off; }
     insert-hint { color "#89B4FA44"; }
-    background-color "#1E1E2E"
+    background-color "transparent"
 }
 
 gestures { hot-corners { off; }; }
-overview { backdrop-color "#1E1E2E"; }
+overview {
+    backdrop-color "#1E1E2E";
+    workspace-shadow { off; }
+}
 animations { off; }
 
 cursor {
@@ -45,7 +48,12 @@ hotkey-overlay { skip-at-startup; }
 prefer-no-csd
 screenshot-path null
 
-spawn-sh-at-startup "swaybg -i ~/Pictures/background.png"
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+spawn-at-startup "setbg"
 
 binds {
     Mod+Q repeat=false { close-window; }
