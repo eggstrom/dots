@@ -10,5 +10,5 @@ mgr.prepend_keymap = [
   { desc = "Goto ~/.local", on = [ "g", "l", ], run = "cd ~/.local" },
   { desc = "Goto /", on = [ "g", "r", ], run = "cd /" },
   { desc = "Goto /run/media", on = [ "g", "M", ], run = "cd /run/media" },
-  { desc = "Set background", on = [ "b", ], run = "shell --confirm 'setbg \"$0\" || :'" },
+  { desc = "Set background", on = [ "b", ], run = "shell --orphan 'setbg \"$0\" || :'" },
 ]
