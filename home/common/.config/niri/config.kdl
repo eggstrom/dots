@@ -55,6 +55,11 @@ layer-rule {
 
 spawn-at-startup "setbg"
 
+environment {
+    // Fixes glyph rendering in foot and fuzzel
+    LANG "en_US.UTF-8"
+}
+
 binds {
     Mod+Q repeat=false { close-window; }
     Mod+W repeat=false { spawn-sh "pkill fuzzel || fuzzel"; }
