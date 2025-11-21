@@ -20,6 +20,10 @@ layout {
         proportion 0.5
         proportion 1.0
     }
+    preset-window-heights {
+        proportion 0.5
+        proportion 1.0
+    }
 
     border {
         width 4
@@ -62,11 +66,16 @@ environment {
 
 binds {
     Mod+Q repeat=false { close-window; }
-    Mod+W repeat=false { spawn-sh "pkill fuzzel || fuzzel"; }
     Mod+E repeat=false { spawn "foot"; }
     Mod+S repeat=false { toggle-overview; }
 
+    Mod+W            repeat=false { spawn-sh "pkill fuzzel || fuzzel"; }
+    Mod+Shift+W      repeat=false { spawn-sh "pkill fuzzel || fuzzel --show-actions"; }
+    Mod+Ctrl+W       repeat=false { spawn-sh "pkill fuzzel || fuzzel --list-executables-in-path"; }
+    Mod+Shift+Ctrl+W repeat=false { spawn-sh "pkill fuzzel || fuzzel --show-actions --list-executables-in-path"; }
+
     Mod+R       { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
     Mod+Minus   { set-column-width "-1%"; }
     Mod+Equal   { set-column-width "+1%"; }
     Mod+C       { center-column; }
