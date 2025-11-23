@@ -22,3 +22,7 @@ evdev:input:*
   KEYBOARD_KEY_70039=leftctrl
   KEYBOARD_KEY_700e0=capslock
 ```
+
+# Notes
+
+- Some compose key combinations don't work in Electron apps when running natively in Wayland. Set `XDG_SESSION_TYPE` to anything but `wayland` to use Xwayland.
