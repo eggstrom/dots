@@ -49,6 +49,6 @@ prepend_path() { [[ ":$PATH:" != *":$1:"* ]] && PATH="$1${PATH:+:$PATH}"; }
 
 prepend_path "$CARGO_HOME/bin"
 prepend_path "$GOPATH/bin"
-prepend_path ~/.local/bin
+prepend_path ~/.dots/bin
 
 unset -f prepend_path

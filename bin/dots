@@ -106,7 +106,7 @@ def confirm-removal [dst: string]: nothing -> bool {
   let input = input $"remove (ansi c)($dst)(ansi reset)? [y/N] "
   if ($input | str trim | str upcase) != Y { false } else {
     rm $dst
-    print $"removed ($dst | path type) (ansi c)($dst)(ansi reset)"
+    print $"removed ($dst | path type)(ansi c)($dst)(ansi reset)"
     true
   }
 }
