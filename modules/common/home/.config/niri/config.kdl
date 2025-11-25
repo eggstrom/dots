@@ -100,7 +100,8 @@ binds {
     Mod+Backspace { power-off-monitors; }
     Mod+Delete    { quit skip-confirmation=true; }
 
-    Mod+Space { focus-workspace-previous; }
+    Mod+Space     { focus-window-previous; }
+    Mod+Alt+Space { focus-workspace-previous; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-or-workspace-down; }

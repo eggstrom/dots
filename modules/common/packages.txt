@@ -35,6 +35,7 @@ linux
 linux-firmware
 maim
 man-db
+man-pages
 mangohud
 marksman
 mpc
@@ -99,3 +100,14 @@ zathura-pdf-mupdf
 zig
 zip
 zls
+
+# AUR
+aseprite
+catppuccin-cursors-mocha
+catppuccin-gtk-theme-mocha
+git-credential-manager-bin
+glsl_analyzer-bin
+gzdoom-bin
+vesktop-bin
+yay-bin
+zmusic-bin

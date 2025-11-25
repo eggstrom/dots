@@ -1,9 +1,0 @@
-aseprite
-catppuccin-cursors-mocha
-catppuccin-gtk-theme-mocha
-git-credential-manager-bin
-glsl_analyzer-bin
-gzdoom-bin
-vesktop-bin
-yay-bin
-zmusic-bin

@@ -31,7 +31,7 @@ $env.PROMPT_COMMAND = {
       $'($secs)'
     })(ansi reset)'
   }
-  
+
   if $env.LAST_EXIT_CODE != 0 {
     $prompt += $' (ansi r) ($env.LAST_EXIT_CODE)(ansi reset)'
   }
@@ -39,11 +39,18 @@ $env.PROMPT_COMMAND = {
 }
 $env.PROMPT_COMMAND_RIGHT = ''
 
+alias mkdir-builtin = mkdir
+alias cp-builtin = cp
+alias mv-builtin = mv
+alias rm-builtin = rm
+
 alias mkdir = mkdir -v
 alias cp = cp -virp
 alias mv = mv -vi
 alias rm = rm -vir
 
+alias d = cd ~/.dots
 alias e = ^$env.EDITOR
-alias g = lazygit
+alias f = yazi
+alias g = git
 alias l = ls -a

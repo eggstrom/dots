@@ -11,11 +11,6 @@ shopt -s autocd  # Change directory without cd
 shopt -s dotglob # Show hidden files during completion
 shopt -s extglob # Enable additional globbing syntax
 
-# Disable autocd output by redirecting xtrace
-_hide_xtrace() { exec {BASH_XTRACEFD}>/dev/null; }
-_show_xtrace() { exec {BASH_XTRACEFD}>/dev/stdout; }
-[[ $- != *x* ]] && _hide_xtrace
-
 # History
 # ignoreboth: Don't save commands that start with a space or duplicates
 # erasedups: Erase previous duplicates
@@ -25,15 +20,6 @@ shopt -s histappend
 
 # Open app launcher with Alt + R
 bind -x '"\er": app-launcher'
-
-# Change directory to or run commands in ~/.dots
-dots() {
-  if [[ "$#" = 0 ]]; then
-    cd ~/.dots
-  else
-    (cd ~/.dots; eval "$@")
-  fi
-}
 
 # Change directory with Yazi
 f() {

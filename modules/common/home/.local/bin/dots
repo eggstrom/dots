@@ -1,0 +1,238 @@
+#!/usr/bin/env nu
+
+const self = path self
+
+# A utility for changing system state based on the contents of ~/.dots
+def --env main []: nothing -> nothing {
+  help main
+}
+
+# List modules
+def "main list" []: nothing -> list<string> {
+  ls -as (modules-dir) | where type == dir | get name
+}
+
+# Create symlinks in home directory
+def "main link" [module: string@"main list"]: nothing -> nothing {
+  link (module-dir $module)
+}
+
+# Remove symlinks from home directory
+def "main unlink" [module: string@"main list"]: nothing -> nothing {
+  unlink (module-dir $module)
+}
+
+# Copy files to root directory
+def "main copy" [module: string@"main list"]: nothing -> nothing {
+  if (is-admin) {
+    copy (module-dir $module)
+  } else {
+    sudo nu -c $"HOME=($env.HOME) ($self) copy ($module)"
+  }
+}
+
+# Remove files from root directory
+def "main remove" [module: string@"main list"]: nothing -> nothing {
+  if (is-admin) {
+    remove (module-dir $module)
+  } else {
+    sudo nu -c $"HOME=($env.HOME) ($self) remove ($module)"
+  }
+}
+
+# Install required packages
+def "main install" [module: string@"main list"]: nothing -> nothing {
+  sync (module-dir $module) true false
+}
+
+# Uninstall unrequired packages
+def "main uninstall" [module: string@"main list"]: nothing -> nothing {
+  sync (module-dir $module) false true
+}
+
+# Install required packages and uninstall unrequired packages
+def "main sync" [module: string@"main list"]: nothing -> nothing {
+  sync (module-dir $module) true true
+}
+
+def dots-dir []: nothing -> string {
+  $env.HOME | path join .dots
+}
+
+def modules-dir []: nothing -> string {
+  dots-dir | path join modules
+}
+
+def module-dir [module: string]: nothing -> string {
+  if not ($module in (main list)) {
+    error make { msg: $"couldn't find module (ansi g)($module)(ansi reset)" }
+  }
+  modules-dir | path join $module
+}
+
+def files [
+  module_dir: string
+  src_prefix: string
+  dst_prefix: string
+  follow_symlinks: bool
+]: nothing -> list<record<src: string dst: string>> {
+  glob -lF ($module_dir | path join $"($src_prefix)*")
+  | each { |dir|
+    let dir = $dir | path expand
+    let pattern = $dir | path join **
+
+    if $follow_symlinks { glob -l $pattern } else { glob $pattern }
+    | each { |src_path| {
+        src: $src_path
+        dst: ($dst_prefix | path join ($src_path | str replace -r $"^($dir)/?" ""))
+    }}
+  }
+  | flatten
+}
+
+def packages [path: string]: nothing -> list<string> {
+  glob -lD ($path | path join packages*)
+  | each { |file|
+    open $file
+    | lines -s
+    | str replace -r "#.*" ""
+    | str trim
+    | where $it != ""
+  }
+  | flatten
+}
+
+def confirm-removal [dst: string]: nothing -> bool {
+  let input = input $"remove (ansi c)($dst)(ansi reset)? [y/N] "
+  if ($input | str trim | str upcase) != Y { false } else {
+    rm $dst
+    print $"removed ($dst | path type) (ansi c)($dst)(ansi reset)"
+    true
+  }
+}
+
+def link [module_dir: string]: nothing -> nothing {
+  files $module_dir home $env.HOME false
+  | where ($it.dst | path dirname | path type) == dir
+  | each { |paths|
+    let src_type = $paths.src | path type
+    let dst_type = $paths.dst | path type
+
+    match $src_type {
+      "dir" => {
+        if (match $dst_type {
+          null => true
+          "dir" => false
+          _ => { confirm-removal $paths.dst }
+        }) {
+          mkdir $paths.dst
+          print $"created dir (ansi c)($paths.dst)(ansi reset)"
+        }
+      }
+      _ => {
+        if (match $dst_type {
+          null => true
+          "symlink" if $paths.src == ($paths.dst | path expand) => false
+          _ => { confirm-removal $paths.dst }
+        }) {
+          ln -s $paths.src $paths.dst
+          print $"created symlink (ansi c)($paths.dst)(ansi reset) -> (ansi c)($paths.src)(ansi reset)"
+        }
+      }
+    }
+  }
+  | ignore
+}
+
+def unlink [module_dir: string]: nothing -> nothing {
+  files $module_dir home $env.HOME false
+  | reverse
+  | each { |paths|
+    let src_type = $paths.src | path type
+    let dst_type = $paths.dst | path type
+
+    if (
+      ($src_type == dir and $dst_type == dir and (ls $paths.dst | is-empty)) or
+      ($dst_type == symlink and $paths.src == ($paths.dst | path expand))
+    ) {
+      rm $paths.dst
+      print $"removed ($dst_type) (ansi c)($paths.dst)(ansi reset)"
+    }
+  }
+  | ignore
+}
+
+def copy [module_dir: string]: nothing -> nothing {
+  files $module_dir root / true
+  | where ($it.dst | path dirname | path type) == dir
+  | each { |paths|
+    let src_type = $paths.src | path expand | path type
+    let dst_type = $paths.dst | path type
+
+    match $src_type {
+      "dir" => {
+        if (match $dst_type {
+          null => true
+          "dir" => false
+          _ => { confirm-removal $paths.dst }
+        }) {
+          mkdir $paths.dst
+          print $"created dir (ansi c)($paths.dst)(ansi reset)"
+        }
+      }
+      _ => {
+        if (match $dst_type {
+          null => true
+          "file" if $src_type == file and (open -r $paths.src) == (open -r $paths.dst) => false
+          _ => { confirm-removal $paths.dst }
+        }) {
+          cp $paths.src $paths.dst
+          print $"copied file (ansi c)($paths.src)(ansi reset) to (ansi c)($paths.dst)(ansi reset)"
+        }
+      }
+    }
+  }
+  | ignore
+}
+
+def remove [module_dir: string]: nothing -> nothing {
+  files $module_dir root / true
+  | reverse
+  | each { |paths|
+    let src_type = $paths.src | path expand | path type
+    let dst_type = $paths.dst | path type
+
+    if $src_type == $dst_type and (match $dst_type {
+      "dir" => { ls $paths.dst | is-empty }
+      "file" => { (open -r $paths.src) == (open -r $paths.dst) }
+      _ => false
+    }) {
+      rm $paths.dst
+      print $"removed ($dst_type) (ansi c)($paths.dst)(ansi reset)"
+    }
+  }
+  | ignore
+}
+
+def sync [
+  module_dir: string
+  install: bool
+  uninstall: bool
+]: nothing -> nothing {
+  let required = packages $module_dir
+  let installed = yay -Qeq | lines
+
+  if $install {
+    let installable = $required | where not ($it in $installed)
+    if ($installable | is-not-empty) {
+      $installable | str join "\n" | do -i { yay -S - }
+    }
+  }
+
+  if $uninstall {
+    let uninstallable = $installed | where not ($it in $required)
+    if ($uninstallable | is-not-empty) {
+      $uninstallable | str join "\n" | do -i { yay -Rsn - }
+    }
+  }
+}
