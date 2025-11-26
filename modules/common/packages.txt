@@ -88,6 +88,7 @@ wine-mono
 wl-clipboard
 woff2-font-awesome
 xclip
+xdg-desktop-portal-wlr
 xdotool
 xorg-server
 xorg-xinit
