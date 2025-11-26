@@ -1,9 +1,17 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env nu
 
-if [[ "$#" -gt 0 ]]; then
-  magick "$1" -scale "$(xwininfo -root | grep -oP '(?<=-geometry )\d+x\d+')" ~/Pictures/background.png
-fi
-if [[ -e ~/Pictures/background.png ]]; then
-  pkill swaybg || :; swaybg -i ~/Pictures/background.png
-fi
+def "main" [image?: string]: nothing -> nothing {
+  let file = $"($env.HOME)/Pictures/background.png"
+
+  if (if $image != null {
+    let size = niri msg outputs
+    | parse -r '^    (\d+x\d+)@\d+\.\d+ \(current\)'
+    | get capture0.0
+
+    magick $image -scale ($size) $file
+    true
+  } else { $file | path exists }) {
+    do -i { pkill -x swaybg }
+    swaybg -i ~/Pictures/background.png
+  }
+}

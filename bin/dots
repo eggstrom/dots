@@ -2,8 +2,8 @@
 
 const self = path self
 
-# A utility for changing system state based on the contents of ~/.dots
-def --env main []: nothing -> nothing {
+# A script for changing system state based on the contents of ~/.dots
+def main []: nothing -> nothing {
   help main
 }
 
