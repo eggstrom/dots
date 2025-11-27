@@ -38,7 +38,7 @@ layout {
 
 gestures { hot-corners { off; }; }
 overview {
-    backdrop-color "#1E1E2E";
+    backdrop-color "#11111B";
     workspace-shadow { off; }
 }
 animations { off; }
