@@ -13,7 +13,7 @@ $env.PROMPT_COMMAND = {
   let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
     null => $env.PWD
     '' => '~'
-    $path => ([~ $path] | path join)
+    $path => ('~' | path join $path)
   }
   mut prompt = $'(ansi c)($dir)(ansi reset)'
 
