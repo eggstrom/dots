@@ -12,8 +12,8 @@
     "wireplumber#sink",
     "wireplumber#source",
     "backlight",
-    "network",
     "battery",
+    "network",
     "clock",
   ],
 
@@ -99,9 +99,9 @@
   },
 
   "mpd": {
-    "on-click": "mpc toggle >/dev/null",
-    "on-scroll-down": "mpc volume -1 >/dev/null",
-    "on-scroll-up": "mpc volume +1 >/dev/null",
+    "on-click": "mpc -q toggle",
+    "on-scroll-down": "mpc -q volume -1",
+    "on-scroll-up": "mpc -q volume +1",
 
     "format": "<span font-family='Font Awesome 7 Free Solid'>{stateIcon}</span> {volume}%",
     "format-stopped": "<span font-family='Font Awesome 7 Free Solid'></span>",
@@ -134,13 +134,14 @@
   },
 
   "backlight": {
-    "on-click": "brightnessctl set 100% >/dev/null",
-    "on-click-right": "brightnessctl set 1% >/dev/null",
-    "on-click-middle": "brightnessctl set 50% >/dev/null",
-    "on-scroll-down": "brightnessctl set 1%- >/dev/null",
-    "on-scroll-up": "brightnessctl set +1% >/dev/null",
+    "on-click": "brightnessctl -q set 100%",
+    "on-click-right": "brightnessctl -q set 1",
+    "on-click-middle": "brightnessctl -q set 50%",
+    "on-scroll-down": "brightnessctl -q set --min-value=1 1%-",
+    "on-scroll-up": "brightnessctl -q set +1%",
 
     "format": "<span font-family='Font Awesome 7 Free Solid'></span> {percent}%",
+    "tooltip": false,
   },
 
   "battery": {
@@ -148,8 +149,11 @@
       "warning": 30,
       "critical": 15,
     },
+    "on-click": "$TERMINAL -e btop",
 
     "format": "<span font-family='Font Awesome 7 Free Solid'></span> {capacity}% {time}",
+    "format-time": "{H}:{M:02}",
+    "tooltip": false,
   },
 
   "network": {
@@ -157,7 +161,7 @@
 
     "format": "",
     "tooltip-format": "{ifname}",
-    "tooltip-format-wifi": "{ifname} ({essid})",
+    "tooltip-format-wifi": "{ifname} {essid}",
     "tooltip-format-disconnected": "",
   },
 
