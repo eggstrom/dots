@@ -1,0 +1,148 @@
+@define-color black #1E1E2E;
+@define-color gray #313244;
+@define-color white #CDD6F4;
+@define-color blue #89B4FA;
+@define-color cyan #89DCEB;
+@define-color green #A6E3A1;
+@define-color yellow #F9E2AF;
+@define-color orange #FAB387;
+@define-color red #F38BA8;
+
+* {
+  all: unset;
+
+  min-height: 2em;
+  font-family: JetBrains Mono NF;
+  font-size: 25px;
+}
+
+window#waybar,
+tooltip {
+  background-color: @black;
+  color: @white;
+}
+
+#custom-menu,
+#custom-lock,
+#custom-suspend,
+#custom-hibernate,
+#custom-reboot,
+#custom-poweroff
+#network.disabled,
+#network.disconnected,
+#network.linked,
+#network.ethernet,
+#network.wiri {
+  font-family: "Font Awesome 7 Free Solid";
+}
+
+#custom-menu,
+#custom-lock,
+#custom-suspend,
+#custom-hibernate,
+#custom-reboot,
+#custom-poweroff,
+#workspaces button,
+#tray,
+#mpd:not(.disconnected),
+#wireplumber,
+#backlight,
+#battery,
+#network,
+#clock {
+  padding: 0 1em;
+}
+
+window#waybar,
+#custom-menu,
+#custom-lock,
+#custom-suspend,
+#custom-hibernate,
+#custom-reboot,
+#custom-poweroff,
+#workspaces button,
+#mpd,
+#wireplumber,
+#backlight,
+#battery,
+#network,
+#clock {
+  border-bottom: 4px solid @gray;
+}
+
+#custom-menu:hover,
+#custom-lock:hover,
+#custom-suspend:hover,
+#custom-hibernate:hover,
+#custom-reboot:hover,
+#custom-poweroff:hover,
+#workspaces button:hover,
+#workspaces button.focused,
+#mpd:hover,
+#wireplumber:hover,
+#backlight:hover,
+#battery:hover,
+#network:hover,
+#clock:hover {
+  background-color: @gray;
+}
+
+#workspaces button.focused,
+#workspaces button.urgent {
+  font-weight: 900;
+}
+
+#custom-menu,
+#workspaces button.focused,
+#battery,
+#clock {
+  color: @blue;
+  border-color: @blue;
+}
+
+#custom-lock {
+  color: @cyan;
+  border-color: @cyan;
+}
+
+#custom-suspend,
+#mpd.playing,
+#wireplumber,
+#battery.charging,
+#battery.plugged,
+#network {
+  color: @green;
+  border-color: @green;
+}
+
+#custom-hibernate,
+#backlight,
+#battery.warning:not(.charging) {
+  color: @yellow;
+  border-color: @yellow;
+}
+
+#custom-reboot {
+  color: @orange;
+  border-color: @orange;
+}
+
+#custom-poweroff,
+#workspaces button.urgent,
+#mpd.stopped,
+#mpd.paused,
+#wireplumber.muted,
+#battery.critical:not(.charging),
+#network.disabled,
+#network.disconnected {
+  color: @red;
+  border-color: @red;
+}
+
+tooltip {
+  border: 4px solid @gray;
+}
+
+tooltip label {
+  padding: 0 0.5em;
+}

@@ -9,7 +9,7 @@ font-size=30
 indicator-radius=100
 
 image=~/Pictures/background.png
-color=1E1E2E
+color=11111B
 
 text-color=F38BA8
 text-clear-color=1E1E2E
@@ -24,8 +24,8 @@ inside-clear-color=1E1E2E
 inside-ver-color=1E1E2E
 inside-wrong-color=1E1E2E
 
-ring-color=45475A
-ring-clear-color=A6E3A1
+ring-color=313244
+ring-clear-color=313244
 ring-ver-color=89B4FA
 ring-wrong-color=F38BA8
 

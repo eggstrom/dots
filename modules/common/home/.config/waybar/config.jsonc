@@ -1,0 +1,186 @@
+{
+  "layer": "top",
+
+  "modules-left": [
+    "group/session",
+    "niri/workspaces",
+    "tray",
+  ],
+
+  "modules-right": [
+    "mpd",
+    "wireplumber#sink",
+    "wireplumber#source",
+    "backlight",
+    "network",
+    "battery",
+    "clock",
+  ],
+
+  "group/session": {
+    "orientation": "inherit",
+    "drawer": { "transition-duration": 0 },
+    "modules": [
+      "custom/menu",
+      "custom/lock",
+      "custom/suspend",
+      "custom/hibernate",
+      "custom/reboot",
+      "custom/poweroff",
+    ],
+  },
+
+  "custom/menu": {
+    "on-click": "fuzzel",
+    "on-click-right": "foot",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/lock": {
+    "on-click": "swaylock",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/suspend": {
+    "on-click": "systemctl suspend",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/hibernate": {
+    "on-click": "systemctl hibernate",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/reboot": {
+    "on-click": "systemctl reboot",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/poweroff": {
+    "on-click": "systemctl poweroff",
+    "on-scroll-down": ":",
+    "on-scroll-up": ":",
+
+    "format": "",
+    "tooltip": false,
+  },
+
+  "niri/workspaces": {
+    "on-scroll-down": "niri msg action focus-workspace-down",
+    "on-scroll-up": "niri msg action focus-workspace-up",
+
+    "format": "{index}",
+    "cursor": true,
+  },
+
+  "tray": {
+    "icon-size": 30,
+    "spacing": 5,
+  },
+
+  "mpd": {
+    "on-click": "mpc toggle >/dev/null",
+    "on-scroll-down": "mpc volume -1 >/dev/null",
+    "on-scroll-up": "mpc volume +1 >/dev/null",
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'>{stateIcon}</span> {volume}%",
+    "format-stopped": "<span font-family='Font Awesome 7 Free Solid'></span>",
+    "format-disconnected": "",
+    "tooltip-format": "{filename}",
+    "tooltip-format-disconnected": "",
+    "state-icons": {
+      "paused": "",
+      "playing": "",
+    },
+  },
+
+  "wireplumber#sink": {
+    "max-volume": 150,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "$TERMINAL -e pulsemixer",
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'></span> {volume}%",
+    "tooltip": false,
+  },
+
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "max-volume": 150,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "$TERMINAL -e pulsemixer",
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'></span> {volume}%",
+    "tooltip": false,
+  },
+
+  "backlight": {
+    "on-click": "brightnessctl set 100% >/dev/null",
+    "on-click-right": "brightnessctl set 1% >/dev/null",
+    "on-click-middle": "brightnessctl set 50% >/dev/null",
+    "on-scroll-down": "brightnessctl set 1%- >/dev/null",
+    "on-scroll-up": "brightnessctl set +1% >/dev/null",
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'></span> {percent}%",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'></span> {capacity}% {time}",
+  },
+
+  "network": {
+    "on-click": "$TERMINAL -e nmtui",
+
+    "format": "",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{ifname} ({essid})",
+    "tooltip-format-disconnected": "",
+  },
+
+  "clock": {
+    "interval": 1,
+    "actions": {
+      "on-click": "mode",
+      "on-scroll-down": "shift_down",
+      "on-scroll-up": "shift_up",
+    },
+
+    "format": "<span font-family='Font Awesome 7 Free Solid'></span> {:%F %T}",
+    "tooltip-format": "<small>{calendar}</small>",
+    "calendar": {
+      "weeks-pos": "left",
+      "mode-mon-col": 4,
+      "format": {
+        "months": "<span color='#89B4FA' weight='bold'>{}</span>",
+        "weeks": "<span color='#89DCEB' weight='bold'>{}</span>",
+        "weekdays": "<span color='#89DCEB' weight='bold'>{}</span>",
+        "days": "<span color='#CDD6F4'>{}</span>",
+        "today": "<span color='#89B4FA' weight='bold'>{}</span>",
+      },
+    },
+  },
+}

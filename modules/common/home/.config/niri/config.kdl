@@ -28,7 +28,7 @@ layout {
     border {
         width 4
         active-color "#89B4FA"
-        inactive-color "#45475A"
+        inactive-color "#313244"
         urgent-color "#F38BA8"
     }
     focus-ring { off; }
@@ -57,11 +57,16 @@ layer-rule {
     place-within-backdrop true
 }
 
+spawn-sh-at-startup "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+spawn-sh-at-startup "gsettings set org.gnome.desktop.interface cursor-theme $XCURSOR_THEME"
+spawn-sh-at-startup "gsettings set org.gnome.desktop.interface cursor-size $XCURSOR_SIZE"
+
 spawn-at-startup "setbg"
+spawn-at-startup "waybar"
 
 binds {
     Mod+Q repeat=false { close-window; }
-    Mod+E repeat=false { spawn "foot"; }
+    Mod+E repeat=false { spawn-sh "$TERMINAL"; }
     Mod+S repeat=false { toggle-overview; }
 
     Mod+W            repeat=false { spawn-sh "pkill -x fuzzel || fuzzel"; }
@@ -79,10 +84,10 @@ binds {
     Mod+Shift+F { toggle-window-floating; }
     Mod+Ctrl+F  { fullscreen-window; }
 
-    Mod+P       { screenshot; }
-    Mod+Shift+P { screenshot-window; }
-    Mod+Ctrl+P  { screenshot-screen; }
-    Mod+Alt+P   { spawn "hyprpicker" "-aq"; }
+    Mod+P                  { screenshot; }
+    Mod+Shift+P            { screenshot-window; }
+    Mod+Ctrl+P             { screenshot-screen; }
+    Mod+Alt+P repeat=false { spawn-sh "pkill -x hyprpicker || hyprpicker -aq"; }
 
     Mod+M       allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     Mod+Shift+M allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }

@@ -5,13 +5,13 @@ base-devel
 bash-completion
 bat
 bore
+brightnessctl
 btop
 discord
 dust
 evtest
 eza
 fd
-feh
 firefox
 foot
 fuse2
@@ -36,7 +36,6 @@ linux-firmware
 maim
 man-db
 man-pages
-mangohud
 marksman
 mpc
 mpd
@@ -51,6 +50,7 @@ nushell
 nvidia
 obs-studio
 openssh
+otf-font-awesome
 pacman-contrib
 pass
 perf
@@ -67,7 +67,6 @@ ripgrep
 rustup
 sdl_image
 steam
-stow
 strace
 swaybg
 swaylock
@@ -84,9 +83,9 @@ udiskie
 unzip
 uv
 valgrind
+waybar
 wine-mono
 wl-clipboard
-woff2-font-awesome
 xclip
 xdg-desktop-portal-wlr
 xdotool
