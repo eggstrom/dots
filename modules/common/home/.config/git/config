@@ -17,17 +17,33 @@
   status = true
 
 [alias]
+  i = init
+  ib = init --bare
+  cl = clone
+  clb = clone --bare
   l = show-or-log
   s = diff --stat
   ss = diff --stat --staged
   d = diff
   ds = diff --staged
-  a = add
-  ap = add --patch
+  a = add --verbose
+  ae = add --verbose --edit
+  ai = add --verbose --interactive
+  ap = add --verbose --patch
   r = restore
   rs = restore --staged
   c = commit --verbose
   ca = commit --verbose --amend
+  b = switch --create
+  bl = branch --list
+  bc = branch
+  br = branch --delete
+  w = worktree
+  wl = worktree list
+  wc = worktree add
+  wm = worktree move
+  wr = worktree remove
+  wp = worktree prune
   u = user
 
 [url "https://codeberg.org/"]
