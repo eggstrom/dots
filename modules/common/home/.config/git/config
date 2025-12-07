@@ -21,7 +21,9 @@
   ib = init --bare
   cl = clone
   clb = clone --bare
-  l = show-or-log
+  l = log --decorate --graph --oneline
+  ls = show
+  st = status --short
   s = diff --stat
   ss = diff --stat --staged
   d = diff
@@ -34,9 +36,10 @@
   rs = restore --staged
   c = commit --verbose
   ca = commit --verbose --amend
-  b = switch --create
-  bl = branch --list
+  b = switch
+  bl = branch --all
   bc = branch
+  bm = branch --move
   br = branch --delete
   w = worktree
   wl = worktree list
