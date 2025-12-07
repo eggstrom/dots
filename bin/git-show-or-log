@@ -1,0 +1,9 @@
+#!/usr/bin/env nu
+
+def main [object?: string]: nothing -> nothing {
+  if $object == null {
+    git log --oneline
+  } else {
+    git show $object
+  }
+}

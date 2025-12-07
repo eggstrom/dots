@@ -1,17 +1,22 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env nu
 
-git rev-parse
-case "$#" in
-0)
-  git config --unset user.name || :
-  git config --unset user.email || :
-  git config --unset credential.username || :
-  ;;
-2)
-  git config user.name "$1"
-  git config user.email "$2"
-  git config credential.username "$1"
-  ;;
-*) exit 1 ;;
-esac
+def main [name?: string email?: string]: nothing -> nothing {
+  if ($name == null) != ($email == null) {
+    error make { msg: "expected a name and email or neither" }
+  }
+
+  git rev-parse
+
+  if $name != null {
+    git config user.name $name
+    git config user.email $email
+    git config credential.username $name
+    return
+  }
+
+  do -i {
+    git config --unset user.name
+    git config --unset user.email
+    git config --unset credential.username
+  }
+}

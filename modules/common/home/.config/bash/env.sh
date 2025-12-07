@@ -8,6 +8,9 @@ export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export TERMINAL=foot
 
+# Ensure GPG knows current TTY device file
+export GPG_TTY=$(tty)
+
 # Theming
 export XCURSOR_THEME=catppuccin-mocha-dark-cursors
 export XCURSOR_SIZE=42

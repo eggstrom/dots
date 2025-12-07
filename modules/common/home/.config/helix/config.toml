@@ -11,8 +11,8 @@ auto-format = false
 
 lsp.auto-signature-help = false
 lsp.snippets = false
-completion-timeout = 5          # Show completions instantly
-completion-trigger-len = 1      # Show completions after typing 1 character
+completion-timeout = 5     # Show completions instantly
+completion-trigger-len = 1 # Show completions after typing 1 character
 
 end-of-line-diagnostics = "hint"
 inline-diagnostics.cursor-line = "hint"

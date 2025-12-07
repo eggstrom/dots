@@ -28,7 +28,6 @@ imagemagick
 jdk-openjdk
 just
 kitty
-lazygit
 less
 lib32-nvidia-utils
 linux

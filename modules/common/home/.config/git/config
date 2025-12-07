@@ -13,5 +13,26 @@
 [init]
   defaultBranch = main
 
+[pager]
+  status = true
+
+[alias]
+  l = show-or-log
+  s = diff --stat
+  ss = diff --stat --staged
+  d = diff
+  ds = diff --staged
+  a = add
+  ap = add --patch
+  r = restore
+  rs = restore --staged
+  c = commit --verbose
+  ca = commit --verbose --amend
+  u = user
+
+[url "https://codeberg.org/"]
+  insteadOf = cb:
 [url "https://github.com/"]
   insteadOf = gh:
+[url "https://gitlab.com/"]
+  insteadOf = gl:
