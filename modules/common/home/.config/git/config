@@ -10,42 +10,54 @@
   credentialStore = gpg
   guiPrompt = false
 
+[pager]
+  status = true
+
+[interactive]
+  singlekey = true
+
 [init]
   defaultBranch = main
 
-[pager]
-  status = true
+[commit]
+  verbose = true
 
 [alias]
   i = init
   ib = init --bare
   cl = clone
   clb = clone --bare
-  l = log --decorate --graph --oneline
-  ls = show
-  st = status --short
-  s = diff --stat
-  ss = diff --stat --staged
+  l = log --graph --oneline
+  sh = show
+  s = status --short
   d = diff
   ds = diff --staged
+  sd = diff --stat
+  sds = diff --stat --staged
+  st = stash
+  stl = stash list
+  sts = stash show
+  stp = stash pop
   a = add --verbose
   ae = add --verbose --edit
   ai = add --verbose --interactive
   ap = add --verbose --patch
   r = restore
   rs = restore --staged
-  c = commit --verbose
-  ca = commit --verbose --amend
-  b = switch
-  bl = branch --all
-  bc = branch
+  c = commit
+  ca = commit --amend
+  b = branch
+  ba = branch --all
   bm = branch --move
-  br = branch --delete
-  w = worktree
+  bd = branch --delete
+  sw = switch
+  swd = switch --detach
   wl = worktree list
-  wc = worktree add
+  wa = worktree add
   wm = worktree move
   wr = worktree remove
+  wlk = worktree lock
+  wuk = worktree unlock
   wp = worktree prune
   u = user
 
