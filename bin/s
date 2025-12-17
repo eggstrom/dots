@@ -1,0 +1,44 @@
+#!/usr/bin/env nu
+
+# Various utilities for system maintenance
+def main []: nothing -> nothing {
+  help main
+}
+
+# Update /etc/pacman.d/mirrorlist
+def "main update-mirrorlist" []: nothing -> nothing {
+  sudo reflector -phttps -l20 --sort rate --save /etc/pacman.d/mirrorlist
+}
+
+# Clean package caches
+def "main clean-packages" [
+  --keep-installed (-i) = 1 # Number of installed packages to keep
+  --keep-uninstalled (-u) = 0 # Number of uninstalled packages to keep
+]: nothing -> nothing {
+  main clean-packages native -i $keep_installed -u $keep_uninstalled
+  main clean-packages foreign -i $keep_installed -u $keep_uninstalled
+}
+
+# Clean native package cache
+def "main clean-packages native" [
+  --keep-installed (-i) = 1 # Number of installed packages to keep
+  --keep-uninstalled (-u) = 0 # Number of uninstalled packages to keep
+]: nothing -> nothing {
+  paccache -rvuk $keep_uninstalled
+  paccache -rvk $keep_installed
+}
+
+# Clean foreign package cache
+def "main clean-packages foreign" [
+  --keep-installed (-i) = 1 # Number of installed packages to keep
+  --keep-uninstalled (-u) = 0 # Number of uninstalled packages to keep
+]: nothing -> nothing {
+  let args = ls $"($env.XDG_CACHE_HOME)/yay"
+  | where type == dir
+  | get name
+  | each {|path| [-c $path]}
+  | flatten
+
+  paccache -rvuk $keep_uninstalled ...($args)
+  paccache -rvk $keep_installed ...($args)
+}
