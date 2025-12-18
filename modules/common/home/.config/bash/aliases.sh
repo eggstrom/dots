@@ -9,6 +9,7 @@ alias cp='cp -vir'
 alias rm='rm -vir'
 alias mkdir='mkdir -vp'
 alias rmdir='rmdir -v'
+alias ln='ln -vi'
 
 # Colored output
 alias diff='diff --color=auto'

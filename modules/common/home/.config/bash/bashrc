@@ -6,10 +6,11 @@
 # Enable fzf integration
 eval "$(fzf --bash)"
 
-set -o noclobber # Prevent implicit overwritting with redirection
-shopt -s autocd  # Change directory without cd
-shopt -s dotglob # Show hidden files during completion
-shopt -s extglob # Enable additional globbing syntax
+set -o noclobber  # Prevent implicit overwritting with redirection
+shopt -s autocd   # Change directory without cd
+shopt -s dotglob  # Show hidden files when globbing
+shopt -s globstar # Enable ** when globbing
+shopt -s extglob  # Enable extended globbing syntax
 
 # History
 # ignoreboth: Don't save commands that start with a space or duplicates
