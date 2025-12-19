@@ -10,6 +10,9 @@ alias rm='rm -vir'
 alias mkdir='mkdir -vp'
 alias rmdir='rmdir -v'
 alias ln='ln -vi'
+alias chmod='chmod -c'
+alias chown='chown -c'
+alias chgrp='chgrp -c'
 
 # Colored output
 alias diff='diff --color=auto'
