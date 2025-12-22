@@ -42,6 +42,10 @@
   rs = restore --staged
   c = commit
   ca = commit --amend
+  sw = switch
+  swd = switch --detach
+  b = branch
+  w = worktree
 
 [url "https://codeberg.org/"]
   insteadOf = cb:
