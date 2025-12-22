@@ -1,0 +1,432 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s globstar nullglob
+
+B=$'\033[34m' # Blue
+S=$'\033[m'   # Reset
+
+basename="$(basename "$0")"
+
+read -rd '' usage <<EOF || true
+Usage: $basename [OPTION]... <COMMAND>
+
+A declarative system manager
+
+Options:
+  -h, --help            Print usage
+  -c, --config <DIR>    Set config directory
+  -i, --interactive     Prompt before overwriting files (default)
+  -f, --force           Skip file overwrite prompts
+  -d, --dry-run         Print without doing anything
+
+Commands:
+  config            Print config directory
+  list              List modules
+  show <MODULE>     Show module contents
+  apply <MODULE>    Set active module
+  reapply           Reset active module
+  unapply           Unset active module
+EOF
+
+read -rd '' config_usage <<EOF || true
+Usage: $basename [OPTION]... config
+
+Print config directory
+EOF
+
+read -rd '' list_usage <<EOF || true
+Usage: $basename [OPTION]... list
+
+List modules
+EOF
+
+read -rd '' show_usage <<EOF || true
+Usage: $basename [OPTION]... show <MODULE>
+
+Show module contents
+EOF
+
+read -rd '' apply_usage <<EOF || true
+Usage: $basename [OPTION]... apply <MODULE>
+
+Set active module
+EOF
+
+read -rd '' reapply_usage <<EOF || true
+Usage: $basename [OPTION]... reapply <MODULE>
+
+Reset active module
+EOF
+
+read -rd '' unapply_usage <<EOF || true
+Usage: $basename [OPTION]... unapply <MODULE>
+
+Unset active module
+EOF
+
+# Replaces $HOME with ~ in a path
+dehome() {
+  local path="$1" dehomed
+  [[ -v HOME && "$path" =~ ^"$HOME"(/|$) ]] && dehomed="~${path#"$HOME"}"
+  printf '%s\n' "${dehomed:-$path}"
+}
+
+load_module() {
+  [[ ! -v config || ! -d "$config" ]] && return
+
+  declare -gA \
+    file_types=() \
+    symlinks=() \
+    links=() \
+    files=() \
+    patches=() \
+    packages=() \
+    services=() \
+    hooks=()
+
+  for path in "$config/$1/"*; do
+    case "$path" in
+      *.symlink) load_symlinks "$path" ;;
+      *.link) load_links "$path" ;;
+      *.file) load_files "$path" ;;
+      *.patch) load_patches "$path" ;;
+      *.package) load_list packages "$path" ;;
+      *.service) load_list services "$path" ;;
+      *.hook) load_hook "$path" ;;
+    esac
+  done
+
+  for target in "${!symlinks[@]}"; do
+    [[ "${file_types[$target]}" = symlink ]] && continue
+    unset "symlinks[$target]"
+  done
+  for target in "${!links[@]}"; do
+    [[ "${file_types[$target]}" = link ]] && continue
+    unset "links[$target]"
+  done
+  for target in "${!files[@]}"; do
+    [[ "${file_types[$target]}" = file ]] && continue
+    unset "files[$target]"
+  done
+}
+
+get_target() {
+  local path="$1"
+
+  local symlink="$path.target"
+  [[ ! -h "$symlink" ]] && return 1
+  realpath -m "$symlink"
+}
+
+load_symlinks() {
+  local root="$1" target_root
+  target_root="$(get_target "$root")" || return 0
+
+  for path in "$root/"**; do
+    [[ -d "$path" ]] && continue
+
+    local target="$target_root/${path#"$root/"}"
+    symlinks["$target"]="$path"
+    file_types["$target"]=symlink
+  done
+}
+
+load_links() {
+  local root="$1" target_root
+  target_root="$(get_target "$root")" || return 0
+
+  local path
+  for path in "$root/"**; do
+    [[ ! -f "$path" ]] && continue
+
+    local target="$target_root/${path#"$root/"}"
+    links["$target"]="$path"
+    file_types["$target"]='link'
+  done
+}
+
+load_files() {
+  local root="$1" target_root
+  target_root="$(get_target "$root")" || return 0
+
+  local path
+  for path in "$root/"**; do
+    [[ ! -f "$path" ]] && continue
+
+    local target="$target_root/${path#"$root/"}"
+    files["$target"]="$path"
+    file_types["$target"]='file'
+  done
+}
+
+load_patches() {
+  local root="$1" target_root
+  target_root="$(get_target "$root")" || return 0
+
+  local path
+  for path in "$root/"**; do
+    [[ ! -f "$path" ]] && continue
+
+    local target="$target_root/${path#"$root/"}"
+    patches["$target"]+="$path"$'\0'
+  done
+}
+
+load_list() {
+  local array="$1" file="$2"
+
+  while read -r line; do
+    for word in ${line%%#*}; do
+      printf -v "${array}[$word]" ''
+    done
+  done <"$file"
+}
+
+load_hook() {
+  local path="$1"
+  [[ ! -f "$path" || ! -x "$path" ]] && return
+  hooks["$path"]=
+}
+
+create_symlink() {
+  :
+}
+
+create_link() {
+  :
+}
+
+create_file() {
+  :
+}
+
+sync_packages() {
+  :
+}
+
+sync_services() {
+  :
+}
+
+config() {
+  if [[ $# -ne 0 ]]; then
+    printf '%s\n' "$config_usage"
+    exit 1
+  fi
+
+  if [[ ! -v config ]]; then
+    printf "dot: couldn't find config directory\n"
+    exit 1
+  fi
+  printf '%s\n' "$config"
+}
+
+list() {
+  if [[ $# -ne 0 ]]; then
+    printf '%s\n' "$list_usage"
+    exit 1
+  fi
+  [[ ! -v config ]] && return
+
+  local dirs=("$config/"*/)
+  local basenames=("${dirs[@]#"$config"/}")
+  printf '%s\n' "${basenames[@]%/}"
+}
+
+show() {
+  if [[ $# -ne 1 ]]; then
+    printf '%s\n' "$show_usage"
+    exit 1
+  fi
+
+  load_module "$1"
+  local i
+
+  if [[ ${#symlinks[@]} -ne 0 ]]; then
+    printf "${B}Symlinks:$S\n"
+
+    i=1
+    for target in "${!symlinks[@]}"; do
+      printf "$B%s.$S %s $B->$S %s\n" "$i" "$(dehome "$target")" "$(dehome "${symlinks["$target"]}")"
+      ((i += 1))
+    done
+  fi
+
+  if [[ ${#links[@]} -ne 0 ]]; then
+    printf "\n${B}Links:$S\n"
+
+    i=1
+    for target in "${!links[@]}"; do
+      local n=${#links[@]}
+      printf "$B%${#n}s.$S %s $B=>$S %s\n" "$i" "$(dehome "$target")" "$(dehome "${links["$target"]}")"
+      ((i += 1))
+    done
+  fi
+
+  if [[ ${#files[@]} -ne 0 ]]; then
+    printf "\n${B}Files:$S\n"
+
+    i=1
+    for target in "${!files[@]}"; do
+      local n=${#files[@]}
+      printf "$B%${#n}s.$S %s $B<$S %s\n" "$i" "$(dehome "$target")" "$(dehome "${files["$target"]}")"
+      ((i += 1))
+
+      [[ ! -v patches["$target"] ]] && continue
+      readarray -d '' paths <<<"${patches[$target]}"
+      printf "%${#n}s  ${B}Patches:$S\n" ''
+
+      local j=1
+      for path in "${paths[@]}"; do
+        local m="${#paths[@]}"
+        printf "%${#n}s  $B%${#m}s.$S %s\n" '' "$j" "$(dehome "$path")"
+        ((j += 1))
+      done
+    done
+  fi
+
+  if [[ ${#packages[@]} -ne 0 ]]; then
+    printf "\n${B}Packages:$S\n"
+
+    i=1
+    local package
+    printf '%s\n' "${!packages[@]}" | sort | while read -r package; do
+      local n=${#packages[@]}
+      printf "$B%${#n}s.$S %s\n" "$i" "$package"
+      ((i += 1))
+    done | column
+  fi
+
+  if [[ ${#services[@]} -ne 0 ]]; then
+    printf "\n${B}Services:$S\n"
+
+    i=1
+    local service
+    printf '%s\n' "${!services[@]}" | sort | while read -r service; do
+      local n=${#services[@]}
+      printf "$B%${#n}s.$S %s\n" "$i" "$service"
+      ((i += 1))
+    done | column
+  fi
+
+  if [[ ${#hooks[@]} -ne 0 ]]; then
+    printf "\n${B}Hooks:$S\n"
+
+    i=1
+    for hook in "${!hooks[@]}"; do
+      local basename="${hook##*/}"
+      local n=${#hooks[@]}
+      printf "$B%${#n}s.$S %s\n" "$i" "${basename%.hook}"
+      ((i += 1))
+    done
+  fi
+}
+
+apply() {
+  if [[ $# -ne 1 ]]; then
+    printf '%s\n' "$apply_usage"
+    exit 1
+  fi
+
+  load_module "$1"
+}
+
+reapply() {
+  if [[ $# -ne 1 ]]; then
+    printf '%s\n' "$reapply_usage"
+    exit 1
+  fi
+
+  load_module "$1"
+}
+
+unapply() {
+  if [[ $# -ne 1 ]]; then
+    printf '%s\n' "$unapply_usage"
+    exit 1
+  fi
+
+  load_module "$1"
+}
+
+for cmd in column getopt realpath; do
+  if ! command -v "$cmd" >/dev/null; then
+    printf '%s\n' "$basename: $cmd: command not found"
+    missing_cmd=
+  fi
+done
+[[ -v missing_cmd ]] && exit 1
+
+getopt -T || exit_code=$?
+if [[ ${exit_code:-0} -ne 4 ]]; then
+  printf '%s\n' "$basename: getopt: invalid version"
+  exit 1
+fi
+
+args="$(getopt -n "$basename" -o hc:ifd -l help,config:interactive,force,dry-run -- "$@")"
+eval set -- "$args"
+
+if [[ -v DOT_CONFIG ]]; then
+  config="$DOT_CONFIG"
+elif [[ -v HOME && -d "$HOME/.dot" ]]; then
+  config="$HOME/.dot"
+elif [[ -v XDG_CONFIG_HOME && -d "$XDG_CONFIG_HOME/dot" ]]; then
+  config="$XDG_CONFIG_HOME/dot"
+elif [[ -v HOME && -d "$HOME/.config/dot" ]]; then
+  config="$HOME/.config/dot"
+elif [[ -v HOME ]]; then
+  config="$HOME/.dot"
+fi
+
+if [[ -v XDG_DATA_HOME ]]; then
+  data="$XDG_DATA_HOME/dot"
+elif [[ -v HOME ]]; then
+  data="$HOME/.local/share/dot"
+fi
+
+mode=interactive
+
+while true; do
+  case "$1" in
+    -h|--help)
+      printf '%s\n' "$usage"
+      exit
+      ;;
+    -c|--config)
+      config="$2"
+      shift 1
+      ;;
+    -i|--interactive)
+      mode=interactive
+      ;;
+    -f|--force)
+      mode=force
+      ;;
+    -d|--dry-run)
+      mode=dry_run
+      ;;
+    --)
+      shift 1
+      break
+      ;;
+  esac
+  shift 1
+done
+
+if [[ $# -eq 0 ]]; then
+  printf '%s\n' "$usage"
+  exit 1
+fi
+
+case "$1" in
+  config) config "${@:2}" ;;
+  list) list "${@:2}" ;;
+  show) show "${@:2}" ;;
+  apply) apply "${@:2}" ;;
+  unapply) unapply "${@:2}" ;;
+  reapply) reapply "${@:2}" ;;
+  *)
+    printf '%s\n' "$usage"
+    exit 1
+    ;;
+esac
