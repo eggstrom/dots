@@ -43,7 +43,7 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 nushell
-nvidia
+nvidia-open
 obs-studio
 openssh
 otf-font-awesome
