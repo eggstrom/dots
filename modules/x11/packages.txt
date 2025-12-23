@@ -1,0 +1,11 @@
+i3-wm
+i3lock
+kitty
+maim
+picom
+polybar
+xclip
+xdotool
+xorg-server
+xorg-xinit
+xorg-xwininfo
