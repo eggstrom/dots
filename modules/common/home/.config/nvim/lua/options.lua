@@ -30,10 +30,10 @@ vim.o.ignorecase = true -- Disable case sensitivity
 vim.o.smartcase = true  -- Enable case sensitivity when using caps
 
 -- Folds
-vim.o.foldlevel = 99                          -- Keep folds open by default
-vim.o.foldmethod = 'expr'                     -- Use foldexpr for folds
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()' -- Use treesitter for folds
-vim.o.foldtext = ''                           -- Make fold text prettier
+vim.o.foldlevel = 99                               -- Keep folds open by default
+vim.o.foldmethod = 'expr'                          -- Use foldexpr for folds
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- Use treesitter for folds
+vim.o.foldtext = ''                                -- Make fold text prettier
 
 -- Windows
 vim.o.splitbelow = true    -- Create new windows below instead of above
