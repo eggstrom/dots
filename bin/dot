@@ -72,8 +72,6 @@ dehome() {
 }
 
 load_module() {
-  [[ ! -v config || ! -d "$config" ]] && return
-
   declare -gA \
     file_types=() \
     symlinks=() \
@@ -83,6 +81,8 @@ load_module() {
     packages=() \
     services=() \
     hooks=()
+
+  [[ ! -v config || ! -d "$config" ]] && return
 
   for path in "$config/$1/"*; do
     case "$path" in

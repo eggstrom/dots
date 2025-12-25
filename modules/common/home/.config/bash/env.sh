@@ -3,7 +3,7 @@
 . ~/.config/bash/xdg.sh
 
 # Default programs
-export EDITOR=helix
+export EDITOR=nvim
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export TERMINAL=foot
