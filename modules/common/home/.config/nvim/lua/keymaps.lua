@@ -17,7 +17,7 @@ end)
 vim.keymap.set('', '<Leader>tr', function()
   vim.o.relativenumber = not vim.o.relativenumber
 end)
--- Toggle wrapping
+-- Toggle line wrapping
 vim.keymap.set('', '<Leader>tw', function()
   vim.o.wrap = not vim.o.wrap
 end)
