@@ -41,7 +41,12 @@ vim.o.splitright = true    -- Create new windows right instead of left
 vim.o.winborder = 'single' -- Add border to floating windows
 
 -- Completion
-vim.opt.completeopt:append({ 'fuzzy', 'noinsert' });
+vim.opt.completeopt = {
+  'menuone',  -- Show menu, even if there's only one match
+  'noselect', -- Don't automatically select the first match
+  'popup',    -- Show information about the selected match in a popup
+  'fuzzy',    -- Use fuzzy matching
+}
 
 -- Diagnostics
 vim.diagnostic.config({
