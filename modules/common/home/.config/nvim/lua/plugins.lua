@@ -39,7 +39,6 @@ vim.lsp.enable({
   'rust_analyzer', -- Rust
   'taplo',         -- TOML
   'tinymist',      -- Typst
-  'ts_ls',         -- JavaScript, TypeScript
   'ty',            -- Python (Type checker)
   'zls',           -- Zig
 })
