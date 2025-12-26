@@ -12,7 +12,7 @@ vim.o.swapfile = false          -- Disable swap file
 vim.o.undofile = true           -- Save undo history
 vim.o.clipboard = 'unnamedplus' -- Save unnamed register content to clipboard
 
--- Appearance
+-- Interface
 vim.o.cursorline = true       -- Highlight current line
 vim.o.number = true           -- Enable line numbers
 vim.o.relativenumber = true   -- Enable relative line numbers

@@ -23,7 +23,6 @@ gimp
 git
 go
 gopls
-helix
 htop
 hyprpicker
 imagemagick

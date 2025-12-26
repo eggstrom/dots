@@ -1,3 +1,4 @@
+helix
 i3-wm
 i3lock
 kitty
