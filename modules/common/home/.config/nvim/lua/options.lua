@@ -17,14 +17,17 @@ vim.o.cursorline = true       -- Highlight current line
 vim.o.number = true           -- Enable line numbers
 vim.o.relativenumber = true   -- Enable relative line numbers
 vim.o.signcolumn = 'yes'      -- Always show sign column
-vim.o.wrap = false            -- Disable line wrapping
-vim.o.linebreak = true        -- Only wrap lines on certain characters
 vim.opt.shortmess:append('I') -- Disable intro message
 
 -- Scrolling
 vim.o.scrolloff = 4       -- Show some lines around cursor
 vim.o.sidescrolloff = 8   -- Show some columns around cursor
 vim.o.smoothscroll = true -- Scroll one line at a time with wrapped text
+
+-- Lines
+vim.o.wrap = false       -- Disable line wrapping
+vim.o.linebreak = true   -- Only wrap lines on certain characters
+vim.o.colorcolumn = '+1' -- Show column indicating where lines will be broken
 
 -- Indentation
 vim.o.expandtab = true  -- Replace <Tab> with spaces

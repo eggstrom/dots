@@ -21,6 +21,14 @@ end)
 vim.keymap.set('', '<Leader>tw', function()
   vim.o.wrap = not vim.o.wrap
 end)
+-- Toggle line breaking
+vim.keymap.set('', '<Leader>tb', function()
+  if vim.v.count == 0 then
+    vim.o.textwidth = vim.o.textwidth == 0 and 80 or 0
+  else
+    vim.o.textwidth = vim.o.textwidth == vim.v.count and 0 or vim.v.count
+  end
+end)
 -- Toggle list mode
 vim.keymap.set('', '<Leader>tl', function()
   vim.o.list = not vim.o.list
